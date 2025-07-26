@@ -12,11 +12,17 @@ title: "Inicio"
       <img src="https://github.com/bimasusi/bimasusi.github.io/raw/main/my_new_folder/imagen-pagina.jpeg" width="150">
     </td>
     <td style="padding-left:15px;">
-      <p><strong>Biviana Marcela Suárez Sierra</strong>, investigadora en estadística y ciencia de datos.</p>
-      <p>Aquí encontrarás:</p>
+      <p><strong>Biviana Marcela Suárez Sierra</strong>, researcher in statistics and data science.</p>
+      <p>Here you will find:</p>
+      <ul>
+        <li>My academic and research projects</li>
+        <li>Resources in statistical modeling</li>
+        <li>Educational content and collaborations</li>
+      </ul>
     </td>
   </tr>
 </table>
+
 
 
 
