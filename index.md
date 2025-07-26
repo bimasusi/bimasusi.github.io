@@ -5,7 +5,6 @@ title: "Inicio"
 
 ¡Bienvenida/o a mi página personal!
 
-
 <table>
   <tr>
     <td>
@@ -23,18 +22,15 @@ title: "Inicio"
   </tr>
 </table>
 
+- 📄 My publications and projects
+- 📚 Teaching materials
+- 📊 Examples of analysis and visualizations
 
-
-
-
-- 📄 Mis publicaciones y proyectos  
-- 📚 Material docente  
-- 📊 Ejemplos de análisis y visualizaciones  
 
 ---
 
-## Proyectos destacados
+## Featured Projects
 
-1. **Modelado de calidad del aire**  
-2. **Análisis de fracaso estudiantil con regresión logística**  
-3. **Implementación de Inductive Conformal Martingales**
+1. **Air quality modeling**  
+2. **Student failure analysis using logistic regression**  
+3. **Implementation of Inductive Conformal Martingales**
