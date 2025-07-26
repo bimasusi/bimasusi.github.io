@@ -3,7 +3,7 @@ layout: default
 title: "Inicio"
 ---
 
-¡Bienvenida/o a mi página personal!
+Welcome to my personal page!
 
 <table>
   <tr>
