@@ -10,6 +10,8 @@ Aquí encontrarás:
 
 ![Foto tomada en 2021 en mi reciente ingreso a EAFIT](my_new_folder/imagen-pagina.jpeg)
 
+
+
 - 📄 Mis publicaciones y proyectos  
 - 📚 Material docente  
 - 📊 Ejemplos de análisis y visualizaciones  
