@@ -5,13 +5,19 @@ title: "Inicio"
 
 ¡Bienvenida/o a mi página personal!
 
-Soy **Biviana Marcela Suárez Sierra**, investigadora en estadística y ciencia de datos.  
-Aquí encontrarás:
 
-<div align="right">
-  <img src="https://github.com/bimasusi/bimasusi.github.io/raw/main/my_new_folder/imagen-pagina.jpeg" width="250">
-  <p><em>Foto tomada en 2021 al ingresar a EAFIT</em></p>
-</div>
+<table>
+  <tr>
+    <td>
+      <img src="https://github.com/bimasusi/bimasusi.github.io/raw/main/my_new_folder/imagen-pagina.jpeg" width="150">
+    </td>
+    <td style="padding-left:15px;">
+      <p><strong>Biviana Marcela Suárez Sierra</strong>, investigadora en estadística y ciencia de datos.</p>
+      <p>Aquí encontrarás:</p>
+    </td>
+  </tr>
+</table>
+
 
 
 - 📄 Mis publicaciones y proyectos  
