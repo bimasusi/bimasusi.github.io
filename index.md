@@ -9,7 +9,7 @@ title: "Inicio"
 <table>
   <tr>
     <td>
-      <img src="https://github.com/bimasusi/bimasusi.github.io/raw/main/my_new_folder/imagen-pagina.jpeg" width="150">
+      <img src="https://github.com/bimasusi/bimasusi.github.io/raw/main/my_new_folder/imagen-pagina.jpeg" width="150" style="border: none;">
     </td>
     <td style="padding-left:15px;">
       <p><strong>Biviana Marcela Suárez Sierra</strong>, researcher in statistics and data science.</p>
@@ -22,6 +22,7 @@ title: "Inicio"
     </td>
   </tr>
 </table>
+
 
 
 
