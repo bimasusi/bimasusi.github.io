@@ -5,18 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Biviana Marcela Suárez Sierra</title>
   <style>
+    :root { --maxw: 800px; }
+
+    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
+
+    /* ----- NAV (fijo y responsive) ----- */
+    .site-nav { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #eee; z-index: 1000; }
+    .nav-container { max-width: var(--maxw); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: .6rem 1rem; }
+    .brand { font-weight: 700; text-decoration: none; color: #111; }
+    .nav-links { display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0; }
+    .nav-links a { text-decoration: none; color: #333; padding: .4rem .6rem; border-radius: .5rem; }
+    .nav-links a:hover, .nav-links a:focus { background: #f2f2f2; }
+    .hamburger { display: none; cursor: pointer; font-size: 1.5rem; padding: .2rem .4rem; user-select: none; }
+    #nav-toggle { display: none; }
+
+    /* ----- CONTENIDO ----- */
     body {
-      font-family: Georgia, serif;
-      max-width: 800px;
-      margin: 3rem auto;
-      padding: 0 1rem;
-      line-height: 1.6;
+      margin: 0; /* para que el nav quede pegado arriba */
       color: #111;
+      font-family: Georgia, serif;
+      line-height: 1.6;
     }
+    .container { max-width: var(--maxw); margin: 3rem auto; padding: 0 1rem; }
     h1, h2 {
       font-family: 'Helvetica Neue', sans-serif;
       border-bottom: 1px solid #ccc;
       padding-bottom: 0.2rem;
+      scroll-margin-top: 72px; /* evita que el título quede oculto tras el nav */
     }
     img {
       max-width: 180px;
@@ -24,176 +40,199 @@
       margin-right: 20px;
       border-radius: 8px;
     }
-    a {
-      color: #004080;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-    .clear {
-      clear: both;
-    }
-    ul {
-      margin-top: 0;
+    a { color: #004080; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .clear { clear: both; }
+    ul { margin-top: 0; }
+
+    /* ----- Móvil ----- */
+    @media (max-width: 720px){
+      .hamburger { display: block; }
+      .nav-links {
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: #fff; flex-direction: column; border-bottom: 1px solid #eee;
+        display: none; padding: .75rem 1rem;
+      }
+      #nav-toggle:checked + label + .nav-links { display: flex; }
+      .container { margin: 2rem auto; }
+      img { max-width: 140px; }
     }
   </style>
 </head>
 <body>
 
-<h1>Biviana Marcela Suárez Sierra</h1>
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-container">
+    <a class="brand" href="/">Biviana M. Suárez</a>
 
-<img src="my_new_folder/imagen-pagina.jpeg" alt="Biviana M. Suárez Sierra" />
+    <input id="nav-toggle" type="checkbox" />
+    <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">☰</label>
 
-<p><strong>Researcher in Statistics and Data Science</strong><br>
-Professor, Universidad EAFIT, Medellín, Colombia</p>
-
-<p>
-  <a href="https://scholar.google.com/citations?view_op=list_works&hl=es&authuser=1&user=gVFlz1gAAAAJ">Google Scholar</a> •
-  <a href="https://orcid.org/0000-0003-2151-3537">ORCID</a> •
-  <a href="https://github.com/bimasusi">GitHub</a> •
-  <a href="mailto:bmsuarezs@unal.edu.co">Email</a>
-</p>
-
-<div class="clear"></div>
-
-<h2>Research Interests</h2>
-<ul>
-  <li>Statistical modeling and inference</li>
-  <li>Time series analysis and changepoint detection</li>
-  <li>Bayesian statistics and information theory</li>
-  <li>Educational data science and learning analytics</li>
-</ul>
-
-<h2>Publications</h2>
-
-<h3>A. Journal Articles</h3>
-<ol>
-  <li>
-    Suárez-Sierra, B. M., Coen, A., & Taimal, C. A. (2023). Genetic algorithm with a Bayesian approach for multiple change-point detection in time series of counting exceedances for specific thresholds.
-    <em>Journal of the Korean Statistical Society, 52</em>(4), 982–1024.
-    <a href="https://doi.org/10.1007/s42952-023-00227-2" target="_blank">https://doi.org/10.1007/s42952-023-00227-2</a>
-  </li>
-  <li>
-    Suárez-Sierra, B. M., Rodrigues, E. R., & Tzintzun, G. (2021). An application of a non-homogeneous Poisson model to study PM2.5 exceedances in Mexico City and Bogotá.
-    <em>Journal of Applied Statistics, 49</em>(9), 2430–2445.
-    <a href="https://doi.org/10.1080/02664763.2021.1897972" target="_blank">https://doi.org/10.1080/02664763.2021.1897972</a>
-  </li>
-  <li>
-    Suárez-Sierra, B. M., Rodrigues, E. R., & Tzintzun, G. (2019). Rate of ozone and PM10 exceedances: A case study comparing data from Mexico City and Bogotá.
-    <em>Communications in Statistics: Case Studies, Data Analysis and Applications, 5</em>(2), 153–165.
-    <a href="https://doi.org/10.1080/23737484.2019.1593066" target="_blank">https://doi.org/10.1080/23737484.2019.1593066</a>
-  </li>
-</ol>
-
-<h3>B. Books</h3>
-<ol>
-  <li>
-    Tabares, M., Vallejo, P., Suarez, B., Suarez, M., Ruiz, O., & Aguilar, J. (Eds.). (2023). <em>Advances in computing: 17th Colombian Conference on Computing, CCC 2023</em>, Medellín, Colombia, August 10–11, 2023, revised selected papers. Springer Nature.
-  </li>
-</ol>
-
-<h3>C. Book Chapters</h3>
-<ol>
-  <li>
-    Taimal, C. A., Suárez-Sierra, B. M., & Rivera, J. C. (2024). An exploration of genetic algorithms operators for the detection of multiple change-points of exceedances using non-homogeneous Poisson processes and Bayesian methods.
-    In M. Tabares, P. Vallejo, B. Suarez, M. Suarez, O. Ruiz, & J. Aguilar (Eds.), <em>Advances in computing. CCC 2023. Communications in Computer and Information Science</em> (Vol. 1924). Springer, Cham.
-    <a href="https://doi.org/10.1007/978-3-031-47372-2_20" target="_blank">https://doi.org/10.1007/978-3-031-47372-2_20</a>
-  </li>
-  <li>
-    Barajas-Oviedo, S., Suárez-Sierra, B. M., & Ramírez-Ramírez, L. L. (2024). Change point detection for time dependent counts using extended MDL and genetic algorithms.
-    In M. Tabares, P. Vallejo, B. Suarez, M. Suarez, O. Ruiz, & J. Aguilar (Eds.), <em>Advances in computing. CCC 2023. Communications in Computer and Information Science</em>. Springer, Cham.
-  </li>
-</ol>
-
-<h3>D. Conference Proceedings</h3>
-<ol>
-  <li>
-    Baumer, B., & Suárez Sierra, B. M. (2024). tidychangepoint: A unified framework for analyzing changepoint detection in univariate time series.
-    In <em>Joint Statistical Meetings (JSM)</em>, Portland, OR.
-    <a href="https://doi.org/10.48550/arXiv.2407.14369" target="_blank">https://doi.org/10.48550/arXiv.2407.14369</a>
-  </li>
-</ol>
-
-
-<h2>Teaching</h2>
-
-<h3>2025</h3>
-<ul>
-  <li>
-    <strong>Inferencia Estadística</strong> — undergraduate course using Quarto-based materials.<br>
-    Recursos del curso:
-    <ul>
-      <li>📘 <a href="https://bmss-eafit-courses.github.io/inference-statistic/" target="_blank">Libro digital del curso</a></li>
-      <li>📄 <a href="https://github.com/BMSS-EAFIT-Courses/inference-statistic/blob/main/PROYECTO.md" target="_blank">Guía del proyecto</a></li>
-      <li>📊 <a href="https://github.com/BMSS-EAFIT-Courses/inference-statistic/blob/main/RUBRICA.md" target="_blank">Rúbrica de evaluación</a></li>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#teaching">Teaching</a></li>
+      <li><a href="#theses">Thesis Supervision</a></li>
+      <li><a href="#conversations">Conversations</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
-  </li>
-</ul>
+  </div>
+</nav>
+
+<main class="container">
+  <h1 id="about">Biviana Marcela Suárez Sierra</h1>
+
+  <img src="my_new_folder/imagen-pagina.jpeg" alt="Biviana M. Suárez Sierra" />
+
+  <p><strong>Researcher in Statistics and Data Science</strong><br>
+  Professor, Universidad EAFIT, Medellín, Colombia</p>
+
+  <p>
+    <a href="https://scholar.google.com/citations?view_op=list_works&hl=es&authuser=1&user=gVFlz1gAAAAJ">Google Scholar</a> •
+    <a href="https://orcid.org/0000-0003-2151-3537">ORCID</a> •
+    <a href="https://github.com/bimasusi">GitHub</a> •
+    <a href="mailto:bmsuarezs@unal.edu.co">Email</a>
+  </p>
+
+  <div class="clear"></div>
+
+  <h2 id="research">Research Interests</h2>
   <ul>
-  <li><strong>Estadística General</strong> — course emphasizing conceptual foundations.</li>
-</ul>
+    <li>Statistical modeling and inference</li>
+    <li>Time series analysis and changepoint detection</li>
+    <li>Bayesian statistics and information theory</li>
+    <li>Educational data science and learning analytics</li>
+  </ul>
 
-  
-<h2>Master's Thesis Supervision</h2>
-<ol>
-  <li>
-    EAFIT University (2025). <em>Implementation of LSTM recurrent neural networks for forecasting PM2.5 particulate matter in the Aburrá Valley</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
-  </li>
-  <li>
-    EAFIT University (2023). <em>Predictive analysis of default risk in microcredit: A machine learning approach in the financial sector</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
-  </li>
-  <li>
-    EAFIT University (2023). <em>Review of Bayesian statistical techniques for entity matching in large data sets</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
-  </li>
-  <li>
-    EAFIT University (2023). <em>Modeling threshold exceedances during dry and wet periods in Colombia using non-homogeneous Poisson processes</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
-  </li>
-  <li>
-    EAFIT University (2022). <em>Genetic algorithm with a Bayesian approach for multiple change-point detection in time series of counting exceedances for specific thresholds</em>. Master's thesis in Applied Mathematics. Main advisor: Biviana Marcela Suárez-Sierra.
-  </li>
-  <li>
-    EAFIT University (2022). <em>Prediction of employee turnover using automatic learning models</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
-  </li>
-  <li>
-    Sergio Arboleda University (2021). <em>Study of the correlation of air pollutants in Bogotá</em>. Master's thesis in Applied Mathematics. Main advisor: Biviana Marcela Suárez-Sierra.
-  </li>
-  <li>
-    Sergio Arboleda University (2021). <em>Detection of change points in time series with a genetic algorithm for modeling exceedances of air pollutants in Bogotá</em>. Master's thesis in Applied Mathematics. Main advisor: Biviana Marcela Suárez-Sierra.
-  </li>
-</ol>
+  <h2 id="publications">Publications</h2>
 
-<h2>Conversations with Science</h2>
+  <h3>A. Journal Articles</h3>
+  <ol>
+    <li>
+      Suárez-Sierra, B. M., Coen, A., & Taimal, C. A. (2023). Genetic algorithm with a Bayesian approach for multiple change-point detection in time series of counting exceedances for specific thresholds.
+      <em>Journal of the Korean Statistical Society, 52</em>(4), 982–1024.
+      <a href="https://doi.org/10.1007/s42952-023-00227-2" target="_blank">https://doi.org/10.1007/s42952-023-00227-2</a>
+    </li>
+    <li>
+      Suárez-Sierra, B. M., Rodrigues, E. R., & Tzintzun, G. (2021). An application of a non-homogeneous Poisson model to study PM2.5 exceedances in Mexico City and Bogotá.
+      <em>Journal of Applied Statistics, 49</em>(9), 2430–2445.
+      <a href="https://doi.org/10.1080/02664763.2021.1897972" target="_blank">https://doi.org/10.1080/02664763.2021.1897972</a>
+    </li>
+    <li>
+      Suárez-Sierra, B. M., Rodrigues, E. R., & Tzintzun, G. (2019). Rate of ozone and PM10 exceedances: A case study comparing data from Mexico City and Bogotá.
+      <em>Communications in Statistics: Case Studies, Data Analysis and Applications, 5</em>(2), 153–165.
+      <a href="https://doi.org/10.1080/23737484.2019.1593066" target="_blank">https://doi.org/10.1080/23737484.2019.1593066</a>
+    </li>
+  </ol>
 
-<h3>2025</h3>
-<ul>
-  <li>
-    <strong>Circulos Matemáticos</strong> are fun, collaborative problem-solving sessions led by expert mentors that help high-school students discover a passion for mathematics.</p>
-<p>Beyond classroom review, they explore advanced and exciting topics that open new perspectives — learn more at <a href="https://circulodematematicaslt.com/" target="_blank" rel="noopener">circulodematematicaslt.com</a>.</p>
-    Recursos del curso:
-    <ul>
-      <li>📘 <a href="https://bimasusi.github.io/CIRCULOS_2025/" target="_blank">Guía del taller</a></li>
-      <li>📄 <a href="https://docs.google.com/forms/d/1YV2qjACnX2-ll065azxRDbZvaA14FNYbPJu3XJWMEus/edit?pli=1" target="_blank">Formulario para compartir respuestas</a></li>
-    </ul>
-  </li>
-</ul>
-<ul>
-  <li>
-   <p><strong>R Day Colombia 2025</strong> is a high-impact event for the scientific and business communities, showcasing the versatility of R for statistics and data science; after editions in Medellín (2019 and 2023), it returns in person on <strong>November 14, 2025</strong>.</p>
-<p>We aim to connect Medellín’s R community and welcome newcomers; <strong>I am part of the organizing committee</strong>. <a href="https://rday-colombia.github.io/2025/" target="_blank" rel="noopener">More details</a></p>
-  </li>
-</ul>
-<ul>
-  <li>
-   <p><strong>Ada Lovelace Day – Medellín</strong> is a one-day, Latin America–wide celebration featuring playful workshops for girls ages 10–12 to promote STEM and highlight the vital role of women in science.</p>
-<p>We will serve as the <strong>official host site in Medellín</strong>. <a href="https://sede.adalovelace.net.ar/#/sede/71" target="_blank" rel="noopener">More details</a></p>
-  </li>
-</ul>
-  
+  <h3>B. Books</h3>
+  <ol>
+    <li>
+      Tabares, M., Vallejo, P., Suarez, B., Suarez, M., Ruiz, O., & Aguilar, J. (Eds.). (2023). <em>Advances in computing: 17th Colombian Conference on Computing, CCC 2023</em>, Medellín, Colombia, August 10–11, 2023, revised selected papers. Springer Nature.
+    </li>
+  </ol>
 
-<h2>Contact</h2>
-<p>Email: <a href="mailto:bmasuarezs@eafit.edu.co">bmasuarezs@eafit.edu.co</a><br>
-Office: Universidad EAFIT, Bloque 19, Medellín, Colombia</p>
+  <h3>C. Book Chapters</h3>
+  <ol>
+    <li>
+      Taimal, C. A., Suárez-Sierra, B. M., & Rivera, J. C. (2024). An exploration of genetic algorithms operators for the detection of multiple change-points of exceedances using non-homogeneous Poisson processes and Bayesian methods.
+      In M. Tabares, P. Vallejo, B. Suarez, M. Suarez, O. Ruiz, & J. Aguilar (Eds.), <em>Advances in computing. CCC 2023. Communications in Computer and Information Science</em> (Vol. 1924). Springer, Cham.
+      <a href="https://doi.org/10.1007/978-3-031-47372-2_20" target="_blank">https://doi.org/10.1007/978-3-031-47372-2_20</a>
+    </li>
+    <li>
+      Barajas-Oviedo, S., Suárez-Sierra, B. M., & Ramírez-Ramírez, L. L. (2024). Change point detection for time dependent counts using extended MDL and genetic algorithms.
+      In M. Tabares, P. Vallejo, B. Suarez, M. Suarez, O. Ruiz, & J. Aguilar (Eds.), <em>Advances in computing. CCC 2023. Communications in Computer and Information Science</em>. Springer, Cham.
+    </li>
+  </ol>
+
+  <h3>D. Conference Proceedings</h3>
+  <ol>
+    <li>
+      Baumer, B., & Suárez Sierra, B. M. (2024). tidychangepoint: A unified framework for analyzing changepoint detection in univariate time series.
+      In <em>Joint Statistical Meetings (JSM)</em>, Portland, OR.
+      <a href="https://doi.org/10.48550/arXiv.2407.14369" target="_blank">https://doi.org/10.48550/arXiv.2407.14369</a>
+    </li>
+  </ol>
+
+  <h2 id="teaching">Teaching</h2>
+
+  <h3>2025</h3>
+  <ul>
+    <li>
+      <strong>Inferencia Estadística</strong> — undergraduate course using Quarto-based materials.<br>
+      Recursos del curso:
+      <ul>
+        <li>📘 <a href="https://bmss-eafit-courses.github.io/inference-statistic/" target="_blank">Libro digital del curso</a></li>
+        <li>📄 <a href="https://github.com/BMSS-EAFIT-Courses/inference-statistic/blob/main/PROYECTO.md" target="_blank">Guía del proyecto</a></li>
+        <li>📊 <a href="https://github.com/BMSS-EAFIT-Courses/inference-statistic/blob/main/RUBRICA.md" target="_blank">Rúbrica de evaluación</a></li>
+      </ul>
+    </li>
+  </ul>
+  <ul>
+    <li><strong>Estadística General</strong> — course emphasizing conceptual foundations.</li>
+  </ul>
+
+  <h2 id="theses">Master's Thesis Supervision</h2>
+  <ol>
+    <li>
+      EAFIT University (2025). <em>Implementation of LSTM recurrent neural networks for forecasting PM2.5 particulate matter in the Aburrá Valley</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
+    </li>
+    <li>
+      EAFIT University (2023). <em>Predictive analysis of default risk in microcredit: A machine learning approach in the financial sector</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
+    </li>
+    <li>
+      EAFIT University (2023). <em>Review of Bayesian statistical techniques for entity matching in large data sets</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
+    </li>
+    <li>
+      EAFIT University (2023). <em>Modeling threshold exceedances during dry and wet periods in Colombia using non-homogeneous Poisson processes</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
+    </li>
+    <li>
+      EAFIT University (2022). <em>Genetic algorithm with a Bayesian approach for multiple change-point detection in time series of counting exceedances for specific thresholds</em>. Master's thesis in Applied Mathematics. Main advisor: Biviana Marcela Suárez-Sierra.
+    </li>
+    <li>
+      EAFIT University (2022). <em>Prediction of employee turnover using automatic learning models</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
+    </li>
+    <li>
+      Sergio Arboleda University (2021). <em>Study of the correlation of air pollutants in Bogotá</em>. Master's thesis in Applied Mathematics. Main advisor: Biviana Marcela Suárez-Sierra.
+    </li>
+    <li>
+      Sergio Arboleda University (2021). <em>Detection of change points in time series with a genetic algorithm for modeling exceedances of air pollutants in Bogotá</em>. Master's thesis in Applied Mathematics. Main advisor: Biviana Marcela Suárez-Sierra.
+    </li>
+  </ol>
+
+  <h2 id="conversations">Conversations with Science</h2>
+
+  <h3>2025</h3>
+  <ul>
+    <li>
+      <p><strong>Circulos Matemáticos</strong> are fun, collaborative problem-solving sessions led by expert mentors that help high-school students discover a passion for mathematics.</p>
+      <p>Beyond classroom review, they explore advanced and exciting topics that open new perspectives — learn more at <a href="https://circulodematematicaslt.com/" target="_blank" rel="noopener">circulodematematicaslt.com</a>.</p>
+      Recursos del curso:
+      <ul>
+        <li>📘 <a href="https://bimasusi.github.io/CIRCULOS_2025/" target="_blank">Guía del taller</a></li>
+        <li>📄 <a href="https://docs.google.com/forms/d/1YV2qjACnX2-ll065azxRDbZvaA14FNYbPJu3XJWMEus/edit?pli=1" target="_blank">Formulario para compartir respuestas</a></li>
+      </ul>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      <p><strong>R Day Colombia 2025</strong> is a high-impact event for the scientific and business communities, showcasing the versatility of R for statistics and data science; after editions in Medellín (2019 and 2023), it returns in person on <strong>November 14, 2025</strong>.</p>
+      <p>We aim to connect Medellín’s R community and welcome newcomers; <strong>I am part of the organizing committee</strong>. <a href="https://rday-colombia.github.io/2025/" target="_blank" rel="noopener">More details</a></p>
+    </li>
+  </ul>
+  <ul>
+    <li>
+      <p><strong>Ada Lovelace Day – Medellín</strong> is a one-day, Latin America–wide celebration featuring playful workshops for girls ages 10–12 to promote STEM and highlight the vital role of women in science.</p>
+      <p>We will serve as the <strong>official host site in Medellín</strong>. <a href="https://sede.adalovelace.net.ar/#/sede/71" target="_blank" rel="noopener">More details</a></p>
+    </li>
+  </ul>
+
+  <h2 id="contact">Contact</h2>
+  <p>Email: <a href="mailto:bmasuarezs@eafit.edu.co">bmasuarezs@eafit.edu.co</a><br>
+  Office: Universidad EAFIT, Bloque 19, Medellín, Colombia</p>
+</main>
 
 </body>
 </html>
