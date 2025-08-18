@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Biviana Marcela Suárez Sierra</title>
   <style>
-    :root { --maxw: 800px; }
+    :root { --maxw: 800px; --accent:#004080; --soft:#cfe0ff; }
 
     html { scroll-behavior: smooth; }
     * { box-sizing: border-box; }
@@ -18,7 +18,7 @@
     .nav-links { display: flex; gap: .75rem; list-style: none; margin: 0; padding: 0; }
     .nav-links a { text-decoration: none; color: #333; padding: .35rem .6rem; border-radius: .5rem; }
     .nav-links a:hover, .nav-links a:focus { background: #f2f2f2; }
-    .nav-links a.active { background: #e9f0ff; outline: 1px solid #cfe0ff; }
+    .nav-links a.active { background: #e9f0ff; outline: 1px solid var(--soft); }
     .lang-toggle { display:flex; gap:.25rem; align-items:center; }
     .lang-toggle button { border:1px solid #ddd; background:#fff; padding:.25rem .5rem; border-radius:.5rem; cursor:pointer; }
     .lang-toggle button[aria-pressed="true"] { background:#111; color:#fff; border-color:#111; }
@@ -36,11 +36,15 @@
       scroll-margin-top: 76px; /* evita quedar oculto bajo el nav */
     }
     img { max-width: 180px; float: left; margin-right: 20px; border-radius: 8px; }
-    a { color: #004080; text-decoration: none; }
+    a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
     .clear { clear: both; }
     ul { margin-top: 0; }
-    section { padding-top: .5rem; }
+
+    /* ----- Sección activa: barra lateral ----- */
+    section { position: relative; padding-top: .5rem; padding-left: 1rem; border-left: 4px solid transparent; transition: border-left-color .2s ease, background .2s ease; }
+    section.section-active { border-left-color: var(--soft);
+      background: linear-gradient(to right, rgba(207,224,255,.25), rgba(207,224,255,0)); }
 
     /* ----- Móvil ----- */
     @media (max-width: 720px){
@@ -263,28 +267,42 @@
 </main>
 
 <script>
-/* ---------- Section active highlight ---------- */
+/* ---------- Section active highlight + barra lateral ---------- */
 (function(){
   const links = Array.from(document.querySelectorAll('#navLinks a'));
-  const ids = links.map(a => a.getAttribute('href').slice(1));
-  const sections = ids.map(id => document.getElementById(id)).filter(Boolean);
-
   const byId = Object.fromEntries(links.map(a => [a.getAttribute('href').slice(1), a]));
+  const sections = Object.keys(byId).map(id => document.getElementById(id)).filter(Boolean);
+
+  const setActive = (id) => {
+    links.forEach(l => l.classList.remove('active'));
+    Object.values(byId).forEach(() => {});
+    sections.forEach(s => s.classList.remove('section-active'));
+    const link = byId[id];
+    const sec  = document.getElementById(id);
+    if (link) link.classList.add('active');
+    if (sec)  sec.classList.add('section-active');
+    history.replaceState(null, '', '#' + id);
+  };
 
   const obs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const id = entry.target.id;
-      const link = byId[id];
-      if (!link) return;
-      if (entry.isIntersecting && entry.intersectionRatio > 0.55) {
-        links.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        history.replaceState(null, '', '#' + id);
-      }
-    });
-  }, { root: null, threshold: [0.0, 0.6, 1.0] });
+    // seleccionar la entrada con más ratio visible
+    const visible = entries
+      .filter(e => e.isIntersecting)
+      .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+    if (visible && visible.intersectionRatio > 0.45) {
+      setActive(visible.target.id);
+    }
+  }, { root: null, threshold: [0.0, 0.25, 0.5, 0.75, 1.0] });
 
   sections.forEach(sec => obs.observe(sec));
+})();
+
+/* ---------- Cerrar menú móvil al hacer clic ---------- */
+(function(){
+  const navToggle = document.getElementById('nav-toggle');
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.addEventListener('click', () => { navToggle.checked = false; });
+  });
 })();
 
 /* ---------- Simple i18n (ES/EN) ---------- */
@@ -335,7 +353,6 @@
       if (val !== undefined) el.innerHTML = val;
     });
 
-    // toggle pressed state
     document.getElementById('btnES').setAttribute('aria-pressed', String(lang==='es'));
     document.getElementById('btnEN').setAttribute('aria-pressed', String(lang==='en'));
 
