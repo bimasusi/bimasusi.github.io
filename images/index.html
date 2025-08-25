@@ -1,0 +1,21 @@
+<!DOCTYPE html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Galería</title>
+<style>
+  body{font-family:system-ui,Arial,sans-serif;max-width:1000px;margin:2rem auto;padding:0 1rem}
+  .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+  .grid img{width:100%;height:170px;object-fit:cover;border-radius:10px}
+  a{color:#004080;text-decoration:none}
+</style>
+</head><body>
+<h1>Galería</h1>
+<div class="grid" id="g"></div>
+<script>
+  const files = Array.from({length:15}, (_,i)=>`foto${i+1}.jpeg`);
+  const g = document.getElementById('g');
+  g.innerHTML = files.map(f => `
+    <a href="${f}" target="_blank" rel="noopener">
+      <img src="${f}" alt="${f}">
+    </a>`).join('');
+</script>
+</body></html>
