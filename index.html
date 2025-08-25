@@ -59,6 +59,18 @@
       .container { margin: 2rem auto; }
       img { max-width: 140px; }
     }
+    /* --- Galería --- */
+    .gallery-grid{
+     display:grid; gap:12px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      margin-top:.75rem;
+    }
+    .gallery-grid a{ display:block; }
+    .gallery-grid img{
+      width:100%; height:170px; object-fit:cover;
+    border-radius:10px;
+}
+
   </style>
 </head>
 <body>
@@ -239,6 +251,21 @@
           <li>📘 <a href="https://bimasusi.github.io/CIRCULOS_2025/" target="_blank" rel="noopener">Guía del taller</a></li>
           <li>📄 <a href="https://docs.google.com/forms/d/1YV2qjACnX2-ll065azxRDbZvaA14FNYbPJu3XJWMEus/edit?pli=1" target="_blank" rel="noopener">Formulario para compartir respuestas</a></li>
         </ul>
+        <!-- Galería de fotos -->
+        <h4>Galería</h4>
+        <div class="gallery-grid">
+        <a href="images/galeria/foto1.jpg" target="_blank" rel="noopener">
+        <img src="images/galeria/foto1.jpg" alt="Actividad 1">
+        </a>
+        <a href="images/galeria/foto2.jpg" target="_blank" rel="noopener">
+        <img src="images/galeria/foto2.jpg" alt="Actividad 2">
+        </a>
+        <a href="images/galeria/foto3.jpg" target="_blank" rel="noopener">
+        <img src="images/galeria/foto3.jpg" alt="Actividad 3">
+        </a>
+  <!-- Duplica <a>…</a> para más fotos -->
+</div>
+
       </li>
     </ul>
 
