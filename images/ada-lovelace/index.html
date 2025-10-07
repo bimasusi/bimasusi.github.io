@@ -8,21 +8,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css">
 
 <style>
-  body{
-    font-family:system-ui,Arial,sans-serif;
-    max-width:1000px;margin:2rem auto;padding:0 1rem;background:#fafafa;
-  }
+  body{font-family:system-ui,Arial,sans-serif;max-width:1000px;margin:2rem auto;padding:0 1rem;background:#fafafa}
   h1{color:#5c308c;margin-bottom:.25rem;text-align:center}
-  .back{margin:.25rem 0 1rem;text-align:center}
+  .back{text-align:center;margin:.25rem 0 1rem}
   .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
   .grid img{width:100%;height:170px;object-fit:cover;border-radius:10px}
-  a{color:#5c308c;text-decoration:none}
+  .debug{font:12px/1.4 system-ui,Arial,sans-serif;color:#555;background:#fff;border:1px solid #ddd;border-radius:8px;padding:10px;margin:12px 0}
+  .debug code{font-family:ui-monospace,Consolas,monospace}
 </style>
 </head>
 <body>
 <h1>Galería Ada Lovelace Medellín 2025</h1>
 <p class="back"><a href="/">← Volver al inicio</a></p>
 
+<div id="debug" class="debug">Probando rutas…</div>
 <div id="galeria" class="grid"></div>
 
 <!-- UMD correctos -->
@@ -31,76 +30,88 @@
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
 
 <script>
-  // === Configuración para /images/ada-lovelace/index.html ===
-  const DIR       = './';       // MISMA carpeta del HTML
-  const PREFIJO   = 'ADA';      // ADA1, ADA2, ...
-  const NUM_FOTOS = 60;         // ajusta si quieres
-  const EXT       = ['jpeg','jpg','JPG','JPEG'];
-  const PAD2      = false;      // sin ceros a la izquierda
-  // ==========================================================
+/* Ajustes de nombres */
+const PREFIJO = 'ADA';                 // ADA1, ADA2, …
+const PRIMERA = 'ADA1.jpeg';           // EXISTE en tu carpeta
+const EXT     = ['jpeg','jpg','JPEG','JPG'];
+const NUM     = 60;                    // máximo a buscar
+const PAD2    = false;                 // sin ceros a la izquierda
 
-  const g = document.getElementById('galeria');
+/* Candidatas de base según dónde esté servido el HTML */
+const BASES = [
+  './',                                 // misma carpeta
+  '/images/ada-lovelace/',              // raíz del sitio (user site)
+  '../images/ada-lovelace/',            // si este index se sirve desde subcarpeta
+  '../../images/ada-lovelace/',
+  window.location.pathname.replace(/[^/]+$/, '') // directorio actual calculado
+];
 
-  function testSrc(src){
-    return new Promise(ok=>{
-      const im = new Image();
-      im.onload  = ()=> ok(src);
-      im.onerror = ()=> ok(null);
-      im.src = src;
-    });
+const $debug = document.getElementById('debug');
+const $gal   = document.getElementById('galeria');
+
+function log(line){ $debug.innerHTML += '<br>' + line; }
+
+function test(url){
+  return new Promise(res=>{
+    const img=new Image();
+    img.onload = ()=> res({url, ok:true});
+    img.onerror= ()=> res({url, ok:false});
+    img.src = url + (url.includes('?')?'&':'?') + 'cachebust=' + Date.now();
+  });
+}
+
+async function findWorkingBase(){
+  $debug.textContent = 'Probando rutas para ' + PRIMERA + ' …';
+  for (const b of BASES){
+    const u = new URL(b + PRIMERA, location.href).href;
+    const r = await test(u);
+    log((r.ok?'✅':'❌') + ' ' + u);
+    if (r.ok) return new URL(b, location.href).href; // base válida
   }
+  return null;
+}
 
-  function candidates(i){
-    const bases = [DIR]; // solo la carpeta actual
-    const nombres = PAD2
-      ? [`${PREFIJO}${String(i).padStart(2,'0')}`, `${PREFIJO}${i}`]
-      : [`${PREFIJO}${i}`];
+function nameFor(i){
+  const core = PAD2 ? `${PREFIJO}${String(i).padStart(2,'0')}` : `${PREFIJO}${i}`;
+  return EXT.map(e => `${core}.${e}`);
+}
 
-    const cands = [];
-    for(const b of bases){
-      for(const n of nombres){
-        for(const e of EXT){
-          cands.push(`${b}${n}.${e}`);
-        }
-      }
+async function build(){
+  const base = await findWorkingBase();
+  if(!base){
+    log('<br><b>No se encontró ninguna ruta válida.</b><br>Revisa que este archivo sea <code>/images/ada-lovelace/index.html</code> y que exista <code>ADA1.jpeg</code> en la MISMA carpeta.');
+    $gal.innerHTML = '<p>No se encontraron imágenes. Revisa carpeta, nombres y extensión.</p>';
+    return;
+  }
+  log('<br><b>Ruta detectada:</b> ' + base);
+
+  const found = [];
+  for (let i=1;i<=NUM;i++){
+    let hit=null;
+    for(const n of nameFor(i)){
+      const url = new URL(n, base).href;
+      // eslint-disable-next-line no-await-in-loop
+      const r = await test(url);
+      if (r.ok){ hit = url; break; }
     }
-    return cands;
+    if(hit) found.push(hit);
   }
 
-  async function build(){
-    const found = [];
-    for(let i=1;i<=NUM_FOTOS;i++){
-      let hit = null;
-      for(const src of candidates(i)){
-        // eslint-disable-next-line no-await-in-loop
-        const ok = await testSrc(src);
-        if(ok){ hit = ok; break; }
-      }
-      if(hit) found.push(hit);
-    }
-
-    if(found.length===0){
-      g.innerHTML = '<p>No se encontraron imágenes. Asegúrate de que <code>ADA1.jpeg</code>, <code>ADA2.jpeg</code>, ... estén en <code>/images/ada-lovelace/</code> junto a este <code>index.html</code>.</p>';
-      return;
-    }
-
-    g.innerHTML = found.map((f,i)=>`
-      <a href="${f}" data-sub-html="Ada Lovelace ${i+1}">
-        <img src="${f}" alt="Ada Lovelace ${i+1}">
-      </a>`).join('');
-
-    lightGallery(g,{
-      selector:'a',
-      plugins:[lgZoom,lgThumbnail],
-      speed:300
-    });
+  if(found.length===0){
+    $gal.innerHTML = '<p>No se encontraron imágenes con los nombres esperados.</p>';
+    return;
   }
 
-  if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded', build);
-  } else {
-    build();
-  }
+  $gal.innerHTML = found.map((f,i)=>`
+    <a href="${f}" data-sub-html="Ada Lovelace ${i+1}">
+      <img src="${f}" alt="Ada Lovelace ${i+1}">
+    </a>`).join('');
+
+  lightGallery($gal, { selector:'a', plugins:[lgZoom, lgThumbnail], speed:300 });
+}
+
+if(document.readyState==='loading'){ document.addEventListener('DOMContentLoaded', build); }
+else{ build(); }
 </script>
 </body>
 </html>
