@@ -11,34 +11,54 @@
 <style>
   body{
     font-family:system-ui,Arial,sans-serif;
-    max-width:1000px;margin:2rem auto;padding:0 1rem;background:#fafafa;
+    max-width:1000px;
+    margin:2rem auto;
+    padding:0 1rem;
+    background:#fafafa;
   }
-  h1{color:#5c308c;margin-bottom:.25rem}
-  .back{margin:.25rem 0 1rem}
-  .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
-  .grid img{width:100%;height:170px;object-fit:cover;border-radius:10px}
+  h1{
+    color:#5c308c;
+    margin-bottom:.25rem;
+    text-align:center;
+  }
+  .back{
+    margin:.25rem 0 1rem;
+    text-align:center;
+  }
+  .grid{
+    display:grid;
+    gap:12px;
+    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  }
+  .grid img{
+    width:100%;
+    height:170px;
+    object-fit:cover;
+    border-radius:10px;
+  }
   a{color:#5c308c;text-decoration:none}
 </style>
 </head>
+
 <body>
 <h1>Galería Ada Lovelace Medellín 2025</h1>
 <p class="back"><a href="/">← Volver al inicio</a></p>
 
 <div id="galeria" class="grid"></div>
 
-<!-- JS UMD correctos -->
+<!-- Librerías UMD correctas -->
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
 
 <script>
-  // === Configuración ===
-  const DIR      = './';        // pon 'img/', 'fotos/', etc. si tus archivos están en carpeta
-  const PREFIJO  = 'ada';       // cambia si tus fotos se llaman distinto
-  const NUM_FOTOS= 40;          // máximo a intentar
-  const EXT      = ['jpg','jpeg','png','JPG','JPEG','PNG']; // prueba también mayúsculas
-  const PAD2     = true;        // si usas ada01, ada02... en vez de ada1, ada2...
-  // ======================
+  // === Configuración según tu estructura ===
+  const DIR       = 'images/ada-lovelace/'; // carpeta de las fotos
+  const PREFIJO   = 'ADA';                  // nombre base de los archivos
+  const NUM_FOTOS = 40;                     // máximo de imágenes a buscar
+  const EXT       = ['jpeg'];               // extensión exacta
+  const PAD2      = false;                  // sin ceros a la izquierda
+  // =========================================
 
   const g = document.getElementById('galeria');
 
@@ -51,7 +71,6 @@
     });
   }
 
-  // genera variantes de nombre: ada1, ada01
   function candidates(i){
     const base = PAD2 ? [`${PREFIJO}${String(i).padStart(2,'0')}`, `${PREFIJO}${i}`]
                       : [`${PREFIJO}${i}`];
@@ -78,8 +97,8 @@
     }
 
     if(found.length===0){
-      g.innerHTML = '<p>No se encontraron imágenes. Revisa carpeta, nombres (con/ sin 0) y extensión.</p>';
-      console.warn('Sugerencias: ajusta DIR, PREFIJO, PAD2 o EXT.');
+      g.innerHTML = '<p>No se encontraron imágenes. Revisa carpeta, nombres y extensión.</p>';
+      console.warn('Sugerencias: revisa DIR, PREFIJO o extensión de archivos.');
       return;
     }
 
@@ -88,18 +107,16 @@
         <img src="${f}" alt="Ada Lovelace ${i+1}">
       </a>`).join('');
 
-    // Inicializar lightGallery (UMD globals existen: lightGallery, lgZoom, lgThumbnail)
-    lightGallery(g, {
-      selector: 'a',
-      plugins: [lgZoom, lgThumbnail],
-      speed: 300
+    lightGallery(g,{
+      selector:'a',
+      plugins:[lgZoom,lgThumbnail],
+      speed:300
     });
   }
 
-  // Espera al DOM por si mueves el script al <head>
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', build);
-  } else {
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',build);
+  }else{
     build();
   }
 </script>
