@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galería Ada Lovelace Medellín 2025</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 20px;
+      background-color: #fafafa;
+    }
+    h1 { color: #5c308c; }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    .gallery img {
+      width: 48%;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .gallery img:hover { transform: scale(1.03); }
+  </style>
+</head>
+<body>
+  <h1>Ada Lovelace Medellín 2025</h1>
+  <p>Fotografías del evento realizado en EAFIT 💜</p>
+
+  <div id="gallery" class="gallery"></div>
+
+  <script>
+    // Galería automática de imágenes ADA1.jpeg ... ADA12.jpeg
+    const gallery = document.getElementById("gallery");
+    const imageCount = 12; // número total de imágenes
+    for (let i = 1; i <= imageCount; i++) {
+      const img = document.createElement("img");
+      img.src = `ADA${i}.jpeg`;
+      img.alt = `Ada Lovelace Medellín ${i}`;
+      img.onerror = () => img.remove(); // si no existe, se ignora
+      gallery.appendChild(img);
+    }
+  </script>
+</body>
+</html>
