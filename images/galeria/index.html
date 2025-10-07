@@ -1,40 +1,90 @@
-<!DOCTYPE html><html lang="es"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Galería</title>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galería Ada Lovelace Medellín 2025</title>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css">
-<style>
-  body{font-family:system-ui,Arial,sans-serif;max-width:1000px;margin:2rem auto;padding:0 1rem}
-  h1{margin-bottom:.25rem}
-  .back{margin:.25rem 0 1rem}
-  .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
-  .grid img{width:100%;height:170px;object-fit:cover;border-radius:10px}
-  a{color:#004080;text-decoration:none}
-</style>
-</head><body>
-<h1>Galería</h1>
-<p class="back"><a href="/">← Volver al inicio</a></p>
+  <!-- lightGallery CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css"
+  />
 
-<div id="galeria" class="grid"></div>
+  <style>
+    body{font-family:Arial, sans-serif; background:#fafafa; margin:20px}
+    h1{color:#5c308c; text-align:center; margin-bottom:6px}
+    p.lead{ text-align:center; margin-top:0 }
+    .back{ text-align:center; margin:8px 0 16px }
+    /* Grilla de miniaturas */
+    #gallery{
+      display:flex; flex-wrap:wrap; gap:10px; justify-content:center
+    }
+    #gallery a{
+      display:block; width:48%; border-radius:12px; overflow:hidden;
+      box-shadow:0 0 8px rgba(0,0,0,.1)
+    }
+    #gallery img{
+      display:block; width:100%; height:auto
+    }
+    @media (max-width:700px){
+      #gallery a{ width:100% }
+    }
+  </style>
+</head>
+<body>
+  <h1>Ada Lovelace Medellín 2025</h1>
+  <p class="lead">Fotografías del evento realizado en EAFIT 💜</p>
+  <p class="back">
+    <a href="/#contact" style="text-decoration:none;color:#5c308c;font-weight:bold">
+      ← Volver a mi página principal
+    </a>
+  </p>
 
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.min.js"></script>
-<script>
-  // Las fotos están en ESTE mismo directorio (images/galeria/)
-  const N = 15;
-  const files = Array.from({length:N}, (_,i)=>`foto${i+1}.jpeg`);
+  <!-- Contenedor de la galería -->
+  <div id="gallery"></div>
 
-  const g = document.getElementById('galeria');
-  g.innerHTML = files.map((f,i)=>`
-    <a href="${f}" data-sub-html="Actividad ${i+1}">
-      <img src="${f}" alt="Actividad ${i+1}">
-    </a>`).join('');
+  <!-- JS de lightGallery y plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
 
-  lightGallery(g, {
-    selector: 'a',
-    plugins: [lgZoom, lgThumbnail],
-    speed: 300
-  });
-</script>
-</body></html>
+  <script>
+    // ====== Configura aquí ======
+    const imageCount = 12;      // <- número de fotos ADA1..ADAn
+    const baseName   = 'ADA';   // <- prefijo del archivo
+    const ext        = 'jpeg';  // <- extensión: 'jpeg' o 'jpg' o 'png'
+    // ============================
+
+    const container = document.getElementById('gallery');
+
+    // Crea enlaces <a> para que lightGallery pueda abrirlos con zoom
+    for (let i = 1; i <= imageCount; i++) {
+      const file = `${baseName}${i}.${ext}`;
+      const a = document.createElement('a');
+      a.href = file;                // imagen grande
+      a.className = 'gallery-item';
+      a.setAttribute('data-src', file);
+      a.setAttribute('data-sub-html', `Ada Lovelace Medellín ${i}`);
+
+      const img = document.createElement('img');
+      img.src = file;               // miniatura (la misma, GitHub las sirve bien)
+      img.alt = `Ada Lovelace Medellín ${i}`;
+      img.onerror = () => a.remove(); // si no existe, se omite
+
+      a.appendChild(img);
+      container.appendChild(a);
+    }
+
+    // Inicializa lightGallery
+    lightGallery(container, {
+      selector: '.gallery-item',
+      plugins: [lgZoom, lgThumbnail],
+      speed: 300,
+      download: false,       // oculta botón de descarga (cámbialo a true si lo deseas)
+      zoomFromOrigin: true,
+      mobileSettings: { controls: true, showCloseIcon: true, download: false }
+    });
+  </script>
+</body>
+</html>
