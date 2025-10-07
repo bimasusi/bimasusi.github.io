@@ -21,20 +21,44 @@
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.min.js"></script>
 <script>
-  // Las fotos están en ESTE mismo directorio (images/galeria/)
-  const N = 15;
-  const files = Array.from({length:N}, (_,i)=>`foto${i+1}.jpeg`);
+  // Intenta .jpg, .jpeg, .png y solo agrega las que cargan
+  const NUM_FOTOS = 30;              // pon un tope alto si no sabes cuántas son
+  const PREFIJO   = 'foto';          // cambia si tus archivos se llaman distinto
+  const EXT       = ['jpg','jpeg','png'];
 
   const g = document.getElementById('galeria');
-  g.innerHTML = files.map((f,i)=>`
-    <a href="${f}" data-sub-html="Actividad ${i+1}">
-      <img src="${f}" alt="Actividad ${i+1}">
-    </a>`).join('');
 
-  lightGallery(g, {
-    selector: 'a',
-    plugins: [lgZoom, lgThumbnail],
-    speed: 300
-  });
+  function testSrc(src){
+    return new Promise(ok=>{
+      const im = new Image();
+      im.onload = ()=> ok(src);
+      im.onerror = ()=> ok(null);
+      im.src = src;
+    });
+  }
+
+  async function build(){
+    const found = [];
+    for(let i=1;i<=NUM_FOTOS;i++){
+      for(const e of EXT){
+        const src = `${PREFIJO}${i}.${e}`;
+        /* si existe, lo guardamos y pasamos al siguiente i */
+        // eslint-disable-next-line no-await-in-loop
+        const ok = await testSrc(src);
+        if(ok){ found.push(ok); break; }
+      }
+    }
+    if(found.length===0){
+      g.innerHTML = '<p>No se encontraron imágenes. Revisa nombres/extensiones.</p>';
+      return;
+    }
+    g.innerHTML = found.map((f,i)=>`
+      <a href="${f}" data-sub-html="Actividad ${i+1}">
+        <img src="${f}" alt="Actividad ${i+1}">
+      </a>`).join('');
+
+    lightGallery(g, { selector:'a', plugins:[lgZoom, lgThumbnail], speed:300 });
+  }
+  build();
 </script>
 </body></html>
