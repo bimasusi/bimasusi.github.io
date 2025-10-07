@@ -1,55 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Galería Ada Lovelace Medellín 2025</title>
+
+  <!-- lightGallery CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css"
+  />
+
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      margin: 20px;
-      background-color: #fafafa;
+    body{font-family:Arial, sans-serif; background:#fafafa; margin:20px}
+    h1{color:#5c308c; text-align:center; margin-bottom:6px}
+    p.lead{ text-align:center; margin-top:0 }
+    .back{ text-align:center; margin:8px 0 16px }
+    /* Grilla de miniaturas */
+    #gallery{
+      display:flex; flex-wrap:wrap; gap:10px; justify-content:center
     }
-    h1 { color: #5c308c; }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 20px;
+    #gallery a{
+      display:block; width:48%; border-radius:12px; overflow:hidden;
+      box-shadow:0 0 8px rgba(0,0,0,.1)
     }
-    .gallery img {
-      width: 48%;
-      border-radius: 10px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-      transition: transform 0.3s;
+    #gallery img{
+      display:block; width:100%; height:auto
     }
-    .gallery img:hover { transform: scale(1.03); }
+    @media (max-width:700px){
+      #gallery a{ width:100% }
+    }
   </style>
 </head>
 <body>
   <h1>Ada Lovelace Medellín 2025</h1>
-  <p>Fotografías del evento realizado en EAFIT 💜</p>
-<p class="back">
-  <a href="/#contact" style="text-decoration:none;color:#5c308c;font-weight:bold">
-    ← Volver a mi página principal
-  </a>
-</p>
+  <p class="lead">Fotografías del evento realizado en EAFIT 💜</p>
+  <p class="back">
+    <a href="/#contact" style="text-decoration:none;color:#5c308c;font-weight:bold">
+      ← Volver a mi página principal
+    </a>
+  </p>
 
-  <div id="gallery" class="gallery"></div>
+  <!-- Contenedor de la galería -->
+  <div id="gallery"></div>
+
+  <!-- JS de lightGallery y plugins -->
+  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
 
   <script>
-    // Galería automática de imágenes ADA1.jpeg ... ADA12.jpeg
-    const gallery = document.getElementById("gallery");
-    const imageCount = 12; // número total de imágenes
+    // ====== Configura aquí ======
+    const imageCount = 12;      // <- número de fotos ADA1..ADAn
+    const baseName   = 'ADA';   // <- prefijo del archivo
+    const ext        = 'jpeg';  // <- extensión: 'jpeg' o 'jpg' o 'png'
+    // ============================
+
+    const container = document.getElementById('gallery');
+
+    // Crea enlaces <a> para que lightGallery pueda abrirlos con zoom
     for (let i = 1; i <= imageCount; i++) {
-      const img = document.createElement("img");
-      img.src = `ADA${i}.jpeg`;
+      const file = `${baseName}${i}.${ext}`;
+      const a = document.createElement('a');
+      a.href = file;                // imagen grande
+      a.className = 'gallery-item';
+      a.setAttribute('data-src', file);
+      a.setAttribute('data-sub-html', `Ada Lovelace Medellín ${i}`);
+
+      const img = document.createElement('img');
+      img.src = file;               // miniatura (la misma, GitHub las sirve bien)
       img.alt = `Ada Lovelace Medellín ${i}`;
-      img.onerror = () => img.remove(); // si no existe, se ignora
-      gallery.appendChild(img);
+      img.onerror = () => a.remove(); // si no existe, se omite
+
+      a.appendChild(img);
+      container.appendChild(a);
     }
+
+    // Inicializa lightGallery
+    lightGallery(container, {
+      selector: '.gallery-item',
+      plugins: [lgZoom, lgThumbnail],
+      speed: 300,
+      download: false,       // oculta botón de descarga (cámbialo a true si lo deseas)
+      zoomFromOrigin: true,
+      mobileSettings: { controls: true, showCloseIcon: true, download: false }
+    });
   </script>
 </body>
 </html>
