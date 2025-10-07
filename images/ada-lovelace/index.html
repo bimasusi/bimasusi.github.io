@@ -5,79 +5,63 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Galería Ada Lovelace Medellín 2025</title>
 
-<!-- Estilos de lightGallery -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/css/lightgallery-bundle.min.css">
 
 <style>
   body{
     font-family:system-ui,Arial,sans-serif;
-    max-width:1000px;
-    margin:2rem auto;
-    padding:0 1rem;
-    background:#fafafa;
+    max-width:1000px;margin:2rem auto;padding:0 1rem;background:#fafafa;
   }
-  h1{
-    color:#5c308c;
-    margin-bottom:.25rem;
-    text-align:center;
-  }
-  .back{
-    margin:.25rem 0 1rem;
-    text-align:center;
-  }
-  .grid{
-    display:grid;
-    gap:12px;
-    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-  }
-  .grid img{
-    width:100%;
-    height:170px;
-    object-fit:cover;
-    border-radius:10px;
-  }
+  h1{color:#5c308c;margin-bottom:.25rem;text-align:center}
+  .back{margin:.25rem 0 1rem;text-align:center}
+  .grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+  .grid img{width:100%;height:170px;object-fit:cover;border-radius:10px}
   a{color:#5c308c;text-decoration:none}
 </style>
 </head>
-
 <body>
 <h1>Galería Ada Lovelace Medellín 2025</h1>
 <p class="back"><a href="/">← Volver al inicio</a></p>
 
 <div id="galeria" class="grid"></div>
 
-<!-- Librerías UMD correctas -->
+<!-- UMD correctos -->
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/zoom/lg-zoom.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/plugins/thumbnail/lg-thumbnail.umd.min.js"></script>
 
 <script>
-  // === Configuración según tu estructura ===
-  const DIR       = 'images/ada-lovelace/'; // carpeta de las fotos
-  const PREFIJO   = 'ADA';                  // nombre base de los archivos
-  const NUM_FOTOS = 40;                     // máximo de imágenes a buscar
-  const EXT       = ['jpeg'];               // extensión exacta
-  const PAD2      = false;                  // sin ceros a la izquierda
-  // =========================================
+  // === Configuración para /images/ada-lovelace/index.html ===
+  const DIR       = './';       // MISMA carpeta del HTML
+  const PREFIJO   = 'ADA';      // ADA1, ADA2, ...
+  const NUM_FOTOS = 60;         // ajusta si quieres
+  const EXT       = ['jpeg','jpg','JPG','JPEG'];
+  const PAD2      = false;      // sin ceros a la izquierda
+  // ==========================================================
 
   const g = document.getElementById('galeria');
 
   function testSrc(src){
     return new Promise(ok=>{
       const im = new Image();
-      im.onload = ()=> ok(src);
+      im.onload  = ()=> ok(src);
       im.onerror = ()=> ok(null);
       im.src = src;
     });
   }
 
   function candidates(i){
-    const base = PAD2 ? [`${PREFIJO}${String(i).padStart(2,'0')}`, `${PREFIJO}${i}`]
-                      : [`${PREFIJO}${i}`];
+    const bases = [DIR]; // solo la carpeta actual
+    const nombres = PAD2
+      ? [`${PREFIJO}${String(i).padStart(2,'0')}`, `${PREFIJO}${i}`]
+      : [`${PREFIJO}${i}`];
+
     const cands = [];
-    for(const b of base){
-      for(const e of EXT){
-        cands.push(`${DIR}${b}.${e}`);
+    for(const b of bases){
+      for(const n of nombres){
+        for(const e of EXT){
+          cands.push(`${b}${n}.${e}`);
+        }
       }
     }
     return cands;
@@ -86,10 +70,9 @@
   async function build(){
     const found = [];
     for(let i=1;i<=NUM_FOTOS;i++){
-      const tries = candidates(i);
       let hit = null;
-      for(const src of tries){
-        /* eslint-disable no-await-in-loop */
+      for(const src of candidates(i)){
+        // eslint-disable-next-line no-await-in-loop
         const ok = await testSrc(src);
         if(ok){ hit = ok; break; }
       }
@@ -97,8 +80,7 @@
     }
 
     if(found.length===0){
-      g.innerHTML = '<p>No se encontraron imágenes. Revisa carpeta, nombres y extensión.</p>';
-      console.warn('Sugerencias: revisa DIR, PREFIJO o extensión de archivos.');
+      g.innerHTML = '<p>No se encontraron imágenes. Asegúrate de que <code>ADA1.jpeg</code>, <code>ADA2.jpeg</code>, ... estén en <code>/images/ada-lovelace/</code> junto a este <code>index.html</code>.</p>';
       return;
     }
 
@@ -115,8 +97,8 @@
   }
 
   if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',build);
-  }else{
+    document.addEventListener('DOMContentLoaded', build);
+  } else {
     build();
   }
 </script>
