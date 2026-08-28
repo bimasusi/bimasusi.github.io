@@ -3,439 +3,639 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Academic website of Biviana Marcela Suárez Sierra — statistics, data science, changepoint detection, Bayesian methods, education and digital humanities." />
+  <meta name="color-scheme" content="light dark" />
   <title>Biviana Marcela Suárez Sierra</title>
+
   <style>
-    :root { --maxw: 800px; --accent:#004080; --soft:#cfe0ff; }
+    :root {
+      --maxw: 1120px;
+      --bg: #f7f8fb;
+      --surface: #ffffff;
+      --surface-2: #f0f4f8;
+      --text: #152033;
+      --muted: #5f6b7a;
+      --line: #dfe5ec;
+      --accent: #145c73;
+      --accent-2: #0d4354;
+      --accent-soft: #e3f0f4;
+      --shadow: 0 18px 50px rgba(29, 47, 62, .08);
+      --radius: 18px;
+      --nav-h: 72px;
+    }
 
-    html { scroll-behavior: smooth; }
     * { box-sizing: border-box; }
-
-    /* ----- NAV (fijo y responsive) ----- */
-    .site-nav { position: sticky; top: 0; background: #fff; border-bottom: 1px solid #eee; z-index: 1000; }
-    .nav-container { max-width: var(--maxw); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: .6rem 1rem; gap: .75rem; }
-    .brand { font-weight: 700; text-decoration: none; color: #111; white-space: nowrap; }
-    .nav-left { display:flex; align-items:center; gap:1rem; }
-    .nav-links { display: flex; gap: .75rem; list-style: none; margin: 0; padding: 0; }
-    .nav-links a { text-decoration: none; color: #333; padding: .35rem .6rem; border-radius: .5rem; }
-    .nav-links a:hover, .nav-links a:focus { background: #f2f2f2; }
-    .nav-links a.active { background: #e9f0ff; outline: 1px solid var(--soft); }
-    .lang-toggle { display:flex; gap:.25rem; align-items:center; }
-    .lang-toggle button { border:1px solid #ddd; background:#fff; padding:.25rem .5rem; border-radius:.5rem; cursor:pointer; }
-    .lang-toggle button[aria-pressed="true"] { background:#111; color:#fff; border-color:#111; }
-
-    .hamburger { display: none; cursor: pointer; font-size: 1.5rem; padding: .2rem .4rem; user-select: none; }
-    #nav-toggle { display: none; }
-
-    /* ----- CONTENIDO ----- */
-    body { margin: 0; color: #111; font-family: Georgia, serif; line-height: 1.6; }
-    .container { max-width: var(--maxw); margin: 3rem auto; padding: 0 1rem; }
-    h1, h2 {
-      font-family: 'Helvetica Neue', Arial, sans-serif;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 0.2rem;
-      scroll-margin-top: 76px; /* evita quedar oculto bajo el nav */
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 100% 0%, rgba(20, 92, 115, .09), transparent 28rem),
+        var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
     }
-    img { max-width: 180px; float: left; margin-right: 20px; border-radius: 8px; }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .clear { clear: both; }
-    ul { margin-top: 0; }
 
-    /* ----- Sección activa: barra lateral ----- */
-    section { position: relative; padding-top: .5rem; padding-left: 1rem; border-left: 4px solid transparent; transition: border-left-color .2s ease, background .2s ease; }
-    section.section-active { border-left-color: var(--soft);
-      background: linear-gradient(to right, rgba(207,224,255,.25), rgba(207,224,255,0)); }
+    a { color: var(--accent); text-decoration-thickness: .08em; text-underline-offset: .15em; }
+    a:hover { color: var(--accent-2); }
+    img { display: block; max-width: 100%; }
+    h1, h2, h3 { line-height: 1.15; letter-spacing: -.025em; }
+    h1 { font-size: clamp(2.25rem, 6vw, 4.6rem); margin: 0 0 1rem; }
+    h2 { font-size: clamp(1.75rem, 3vw, 2.45rem); margin: 0; }
+    h3 { font-size: 1.12rem; margin: 0 0 .7rem; }
+    p { margin: .55rem 0 1rem; }
 
-    /* ----- Móvil ----- */
-    @media (max-width: 720px){
-      .hamburger { display: block; }
-      .nav-left { gap:.5rem; }
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--text); color: #fff; padding: .75rem 1rem; z-index: 3000;
+    }
+    .skip-link:focus { left: .75rem; top: .75rem; }
+
+    /* Navigation */
+    .site-nav {
+      position: sticky; top: 0; z-index: 1500;
+      min-height: var(--nav-h);
+      border-bottom: 1px solid color-mix(in srgb, var(--line) 88%, transparent);
+      background: color-mix(in srgb, var(--surface) 90%, transparent);
+      backdrop-filter: blur(16px);
+    }
+    .nav-inner {
+      max-width: var(--maxw); margin: 0 auto; padding: .75rem 1.2rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .brand {
+      color: var(--text); font-weight: 800; text-decoration: none; white-space: nowrap;
+      margin-right: auto;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: .2rem;
+      list-style: none; margin: 0; padding: 0;
+    }
+    .nav-links a {
+      display: inline-block; color: var(--muted); text-decoration: none;
+      font-size: .9rem; font-weight: 650; padding: .55rem .65rem; border-radius: 10px;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent-2); background: var(--accent-soft); }
+    .nav-actions { display: flex; gap: .4rem; align-items: center; }
+    .lang-toggle { display: flex; padding: .2rem; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+    .lang-toggle button, .menu-btn {
+      font: inherit; cursor: pointer; border: 0; color: var(--muted); background: transparent;
+    }
+    .lang-toggle button { padding: .35rem .55rem; border-radius: 8px; font-size: .82rem; font-weight: 750; }
+    .lang-toggle button[aria-pressed="true"] { background: var(--text); color: var(--surface); }
+    .menu-btn { display: none; font-size: 1.35rem; padding: .35rem .55rem; }
+
+    /* Layout */
+    .page { max-width: var(--maxw); margin: 0 auto; padding: 0 1.2rem 5rem; }
+    .hero {
+      min-height: calc(86vh - var(--nav-h));
+      display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(250px, .65fr);
+      align-items: center; gap: clamp(2rem, 6vw, 5rem); padding: clamp(3.2rem, 8vw, 7rem) 0 4.5rem;
+    }
+    .eyebrow { color: var(--accent); font-size: .82rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+    .lead { font-size: clamp(1.05rem, 2.2vw, 1.35rem); color: var(--muted); max-width: 720px; }
+    .hero-links { display: flex; flex-wrap: wrap; gap: .65rem; margin-top: 1.5rem; }
+    .button {
+      display: inline-flex; align-items: center; justify-content: center; gap: .35rem;
+      min-height: 42px; padding: .65rem .9rem; border-radius: 12px;
+      border: 1px solid var(--line); background: var(--surface); color: var(--text);
+      text-decoration: none; font-weight: 700; box-shadow: 0 6px 20px rgba(29, 47, 62, .05);
+    }
+    .button.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .portrait-card {
+      position: relative; max-width: 330px; justify-self: end; padding: 1rem;
+      border: 1px solid var(--line); border-radius: 28px; background: var(--surface); box-shadow: var(--shadow);
+    }
+    .portrait-card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 20px; }
+    .portrait-note { padding: .9rem .35rem .25rem; color: var(--muted); font-size: .9rem; }
+
+    .stats-strip {
+      grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem; margin-top: 1rem;
+    }
+    .stat { padding: 1rem 1.1rem; border: 1px solid var(--line); border-radius: 14px; background: color-mix(in srgb, var(--surface) 87%, transparent); }
+    .stat strong { display: block; font-size: 1.35rem; }
+    .stat span { color: var(--muted); font-size: .84rem; }
+
+    section { scroll-margin-top: calc(var(--nav-h) + 24px); margin-top: 2.2rem; }
+    .section-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 1rem; padding: 1.5rem 1.6rem; border-bottom: 1px solid var(--line); }
+    .section-kicker { color: var(--accent); font-weight: 800; font-size: .78rem; text-transform: uppercase; letter-spacing: .12em; }
+    .section-body { padding: 1.5rem 1.6rem 1.8rem; }
+
+    .grid-2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; }
+    .mini-card { padding: 1.05rem 1.1rem; border: 1px solid var(--line); border-radius: 14px; background: var(--surface-2); }
+    .mini-card p:last-child { margin-bottom: 0; }
+    .meta { color: var(--muted); font-size: .88rem; }
+    .pill {
+      display: inline-flex; align-items: center; padding: .24rem .5rem; border-radius: 999px;
+      background: var(--accent-soft); color: var(--accent-2); font-size: .74rem; font-weight: 800; margin-right: .35rem;
+    }
+
+    /* Publications */
+    .pub-group + .pub-group { margin-top: 2rem; }
+    .pub-group-title { display: flex; gap: .5rem; align-items: baseline; margin-bottom: .8rem; }
+    .pub-list { list-style: none; padding: 0; margin: 0; display: grid; gap: .75rem; }
+    .pub {
+      padding: 1rem 1.05rem; border: 1px solid var(--line); border-radius: 14px;
+      background: #fff; transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+    }
+    .pub:hover { transform: translateY(-2px); border-color: #bac8d4; box-shadow: 0 10px 24px rgba(29,47,62,.07); }
+    .pub-title { font-weight: 790; }
+    .pub-links { margin-top: .4rem; font-size: .88rem; }
+
+    /* Timeline / activities */
+    .timeline { list-style: none; padding: 0; margin: 0; }
+    .timeline li { position: relative; padding: 0 0 1.25rem 1.45rem; border-left: 2px solid var(--line); }
+    .timeline li::before {
+      content: ""; position: absolute; left: -6px; top: .35rem; width: 10px; height: 10px;
+      border-radius: 50%; background: var(--accent);
+    }
+    .timeline li:last-child { padding-bottom: 0; }
+    .timeline li:last-child { border-left-color: transparent; }
+    .timeline h3 { margin-bottom: .25rem; }
+
+    .thesis-list { list-style: none; counter-reset: thesis; padding: 0; margin: 0; display: grid; gap: .7rem; }
+    .thesis-list li { counter-increment: thesis; padding: .95rem 1rem .95rem 3.15rem; position: relative; border: 1px solid var(--line); border-radius: 14px; }
+    .thesis-list li::before {
+      content: counter(thesis, decimal-leading-zero); position: absolute; left: 1rem; top: 1rem;
+      color: var(--accent); font-weight: 850; font-size: .8rem;
+    }
+
+    footer { max-width: var(--maxw); margin: 0 auto; padding: 1.5rem 1.2rem 3rem; color: var(--muted); font-size: .88rem; }
+    .footer-inner { border-top: 1px solid var(--line); padding-top: 1.4rem; display: flex; justify-content: space-between; gap: 1rem; }
+
+    [data-lang-block="es"] { display: none; }
+    html[data-lang="es"] [data-lang-block="en"] { display: none; }
+    html[data-lang="es"] [data-lang-block="es"] { display: inline; }
+    html[data-lang="en"] [data-lang-block="en"] { display: inline; }
+
+    @media (max-width: 950px) {
+      .menu-btn { display: inline-flex; }
       .nav-links {
-        position: absolute; top: 100%; left: 0; right: 0;
-        background: #fff; flex-direction: column; border-bottom: 1px solid #eee;
-        display: none; padding: .75rem 1rem;
+        position: absolute; left: 1rem; right: 1rem; top: calc(100% + .45rem);
+        display: none; flex-direction: column; align-items: stretch; gap: .2rem;
+        background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: .55rem; box-shadow: var(--shadow);
       }
-      #nav-toggle:checked + label + .nav-links { display: flex; }
-      .container { margin: 2rem auto; }
-      img { max-width: 140px; }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; }
+      .hero { grid-template-columns: 1fr; min-height: auto; }
+      .portrait-card { justify-self: start; width: min(100%, 330px); }
+      .stats-strip { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: 1fr 1fr; }
     }
-    /* --- Galería --- */
-    .gallery-grid{
-     display:grid; gap:12px;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      margin-top:.75rem;
-    }
-    .gallery-grid a{ display:block; }
-    .gallery-grid img{
-      width:100%; height:170px; object-fit:cover;
-    border-radius:10px;
-}
 
+    @media (max-width: 640px) {
+      .brand { max-width: 55vw; overflow: hidden; text-overflow: ellipsis; }
+      .page { padding-inline: .85rem; }
+      .nav-inner { padding-inline: .85rem; }
+      .hero { padding-top: 2.6rem; }
+      .section-head, .section-body { padding-inline: 1rem; }
+      .grid-2, .grid-3, .stats-strip { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+    }
+
+    @media print {
+      .site-nav, .hero-links, .menu-btn, .lang-toggle { display: none !important; }
+      body { background: #fff; }
+      .section-card, .portrait-card { box-shadow: none; }
+      section { break-inside: avoid; }
+    }
   </style>
 </head>
+
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<!-- NAV -->
-<nav class="site-nav" aria-label="Primary">
-  <div class="nav-container">
-    <div class="nav-left">
-      <a class="brand" href="/">Biviana M. Suárez</a>
-      <input id="nav-toggle" type="checkbox" />
-      <label for="nav-toggle" class="hamburger" aria-label="Toggle navigation">☰</label>
+<header class="site-nav">
+  <nav class="nav-inner" aria-label="Primary navigation">
+    <a class="brand" href="#top">Biviana M. Suárez</a>
 
-      <ul class="nav-links" id="navLinks">
-        <li><a href="#about" data-i18n="nav.about">About</a></li>
-        <li><a href="#research" data-i18n="nav.research">Research</a></li>
-        <li><a href="#publications" data-i18n="nav.publications">Publications</a></li>
-        <li><a href="#teaching" data-i18n="nav.teaching">Teaching</a></li>
-        <li><a href="#theses" data-i18n="nav.theses">Thesis Supervision</a></li>
-        <li><a href="#conversations" data-i18n="nav.conversations">Conversations</a></li>
-        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
-      </ul>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#research"><span data-lang-block="en">Research</span><span data-lang-block="es">Investigación</span></a></li>
+      <li><a href="#publications"><span data-lang-block="en">Publications</span><span data-lang-block="es">Publicaciones</span></a></li>
+      <li><a href="#service"><span data-lang-block="en">Service</span><span data-lang-block="es">Servicio académico</span></a></li>
+      <li><a href="#talks"><span data-lang-block="en">Talks</span><span data-lang-block="es">Eventos</span></a></li>
+      <li><a href="#teaching"><span data-lang-block="en">Teaching</span><span data-lang-block="es">Docencia</span></a></li>
+      <li><a href="#theses"><span data-lang-block="en">Supervision</span><span data-lang-block="es">Dirección</span></a></li>
+      <li><a href="#outreach"><span data-lang-block="en">Outreach</span><span data-lang-block="es">Divulgación</span></a></li>
+      <li><a href="#contact"><span data-lang-block="en">Contact</span><span data-lang-block="es">Contacto</span></a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <div class="lang-toggle" role="group" aria-label="Language selector">
+        <button id="btnES" type="button" aria-pressed="false">ES</button>
+        <button id="btnEN" type="button" aria-pressed="true">EN</button>
+      </div>
+      <button class="menu-btn" id="menuButton" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main class="page" id="main">
+  <section class="hero" id="top">
+    <div>
+      <div class="eyebrow">
+        <span data-lang-block="en">Statistics · Data Science · Applied Mathematics</span>
+        <span data-lang-block="es">Estadística · Ciencia de Datos · Matemática Aplicada</span>
+      </div>
+      <h1>Biviana Marcela<br>Suárez Sierra</h1>
+      <p class="lead">
+        <span data-lang-block="en">Assistant Professor in the Department of Mathematics at Universidad de los Andes, Bogotá. My work connects statistical inference, time series, changepoint detection, Bayesian methods, educational data science and computational approaches to interdisciplinary problems.</span>
+        <span data-lang-block="es">Profesora asistente del Departamento de Matemáticas de la Universidad de los Andes, Bogotá. Mi trabajo conecta inferencia estadística, series de tiempo, detección de puntos de cambio, métodos bayesianos, ciencia de datos educativa y herramientas computacionales para problemas interdisciplinarios.</span>
+      </p>
+
+      <div class="hero-links">
+        <a class="button primary" href="https://scholar.google.com/citations?view_op=list_works&hl=es&authuser=1&user=gVFlz1gAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+        <a class="button" href="https://orcid.org/0000-0003-2151-3537" target="_blank" rel="noopener">ORCID</a>
+        <a class="button" href="https://github.com/bimasusi" target="_blank" rel="noopener">GitHub</a>
+        <a class="button" href="mailto:bmsuarezs@unal.edu.co"><span data-lang-block="en">Email</span><span data-lang-block="es">Correo</span></a>
+      </div>
     </div>
 
-    <div class="lang-toggle" role="group" aria-label="Language">
-      <button id="btnES" type="button" data-lang="es" aria-pressed="false">ES</button>
-      <button id="btnEN" type="button" data-lang="en" aria-pressed="true">EN</button>
+    <aside class="portrait-card" aria-label="Profile photo">
+      <img src="my_new_folder/imagen-pagina.jpeg" alt="Biviana Marcela Suárez Sierra" />
+      <div class="portrait-note">
+        <span data-lang-block="en">Researcher and university professor in statistics and data science.</span>
+        <span data-lang-block="es">Investigadora y profesora universitaria en estadística y ciencia de datos.</span>
+      </div>
+    </aside>
+
+    <div class="stats-strip" aria-label="Academic highlights">
+      <div class="stat"><strong>2026</strong><span><span data-lang-block="en">Computational Statistics article</span><span data-lang-block="es">Artículo en Computational Statistics</span></span></div>
+      <div class="stat"><strong>CCIS 2824</strong><span><span data-lang-block="en">R Day 2025 proceedings editor</span><span data-lang-block="es">Editora de las memorias R Day 2025</span></span></div>
+      <div class="stat"><strong>R / Python</strong><span><span data-lang-block="en">Reproducible statistical computing</span><span data-lang-block="es">Computación estadística reproducible</span></span></div>
+      <div class="stat"><strong>Interdisciplinary</strong><span><span data-lang-block="en">Environment, education & digital humanities</span><span data-lang-block="es">Ambiente, educación y humanidades digitales</span></span></div>
     </div>
-  </div>
-</nav>
-
-<main class="container">
-
-  <!-- About -->
-  <section id="about">
-    <h1 data-i18n="h.about">Biviana Marcela Suárez Sierra</h1>
-
-    <img src="my_new_folder/imagen-pagina.jpeg" alt="Biviana M. Suárez Sierra" />
-
-    <p data-i18n="about.role"><strong>Researcher in Statistics and Data Science</strong><br>
-    Professor, Universidad EAFIT, Medellín, Colombia</p>
-
-    <p>
-      <a href="https://scholar.google.com/citations?view_op=list_works&hl=es&authuser=1&user=gVFlz1gAAAAJ">Google Scholar</a> •
-      <a href="https://orcid.org/0000-0003-2151-3537">ORCID</a> •
-      <a href="https://github.com/bimasusi">GitHub</a> •
-      <a href="mailto:bmsuarezs@unal.edu.co">Email</a>
-    </p>
-    <div class="clear"></div>
   </section>
 
   <!-- Research -->
-  <section id="research">
-    <h2 data-i18n="h.research">Research Interests</h2>
-    <ul>
-      <li data-i18n="ri.1">Statistical modeling and inference</li>
-      <li data-i18n="ri.2">Time series analysis and changepoint detection</li>
-      <li data-i18n="ri.3">Bayesian statistics and information theory</li>
-      <li data-i18n="ri.4">Educational data science and learning analytics</li>
-    </ul>
+  <section id="research" class="section-card">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker"><span data-lang-block="en">Profile</span><span data-lang-block="es">Perfil</span></div>
+        <h2><span data-lang-block="en">Research interests</span><span data-lang-block="es">Intereses de investigación</span></h2>
+      </div>
+    </div>
+    <div class="section-body grid-2">
+      <article class="mini-card">
+        <h3><span data-lang-block="en">Statistical inference</span><span data-lang-block="es">Inferencia estadística</span></h3>
+        <p class="meta"><span data-lang-block="en">Statistical modeling, estimation, Bayesian inference and uncertainty quantification.</span><span data-lang-block="es">Modelación estadística, estimación, inferencia bayesiana y cuantificación de incertidumbre.</span></p>
+      </article>
+      <article class="mini-card">
+        <h3><span data-lang-block="en">Time series & changepoints</span><span data-lang-block="es">Series de tiempo y puntos de cambio</span></h3>
+        <p class="meta"><span data-lang-block="en">Detection of structural changes, computational methods and reproducible software.</span><span data-lang-block="es">Detección de cambios estructurales, métodos computacionales y software reproducible.</span></p>
+      </article>
+      <article class="mini-card">
+        <h3><span data-lang-block="en">Statistical computing</span><span data-lang-block="es">Computación estadística</span></h3>
+        <p class="meta"><span data-lang-block="en">R and Python workflows for reproducible research, simulation and data analysis.</span><span data-lang-block="es">Flujos de trabajo en R y Python para investigación reproducible, simulación y análisis de datos.</span></p>
+      </article>
+      <article class="mini-card">
+        <h3><span data-lang-block="en">Interdisciplinary data science</span><span data-lang-block="es">Ciencia de datos interdisciplinaria</span></h3>
+        <p class="meta"><span data-lang-block="en">Applications in environmental science, education, digital humanities and learning analytics.</span><span data-lang-block="es">Aplicaciones en ambiente, educación, humanidades digitales y analítica del aprendizaje.</span></p>
+      </article>
+    </div>
   </section>
 
   <!-- Publications -->
-  <section id="publications">
-    <h2 data-i18n="h.publications">Publications</h2>
+  <section id="publications" class="section-card">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker">Research output</div>
+        <h2><span data-lang-block="en">Publications</span><span data-lang-block="es">Publicaciones</span></h2>
+      </div>
+    </div>
+    <div class="section-body">
+      <div class="pub-group">
+        <div class="pub-group-title"><span class="pill">Journal</span><h3><span data-lang-block="en">Journal articles</span><span data-lang-block="es">Artículos en revistas</span></h3></div>
+        <ol class="pub-list">
+          <li class="pub">
+            <div><strong>Baumer, B. S. & Suárez Sierra, B. M.</strong> (2026).</div>
+            <div class="pub-title">tidychangepoint: a unified framework for analyzing changepoint detection in univariate time series.</div>
+            <div><em>Computational Statistics, 41</em>(3).</div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/s00180-026-01726-6" target="_blank" rel="noopener">DOI: 10.1007/s00180-026-01726-6</a> · <a href="https://arxiv.org/abs/2407.14369" target="_blank" rel="noopener">arXiv</a></div>
+          </li>
+          <li class="pub">
+            <div><strong>Suárez-Sierra, B. M.</strong> (2025).</div>
+            <div class="pub-title">Factors Associated with Unit-Specific Failure in a University-Level Statistics Course.</div>
+            <div><em>arXiv preprint</em>, arXiv:2510.20100.</div>
+            <div class="pub-links"><a href="https://arxiv.org/abs/2510.20100" target="_blank" rel="noopener">arXiv:2510.20100</a></div>
+          </li>
+          <li class="pub">
+            <div><strong>Suárez-Sierra, B. M., Gómez-Montoya, K. M. & Taimal, C. A.</strong> (2025).</div>
+            <div class="pub-title">Pollutants exceedances modeling using non-homogeneous Poisson processes: a case study for Medellín and Bogotá, 2018–2020.</div>
+            <div><em>Air Quality, Atmosphere & Health, 18</em>, 2385–2404.</div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/s11869-025-01762-z" target="_blank" rel="noopener">DOI: 10.1007/s11869-025-01762-z</a></div>
+          </li>
+          <li class="pub">
+            <div><strong>Suárez-Sierra, B. M., Coen, A. & Taimal, C. A.</strong> (2023).</div>
+            <div class="pub-title">Genetic algorithm with a Bayesian approach for multiple change-point detection in time series of counting exceedances for specific thresholds.</div>
+            <div><em>Journal of the Korean Statistical Society, 52</em>(4), 982–1024.</div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/s42952-023-00227-2" target="_blank" rel="noopener">DOI: 10.1007/s42952-023-00227-2</a></div>
+          </li>
+          <li class="pub">
+            <div><strong>Suárez-Sierra, B. M., Rodrigues, E. R. & Tzintzun, G.</strong> (2021).</div>
+            <div class="pub-title">An application of a non-homogeneous Poisson model to study PM2.5 exceedances in Mexico City and Bogotá.</div>
+            <div><em>Journal of Applied Statistics, 49</em>(9), 2430–2445.</div>
+            <div class="pub-links"><a href="https://doi.org/10.1080/02664763.2021.1897972" target="_blank" rel="noopener">DOI: 10.1080/02664763.2021.1897972</a></div>
+          </li>
+          <li class="pub">
+            <div><strong>Suárez-Sierra, B. M., Rodrigues, E. R. & Tzintzun, G.</strong> (2019).</div>
+            <div class="pub-title">Rate of ozone and PM10 exceedances: A case study comparing data from Mexico City and Bogotá.</div>
+            <div><em>Communications in Statistics: Case Studies, Data Analysis and Applications, 5</em>(2), 153–165.</div>
+            <div class="pub-links"><a href="https://doi.org/10.1080/23737484.2019.1593066" target="_blank" rel="noopener">DOI: 10.1080/23737484.2019.1593066</a></div>
+          </li>
+        </ol>
+      </div>
 
-    <h3>A. Journal Articles</h3>
-    <ol>
-      <li> Baumer, B.S. & Suárez-Sierra, B.M. (2025). <em>tidychangepoint: a unified framework for analyzing changepoint detection in univariate time series.
-      </em> <em>arXiv preprint</em> arXiv:2407.14369 [stat.ME]. 
-        <a href="https://arxiv.org/abs/2407.14369" target="_blank">https://arxiv.org/abs/2407.14369</a> </li>
-      <li>
-        Suárez-Sierra, B.M. (2025). Factors Associated with Unit-Specific Failure in a University-Level Statistics Course. 
-        <em>arXiv preprint</em> arXiv:2510.915814 [stat.AP]. 
-        <a href="https://arxiv.org/abs/2510.915814" target="_blank">https://arxiv.org/pdf/2510.20100</a>
-      </li>
-      <li>
-        Suárez-Sierra, B.M., Gómez-Montoya, K.M. & Taimal, C.A. (2025). Pollutants exceedances modeling using non-homogeneous poisson processes: a case study for Medellín and Bogotá, 2018-2020.
-        <em> Air Qual Atmos Health  </em>(18), 2385–2404.
-        <a href="https://doi.org/10.1007/s11869-025-01762-z" target="_blank">https://doi.org/10.1007/s11869-025-01762-z</a>
-      </li>
-      <li>
-        Suárez-Sierra, B. M., Coen, A., & Taimal, C. A. (2023). Genetic algorithm with a Bayesian approach for multiple change-point detection in time series of counting exceedances for specific thresholds.
-        <em>Journal of the Korean Statistical Society, 52</em>(4), 982–1024.
-        <a href="https://doi.org/10.1007/s42952-023-00227-2" target="_blank">https://doi.org/10.1007/s42952-023-00227-2</a>
-      </li>
-      <li>
-        Suárez-Sierra, B. M., Rodrigues, E. R., & Tzintzun, G. (2021). An application of a non-homogeneous Poisson model to study PM2.5 exceedances in Mexico City and Bogotá.
-        <em>Journal of Applied Statistics, 49</em>(9), 2430–2445.
-        <a href="https://doi.org/10.1080/02664763.2021.1897972" target="_blank">https://doi.org/10.1080/02664763.2021.1897972</a>
-      </li>
-      <li>
-        Suárez-Sierra, B. M., Rodrigues, E. R., & Tzintzun, G. (2019). Rate of ozone and PM10 exceedances: A case study comparing data from Mexico City and Bogotá.
-        <em>Communications in Statistics: Case Studies, Data Analysis and Applications, 5</em>(2), 153–165.
-        <a href="https://doi.org/10.1080/23737484.2019.1593066" target="_blank">https://doi.org/10.1080/23737484.2019.1593066</a>
-      </li>
-    </ol>
+      <div class="pub-group">
+        <div class="pub-group-title"><span class="pill">Edited volume</span><h3><span data-lang-block="en">Books and edited proceedings</span><span data-lang-block="es">Libros y memorias editadas</span></h3></div>
+        <ol class="pub-list">
+          <li class="pub">
+            <div><strong>Suárez, B. M., Conto, R., Hernández, F., Usuga, O., Patiño, C. E. & Quiroz, C. (Eds.).</strong> (2026).</div>
+            <div class="pub-title">National Meeting of R Users: 3rd R Day Colombia, Medellín, Colombia, November 14, 2025, Proceedings.</div>
+            <div><em>Communications in Computer and Information Science</em>, vol. 2824. Springer, Cham.</div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/978-3-032-18455-9" target="_blank" rel="noopener">DOI: 10.1007/978-3-032-18455-9</a></div>
+          </li>
+          <li class="pub">
+            <div><strong>Tabares, M., Vallejo, P., Suarez, B., Suarez, M., Ruiz, O. & Aguilar, J. (Eds.).</strong> (2023).</div>
+            <div class="pub-title">Advances in Computing: 17th Colombian Conference on Computing, CCC 2023.</div>
+            <div>Springer Nature.</div>
+            <div class="pub-links"><a href="https://link.springer.com/book/10.1007/978-3-031-47372-2" target="_blank" rel="noopener">Springer</a></div>
+          </li>
+        </ol>
+      </div>
 
-    <h3>B. Books</h3>
-    <ol>
-      <li>
-        Tabares, M., Vallejo, P., Suarez, B., Suarez, M., Ruiz, O., & Aguilar, J. (Eds.). (2023). <em>Advances in computing: 17th Colombian Conference on Computing, CCC 2023
-        </em>, Medellín, Colombia, August 10–11, 2023, revised selected papers. Springer Nature. 
-        <a href="https://link.springer.com/book/10.1007/978-3-031-47372-2" target="_blank">https://link.springer.com/book/10.1007/978-3-031-47372-2</a>
-      </li>
-    </ol>
+      <div class="pub-group">
+        <div class="pub-group-title"><span class="pill">Proceedings</span><h3><span data-lang-block="en">Conference proceedings chapters</span><span data-lang-block="es">Capítulos en memorias de congresos</span></h3></div>
+        <ol class="pub-list">
+          <li class="pub">
+            <div><strong>Suárez-Sierra, B. M., Coen, A. & Taimal, C. A.</strong> (2026).</div>
+            <div class="pub-title">Change-Point Detection for Time Series Using the GA-Coen Algorithm: An Implementation in the Tidychange-Point Library in R.</div>
+            <div>In <em>National Meeting of R Users. R Day 2025</em>, CCIS 2824, pp. 115–138. Springer, Cham.</div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/978-3-032-18455-9_7" target="_blank" rel="noopener">DOI: 10.1007/978-3-032-18455-9_7</a></div>
+          </li>
+          <li class="pub">
+            <div><strong>Diaz Vargas, J. E. & Suárez-Sierra, B. M.</strong> (2026).</div>
+            <div class="pub-title">Stochastic Modeling of Exchange Rate Volatility with R: MCMC Simulation.</div>
+            <div>In <em>National Meeting of R Users. R Day 2025</em>, CCIS 2824, pp. 271–302. Springer, Cham.</div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/978-3-032-18455-9_15" target="_blank" rel="noopener">DOI: 10.1007/978-3-032-18455-9_15</a></div>
+          </li>
+          <li class="pub">
+            <div><strong>Castaño, C. Q. & Suárez-Sierra, B. M.</strong> (2026).</div>
+            <div class="pub-title">Multiple Change Detection in Time Series with Inductive Conformal Martingales: A Reproducible Implementation in R.</div>
+            <div>In <em>National Meeting of R Users. R Day 2025</em>, CCIS 2824, pp. 303–318. Springer, Cham.</div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/978-3-032-18455-9_16" target="_blank" rel="noopener">DOI: 10.1007/978-3-032-18455-9_16</a></div>
+          </li>
+          <li class="pub">
+            <div><strong>Taimal, C. A., Suárez-Sierra, B. M. & Rivera, J. C.</strong> (2024).</div>
+            <div class="pub-title">An exploration of genetic algorithms operators for the detection of multiple change-points of exceedances using non-homogeneous Poisson processes and Bayesian methods.</div>
+            <div>In <em>Advances in Computing. CCC 2023</em>, CCIS 1924. Springer, Cham.</div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/978-3-031-47372-2_20" target="_blank" rel="noopener">DOI: 10.1007/978-3-031-47372-2_20</a></div>
+          </li>
+          <li class="pub">
+            <div><strong>Barajas-Oviedo, S., Suárez-Sierra, B. M. & Ramírez-Ramírez, L. L.</strong> (2024).</div>
+            <div class="pub-title">Change point detection for time dependent counts using extended MDL and genetic algorithms.</div>
+            <div>In <em>Advances in Computing. CCC 2023</em>. Springer, Cham.</div>
+            <div class="pub-links"><a href="https://doi.org/10.1007/978-3-031-47372-2_19" target="_blank" rel="noopener">DOI: 10.1007/978-3-031-47372-2_19</a></div>
+          </li>
+        </ol>
+      </div>
 
-    <h3>C. Book Chapters</h3>
-    <ol>
-      <li>
-        Taimal, C. A., Suárez-Sierra, B. M., & Rivera, J. C. (2024). An exploration of genetic algorithms operators for the detection of multiple change-points of exceedances using non-homogeneous Poisson processes and Bayesian methods.
-        In M. Tabares, P. Vallejo, B. Suarez, M. Suarez, O. Ruiz, & J. Aguilar (Eds.), <em>Advances in computing. CCC 2023. Communications in Computer and Information Science</em> (Vol. 1924). Springer, Cham.
-        <a href="https://doi.org/10.1007/978-3-031-47372-2_20" target="_blank">https://doi.org/10.1007/978-3-031-47372-2_20</a>
-      </li>
-      <li>
-        Barajas-Oviedo, S., Suárez-Sierra, B. M., & Ramírez-Ramírez, L. L. (2024). Change point detection for time dependent counts using extended MDL and genetic algorithms.
-        In M. Tabares, P. Vallejo, B. Suarez, M. Suarez, O. Ruiz, & J. Aguilar (Eds.), 
-        <em>Advances in computing. CCC 2023. Communications in Computer and Information Science</em>. Springer, Cham.
-        <a href="https://link.springer.com/chapter/10.1007/978-3-031-47372-2_19" target="_blank">https://link.springer.com/chapter/10.1007/978-3-031-47372-2_19</a>
-      </li>
-    </ol>
+      <div class="pub-group">
+        <div class="pub-group-title"><span class="pill">Conference output</span><h3><span data-lang-block="en">Other conference outputs</span><span data-lang-block="es">Otros productos de congresos</span></h3></div>
+        <ol class="pub-list">
+          <li class="pub">
+            <div><strong>Baumer, B. & Suárez Sierra, B. M.</strong> (2024).</div>
+            <div class="pub-title">tidychangepoint: A unified framework for analyzing changepoint detection in univariate time series.</div>
+            <div><em>Joint Statistical Meetings (JSM)</em>, Portland, OR.</div>
+            <div class="pub-links"><a href="https://zenodo.org/records/13305581" target="_blank" rel="noopener">Zenodo</a></div>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
 
-    <h3>D. Conference Proceedings</h3>
-    <ol>
-      <li>
-        Baumer, B., & Suárez Sierra, B. M. (2024). tidychangepoint: A unified framework for analyzing changepoint detection in univariate time series.
-        In <em>Joint Statistical Meetings (JSM)</em>, Portland, OR.
-        <a href="https://zenodo.org/records/13305581" target="_blank">https://zenodo.org/records/13305581</a>
-      </li>
-    </ol>
+  <!-- Academic service -->
+  <section id="service" class="section-card">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker"><span data-lang-block="en">Community</span><span data-lang-block="es">Comunidad</span></div>
+        <h2><span data-lang-block="en">Academic service</span><span data-lang-block="es">Servicio académico</span></h2>
+      </div>
+    </div>
+    <div class="section-body grid-3">
+      <article class="mini-card">
+        <span class="pill">Editor</span>
+        <h3>R Day Colombia 2025 Proceedings</h3>
+        <p class="meta"><span data-lang-block="en">Co-editor of <em>National Meeting of R Users</em>, CCIS volume 2824, Springer (2026).</span><span data-lang-block="es">Coeditora de <em>National Meeting of R Users</em>, volumen 2824 de CCIS, Springer (2026).</span></p>
+        <a href="https://doi.org/10.1007/978-3-032-18455-9" target="_blank" rel="noopener"><span data-lang-block="en">View proceedings</span><span data-lang-block="es">Ver memorias</span></a>
+      </article>
+      <article class="mini-card">
+        <span class="pill">Committee</span>
+        <h3>R Day Colombia 2025</h3>
+        <p class="meta"><span data-lang-block="en">Member of the organizing and scientific committees of the 3rd R Day Colombia, held at ITM in Medellín.</span><span data-lang-block="es">Integrante de los comités organizador y científico del 3.er R Day Colombia, realizado en el ITM en Medellín.</span></p>
+        <a href="https://rday-colombia.github.io/2025/comites.html" target="_blank" rel="noopener"><span data-lang-block="en">Event committees</span><span data-lang-block="es">Comités del evento</span></a>
+      </article>
+      <article class="mini-card">
+        <span class="pill">Peer review</span>
+        <h3>Journal of Applied Statistics</h3>
+        <p class="meta"><span data-lang-block="en">Reviewer for the journal <em>Journal of Applied Statistics</em>.</span><span data-lang-block="es">Revisora de la revista <em>Journal of Applied Statistics</em>.</span></p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Talks -->
+  <section id="talks" class="section-card">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker"><span data-lang-block="en">Academic events</span><span data-lang-block="es">Eventos académicos</span></div>
+        <h2><span data-lang-block="en">Talks, workshops & conferences</span><span data-lang-block="es">Ponencias, talleres y congresos</span></h2>
+      </div>
+    </div>
+    <div class="section-body">
+      <ul class="timeline">
+        <li>
+          <h3>PyCon Colombia 2026 — NLP in Practice: From Corpus Linguistics to RAG with Python</h3>
+          <p class="meta"><span data-lang-block="en">Workshop speaker / director and moderator. Intermediate-level session on NLP, BERTopic and RAG workflows in Python.</span><span data-lang-block="es">Ponente / directora y moderadora de un taller de nivel intermedio sobre PLN, BERTopic y flujos RAG en Python.</span></p>
+          <a href="https://2026.pycon.co/talks/44/" target="_blank" rel="noopener"><span data-lang-block="en">Official talk page</span><span data-lang-block="es">Página oficial de la charla</span></a>
+        </li>
+        <li>
+          <h3><span data-lang-block="en">35th International Symposium of Statistics</span><span data-lang-block="es">35.º Simposio Internacional de Estadística</span></h3>
+          <p class="meta"><span data-lang-block="en">Speaker. Bogotá, July 15, 2026. The 2026 symposium was held July 14–17 in Bogotá.</span><span data-lang-block="es">Ponente. Bogotá, 15 de julio de 2026. El simposio 2026 se realizó del 14 al 17 de julio en Bogotá.</span></p>
+          <a href="https://ciencias.bogota.unal.edu.co/eventos/35-simposio-internacional-de-estadistica-2026/" target="_blank" rel="noopener"><span data-lang-block="en">Event website</span><span data-lang-block="es">Sitio del evento</span></a>
+        </li>
+        <li>
+          <h3>XVI CLATSE — Congreso Latinoamericano de Sociedades de Estadística</h3>
+          <p class="meta"><span data-lang-block="en">Speaker. Pontificia Universidad Católica del Ecuador, Quito, October 20–24, 2025.</span><span data-lang-block="es">Ponente. Pontificia Universidad Católica del Ecuador, Quito, 20–24 de octubre de 2025.</span></p>
+          <a href="https://clatse.com/" target="_blank" rel="noopener"><span data-lang-block="en">Event website</span><span data-lang-block="es">Sitio del evento</span></a>
+        </li>
+        <li>
+          <h3>R Day Colombia 2025</h3>
+          <p class="meta"><span data-lang-block="en">Presentation: <em>Using the GA-Coen Algorithm</em>. Medellín, November 14, 2025.</span><span data-lang-block="es">Presentación: <em>Using the GA-Coen Algorithm</em>. Medellín, 14 de noviembre de 2025.</span></p>
+          <a href="https://bimasusi.github.io/rday2025-ga-coen/" target="_blank" rel="noopener"><span data-lang-block="en">View presentation</span><span data-lang-block="es">Ver presentación</span></a>
+        </li>
+      </ul>
+    </div>
   </section>
 
   <!-- Teaching -->
-  <section id="teaching">
-    <h2 data-i18n="h.teaching">Teaching</h2>
-
-    <h3>2025</h3>
-    <ul>
-      <li>
-        <strong data-i18n="teach.ie">Inferencia Estadística</strong> — undergraduate course using Quarto-based materials.<br>
-        <span data-i18n="teach.resources">Course resources:</span>
-        <ul>
-          <li>📘 <a href="https://bmss-eafit-courses.github.io/inference-statistic/" target="_blank" rel="noopener">Libro digital del curso</a></li>
-          <li>📄 <a href="https://github.com/BMSS-EAFIT-Courses/inference-statistic/blob/main/PROYECTO.md" target="_blank" rel="noopener">Guía del proyecto</a></li>
-          <li>📊 <a href="https://github.com/BMSS-EAFIT-Courses/inference-statistic/blob/main/RUBRICA.md" target="_blank" rel="noopener">Rúbrica de evaluación</a></li>
-        </ul>
-      </li>
-    </ul>
-    <ul>
-      <li><strong data-i18n="teach.eg">Estadística General</strong> — <span data-i18n="teach.egdesc">course emphasizing conceptual foundations.</span></li>
-    </ul>
+  <section id="teaching" class="section-card">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker"><span data-lang-block="en">Education</span><span data-lang-block="es">Educación</span></div>
+        <h2><span data-lang-block="en">Teaching</span><span data-lang-block="es">Docencia</span></h2>
+      </div>
+    </div>
+    <div class="section-body grid-2">
+      <article class="mini-card">
+        <h3>Inferencia Estadística</h3>
+        <p class="meta"><span data-lang-block="en">Undergraduate course with Quarto-based materials and reproducible activities.</span><span data-lang-block="es">Curso de pregrado con materiales en Quarto y actividades reproducibles.</span></p>
+        <p><a href="https://bmss-eafit-courses.github.io/inference-statistic/" target="_blank" rel="noopener"><span data-lang-block="en">Digital course book</span><span data-lang-block="es">Libro digital</span></a> · <a href="https://github.com/BMSS-EAFIT-Courses/inference-statistic/blob/main/PROYECTO.md" target="_blank" rel="noopener"><span data-lang-block="en">Project guide</span><span data-lang-block="es">Guía del proyecto</span></a> · <a href="https://github.com/BMSS-EAFIT-Courses/inference-statistic/blob/main/RUBRICA.md" target="_blank" rel="noopener"><span data-lang-block="en">Rubric</span><span data-lang-block="es">Rúbrica</span></a></p>
+      </article>
+      <article class="mini-card">
+        <h3>Estadística General</h3>
+        <p class="meta"><span data-lang-block="en">Course emphasizing conceptual foundations, interpretation and statistical reasoning.</span><span data-lang-block="es">Curso con énfasis en fundamentos conceptuales, interpretación y razonamiento estadístico.</span></p>
+      </article>
+    </div>
   </section>
 
   <!-- Theses -->
-  <section id="theses">
-    <h2 data-i18n="h.theses">Master's Thesis Supervision</h2>
-    <ol>
-      <li>
-        EAFIT University (2025). <em>Implementation of LSTM recurrent neural networks for forecasting PM2.5 particulate matter in the Aburrá Valley</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
-      </li>
-      <li>
-        EAFIT University (2023). <em>Predictive analysis of default risk in microcredit: A machine learning approach in the financial sector</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
-      </li>
-      <li>
-        EAFIT University (2023). <em>Review of Bayesian statistical techniques for entity matching in large data sets</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
-      </li>
-      <li>
-        EAFIT University (2023). <em>Modeling threshold exceedances during dry and wet periods in Colombia using non-homogeneous Poisson processes</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
-      </li>
-      <li>
-        EAFIT University (2022). <em>Genetic algorithm with a Bayesian approach for multiple change-point detection in time series of counting exceedances for specific thresholds</em>. Master's thesis in Applied Mathematics. Main advisor: Biviana Marcela Suárez-Sierra.
-      </li>
-      <li>
-        EAFIT University (2022). <em>Prediction of employee turnover using automatic learning models</em>. Master's thesis in Data Science and Analytics. Main advisor: Biviana Marcela Suárez-Sierra.
-      </li>
-      <li>
-        Sergio Arboleda University (2021). <em>Study of the correlation of air pollutants in Bogotá</em>. Master's thesis in Applied Mathematics. Main advisor: Biviana Marcela Suárez-Sierra.
-      </li>
-      <li>
-        Sergio Arboleda University (2021). <em>Detection of change points in time series with a genetic algorithm for modeling exceedances of air pollutants in Bogotá</em>. Master's thesis in Applied Mathematics. Main advisor: Biviana Marcela Suárez-Sierra.
-      </li>
-    </ol>
+  <section id="theses" class="section-card">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker"><span data-lang-block="en">Mentoring</span><span data-lang-block="es">Formación</span></div>
+        <h2><span data-lang-block="en">Master's thesis supervision</span><span data-lang-block="es">Dirección de tesis de maestría</span></h2>
+      </div>
+    </div>
+    <div class="section-body">
+      <ol class="thesis-list">
+        <li><strong>Cristhian Quiroz</strong> — EAFIT University (2026). <em>Change-point Detection with Inductive Conformal Martingales Implementing Nonconformity Measures Based on Robust Statistics.</em> Master's thesis in Applied Mathematics.</li>
+        <li><strong>Karen Melissa Gómez</strong> — EAFIT University (2026). <em>Science in the Colombian Public Sphere: A Digital Humanities and NLP Analysis of Opinion Columns (2018–2020).</em> Master's thesis in Data Science and Analytics.</li>
+        <li>EAFIT University (2025). <em>Implementation of LSTM recurrent neural networks for forecasting PM2.5 particulate matter in the Aburrá Valley.</em> Master's thesis in Data Science and Analytics.</li>
+        <li>EAFIT University (2023). <em>Predictive analysis of default risk in microcredit: A machine learning approach in the financial sector.</em> Master's thesis in Data Science and Analytics.</li>
+        <li>EAFIT University (2023). <em>Review of Bayesian statistical techniques for entity matching in large data sets.</em> Master's thesis in Data Science and Analytics.</li>
+        <li>EAFIT University (2023). <em>Modeling threshold exceedances during dry and wet periods in Colombia using non-homogeneous Poisson processes.</em> Master's thesis in Data Science and Analytics.</li>
+        <li>EAFIT University (2022). <em>Genetic algorithm with a Bayesian approach for multiple change-point detection in time series of counting exceedances for specific thresholds.</em> Master's thesis in Applied Mathematics.</li>
+        <li>EAFIT University (2022). <em>Prediction of employee turnover using automatic learning models.</em> Master's thesis in Data Science and Analytics.</li>
+        <li>Sergio Arboleda University (2021). <em>Study of the correlation of air pollutants in Bogotá.</em> Master's thesis in Applied Mathematics.</li>
+        <li>Sergio Arboleda University (2021). <em>Detection of change points in time series with a genetic algorithm for modeling exceedances of air pollutants in Bogotá.</em> Master's thesis in Applied Mathematics.</li>
+      </ol>
+    </div>
   </section>
 
-  <!-- Conversations -->
-  <section id="conversations">
-    <h2 data-i18n="h.conversations">Conversations with Science</h2>
-      <h3>2026</h3>
- <ul>
-  <!-- 2. Taller de límite central (elemento independiente) -->
-  <li>
-    <p>
-      <strong>
-        Taller de motivación del Teorema de Central del límite, Universidad de los Andes, Bogotá
-      </strong>
-    </p>
-    <p>
-      📄 <a href="docs/taller_UNIANDES.pdf" target="_blank">Ver presentación</a>
-    </p>
-  </li>
-    <ul>
-    <h3>2025</h3>
- <ul>        
-  <li>
-    <p data-i18n="conv.ciencia.1">
-      <strong>Ciencia en voz alta, pero intermitente.</strong>  
-      Seminario Internacional de Narrativas EAFIT 2025.
-    </p>
-    <p data-i18n="conv.ciencia.2">
-      🎞️ <a href="https://bimasusi.github.io/slides/Ciencia_en_voz_alta.html" target="_blank" rel="noopener">Ver presentación</a>
-    </p>
-  </li>
-
-      <li>
-        <p data-i18n="conv.circulos.1"><strong>Circulos Matemáticos</strong> are fun, collaborative problem-solving sessions led by expert mentors that help high-school students discover a passion for mathematics.</p>
-        <p data-i18n="conv.circulos.2">Beyond classroom review, they explore advanced and exciting topics that open new perspectives — learn more at <a href="https://circulodematematicaslt.com/" target="_blank" rel="noopener">circulodematematicaslt.com</a>.</p>
-        <span data-i18n="teach.resources">Course resources:</span>
-        <ul>
-          <li>📘 <a href="https://bimasusi.github.io/CIRCULOS_2025/" target="_blank" rel="noopener">Guía del taller</a></li>
-          <li>📄 <a href="https://docs.google.com/forms/d/1YV2qjACnX2-ll065azxRDbZvaA14FNYbPJu3XJWMEus/edit?pli=1" target="_blank" rel="noopener">Formulario para compartir respuestas</a></li>
-          <li><a href="/images/galeria/">Galería de fotos</a></li>
-        </ul>
-        <!-- Galería de fotos -->
-          
-
-</div>
-
-      </li>
-    </ul>
-
-    <ul>
-      <li>
-        <p data-i18n="conv.rday.1"><strong>R Day Colombia 2025</strong> is a high-impact event for the scientific and business communities, showcasing the versatility of R for statistics and data science; after editions in Medellín (2019 and 2023), it returns in person on <strong>November 14, 2025</strong>.</p>
-        <p data-i18n="conv.rday.2">We aim to connect Medellín’s R community and welcome newcomers; <strong>I am part of the organizing committee</strong>. <a href="https://rday-colombia.github.io/2025/" target="_blank" rel="noopener">More details</a></p>
-      </li>
-    </ul>
-    <h3>Presentación en R Day 2025</h3>
-<p>
-  <a href="https://bimasusi.github.io/rday2025-ga-coen/" target="_blank">
-    ▶ Ver presentación: *Using the GA-Coen Algorithm*
-  </a>
-</p>
-
-    <ul>
-      <li>
-        <p data-i18n="conv.ada.1"><strong>Ada Lovelace Day – Medellín</strong> is a one-day, Latin America–wide celebration featuring playful workshops for girls ages 10–12 to promote STEM and highlight the vital role of women in science.</p>
-        <p data-i18n="conv.ada.2">We will serve as the <strong>official host site in Medellín</strong>. <a href="https://sede.adalovelace.net.ar/#/sede/71" target="_blank" rel="noopener">More details</a></p>
-        <ul>
-          <li><a href="images/ada-lovelace">Galería de fotos</a></li>
-        </ul>
-      </li>
-    </ul>
-       
-        <!-- Galería de fotos -->
+  <!-- Outreach -->
+  <section id="outreach" class="section-card">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker"><span data-lang-block="en">Beyond the classroom</span><span data-lang-block="es">Más allá del aula</span></div>
+        <h2><span data-lang-block="en">Outreach & conversations with science</span><span data-lang-block="es">Divulgación y conversaciones con la ciencia</span></h2>
+      </div>
+    </div>
+    <div class="section-body grid-2">
+      <article class="mini-card">
+        <h3><span data-lang-block="en">Central Limit Theorem motivation workshop</span><span data-lang-block="es">Taller de motivación del Teorema Central del Límite</span></h3>
+        <p class="meta">Universidad de los Andes, Bogotá (2026).</p>
+        <a href="docs/taller_UNIANDES.pdf" target="_blank"><span data-lang-block="en">View presentation</span><span data-lang-block="es">Ver presentación</span></a>
+      </article>
+      <article class="mini-card">
+        <h3>Ciencia en voz alta, pero intermitente</h3>
+        <p class="meta">Seminario Internacional de Narrativas EAFIT 2025.</p>
+        <a href="https://bimasusi.github.io/slides/Ciencia_en_voz_alta.html" target="_blank" rel="noopener"><span data-lang-block="en">View presentation</span><span data-lang-block="es">Ver presentación</span></a>
+      </article>
+      <article class="mini-card">
+        <h3>Círculos Matemáticos</h3>
+        <p class="meta"><span data-lang-block="en">Collaborative problem-solving sessions for high-school students, focused on mathematical exploration beyond routine classroom exercises.</span><span data-lang-block="es">Sesiones colaborativas de resolución de problemas para estudiantes de secundaria, enfocadas en explorar matemáticas más allá de los ejercicios rutinarios de clase.</span></p>
+        <a href="https://bimasusi.github.io/CIRCULOS_2025/" target="_blank" rel="noopener"><span data-lang-block="en">Workshop guide</span><span data-lang-block="es">Guía del taller</span></a> · <a href="/images/galeria/"><span data-lang-block="en">Gallery</span><span data-lang-block="es">Galería</span></a>
+      </article>
+      <article class="mini-card">
+        <h3>Ada Lovelace Day — Medellín</h3>
+        <p class="meta"><span data-lang-block="en">STEM outreach activities for girls, highlighting the role of women in science and technology.</span><span data-lang-block="es">Actividades STEM para niñas que resaltan el papel de las mujeres en ciencia y tecnología.</span></p>
+        <a href="https://sede.adalovelace.net.ar/#/sede/71" target="_blank" rel="noopener"><span data-lang-block="en">Event information</span><span data-lang-block="es">Información del evento</span></a> · <a href="images/ada-lovelace"><span data-lang-block="en">Gallery</span><span data-lang-block="es">Galería</span></a>
+      </article>
+    </div>
   </section>
 
   <!-- Contact -->
-  <section id="contact">
-    <h2 data-i18n="h.contact">Contact</h2>
-    <p data-i18n="contact.block">Email: <a href="mailto:bmasuarezs@eafit.edu.co">bmasuarezs@eafit.edu.co</a><br>
-    Office: Universidad EAFIT, Bloque 19, Medellín, Colombia</p>
+  <section id="contact" class="section-card">
+    <div class="section-head">
+      <div>
+        <div class="section-kicker"><span data-lang-block="en">Get in touch</span><span data-lang-block="es">Contacto</span></div>
+        <h2><span data-lang-block="en">Contact</span><span data-lang-block="es">Contacto</span></h2>
+      </div>
+    </div>
+    <div class="section-body grid-2">
+      <article>
+        <h3><span data-lang-block="en">Academic affiliation</span><span data-lang-block="es">Afiliación académica</span></h3>
+        <p>Departamento de Matemáticas<br>Universidad de los Andes<br>Bogotá, Colombia</p>
+      </article>
+      <article>
+        <h3><span data-lang-block="en">Links</span><span data-lang-block="es">Enlaces</span></h3>
+        <p><a href="mailto:bmsuarezs@unal.edu.co">bmsuarezs@unal.edu.co</a><br>
+        <a href="https://orcid.org/0000-0003-2151-3537" target="_blank" rel="noopener">ORCID</a> ·
+        <a href="https://github.com/bimasusi" target="_blank" rel="noopener">GitHub</a> ·
+        <a href="https://scholar.google.com/citations?view_op=list_works&hl=es&authuser=1&user=gVFlz1gAAAAJ" target="_blank" rel="noopener">Google Scholar</a></p>
+      </article>
+    </div>
   </section>
-
 </main>
 
+<footer>
+  <div class="footer-inner">
+    <div>© <span id="year"></span> Biviana Marcela Suárez Sierra</div>
+    <div><span data-lang-block="en">Academic website · responsive & accessible design</span><span data-lang-block="es">Página académica · diseño responsivo y accesible</span></div>
+  </div>
+</footer>
+
 <script>
-/* ---------- Section active highlight + barra lateral ---------- */
-(function(){
-  const links = Array.from(document.querySelectorAll('#navLinks a'));
-  const byId = Object.fromEntries(links.map(a => [a.getAttribute('href').slice(1), a]));
-  const sections = Object.keys(byId).map(id => document.getElementById(id)).filter(Boolean);
+  const root = document.documentElement;
+  const btnES = document.getElementById('btnES');
+  const btnEN = document.getElementById('btnEN');
+  const navLinks = document.getElementById('navLinks');
+  const menuButton = document.getElementById('menuButton');
 
-  const setActive = (id) => {
-    links.forEach(l => l.classList.remove('active'));
-    Object.values(byId).forEach(() => {});
-    sections.forEach(s => s.classList.remove('section-active'));
-    const link = byId[id];
-    const sec  = document.getElementById(id);
-    if (link) link.classList.add('active');
-    if (sec)  sec.classList.add('section-active');
-    history.replaceState(null, '', '#' + id);
-  };
-
-  const obs = new IntersectionObserver((entries) => {
-    // seleccionar la entrada con más ratio visible
-    const visible = entries
-      .filter(e => e.isIntersecting)
-      .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
-    if (visible && visible.intersectionRatio > 0.45) {
-      setActive(visible.target.id);
-    }
-  }, { root: null, threshold: [0.0, 0.25, 0.5, 0.75, 1.0] });
-
-  sections.forEach(sec => obs.observe(sec));
-})();
-
-/* ---------- Cerrar menú móvil al hacer clic ---------- */
-(function(){
-  const navToggle = document.getElementById('nav-toggle');
-  document.querySelectorAll('#navLinks a').forEach(a => {
-    a.addEventListener('click', () => { navToggle.checked = false; });
-  });
-})();
-
-/* ---------- Simple i18n (ES/EN) ---------- */
-(function(){
-  const dict = {
-    en: {
-      "nav.about":"About","nav.research":"Research","nav.publications":"Publications","nav.teaching":"Teaching","nav.theses":"Thesis Supervision","nav.conversations":"Conversations","nav.contact":"Contact",
-      "h.about":"Biviana Marcela Suárez Sierra","about.role":"<strong>Researcher in Statistics and Data Science</strong><br>Professor, Universidad EAFIT, Medellín, Colombia",
-      "h.research":"Research Interests","ri.1":"Statistical modeling and inference","ri.2":"Time series analysis and changepoint detection","ri.3":"Bayesian statistics and information theory","ri.4":"Educational data science and learning analytics",
-      "h.publications":"Publications",
-      "h.teaching":"Teaching","teach.ie":"Inferencia Estadística","teach.resources":"Course resources:","teach.eg":"Estadística General","teach.egdesc":"course emphasizing conceptual foundations.",
-      "h.theses":"Master's Thesis Supervision",
-      "h.conversations":"Conversations with Science",
-      "conv.circulos.1":"<strong>Circulos Matemáticos</strong> are fun, collaborative problem-solving sessions led by expert mentors that help high-school students discover a passion for mathematics.",
-      "conv.circulos.2":"Beyond classroom review, they explore advanced and exciting topics that open new perspectives — learn more at <a href=\"https://circulodematematicaslt.com/\" target=\"_blank\" rel=\"noopener\">circulodematematicaslt.com</a>.",
-      "conv.rday.1":"<strong>R Day Colombia 2025</strong> is a high-impact event for the scientific and business communities, showcasing the versatility of R for statistics and data science; after editions in Medellín (2019 and 2023), it returns in person on <strong>November 14, 2025</strong>.",
-      "conv.rday.2":"We aim to connect Medellín’s R community and welcome newcomers; <strong>I am part of the organizing committee</strong>. <a href=\"https://rday-colombia.github.io/2025/\" target=\"_blank\" rel=\"noopener\">More details</a>",
-      "conv.ada.1":"<strong>Ada Lovelace Day – Medellín</strong> is a one-day, Latin America–wide celebration featuring playful workshops for girls ages 10–12 to promote STEM and highlight the vital role of women in science.",
-      "conv.ada.2":"We will serve as the <strong>official host site in Medellín</strong>. <a href=\"https://sede.adalovelace.net.ar/#/sede/71\" target=\"_blank\" rel=\"noopener\">More details</a>",
-      "h.contact":"Contact","contact.block":"Email: <a href=\"mailto:bmasuarezs@eafit.edu.co\">bmasuarezs@eafit.edu.co</a><br>Office: Universidad EAFIT, Bloque 19, Medellín, Colombia"
-    },
-    es: {
-      "nav.about":"Perfil","nav.research":"Investigación","nav.publications":"Publicaciones","nav.teaching":"Docencia","nav.theses":"Dirección de tesis","nav.conversations":"Divulgación","nav.contact":"Contacto",
-      "h.about":"Biviana Marcela Suárez Sierra","about.role":"<strong>Investigadora en Estadística y Ciencia de Datos</strong><br>Profesora, Universidad EAFIT, Medellín, Colombia",
-      "h.research":"Intereses de investigación","ri.1":"Modelación e inferencia estadística","ri.2":"Series de tiempo y detección de cambios","ri.3":"Estadística Bayesiana y teoría de la información","ri.4":"Ciencia de datos educativa y analítica del aprendizaje",
-      "h.publications":"Publicaciones",
-      "h.teaching":"Docencia","teach.ie":"Inferencia Estadística","teach.resources":"Recursos del curso:","teach.eg":"Estadística General","teach.egdesc":"curso con énfasis en fundamentos conceptuales.",
-      "h.theses":"Dirección de tesis de maestría",
-      "h.conversations":"Conversaciones con la Ciencia",
-      "conv.circulos.1":"<strong>Círculos Matemáticos</strong> son sesiones lúdicas y colaborativas de resolución de problemas, guiadas por mentores expertos, para despertar en estudiantes de secundaria el gusto por las matemáticas.",
-      "conv.circulos.2":"Más allá del repaso escolar, exploran temas avanzados y emocionantes que abren nuevas perspectivas — más información en <a href=\"https://circulodematematicaslt.com/\" target=\"_blank\" rel=\"noopener\">circulodematematicaslt.com</a>.",
-      "conv.rday.1":"<strong>R Day Colombia 2025</strong> es un evento de alto impacto para las comunidades científica y empresarial que muestra la versatilidad de R en estadística y ciencia de datos; tras ediciones en Medellín (2019 y 2023), regresa de forma presencial el <strong>14 de noviembre de 2025</strong>.",
-      "conv.rday.2":"Buscamos integrar a la comunidad de R en Medellín y atraer a quienes aún no lo conocen; <strong>hago parte del comité organizador</strong>. <a href=\"https://rday-colombia.github.io/2025/\" target=\"_blank\" rel=\"noopener\">Más detalles</a>",
-      "conv.ada.1":"<strong>Día de Ada Lovelace – Medellín</strong> es una celebración de un día en toda Latinoamérica con talleres lúdicos para niñas de 10 a 12 años, para promover las carreras STEM y resaltar el rol de la mujer en la ciencia.",
-      "conv.ada.2":"Seremos la <strong>sede oficial en Medellín</strong>. <a href=\"https://sede.adalovelace.net.ar/#/sede/71\" target=\"_blank\" rel=\"noopener\">Más detalles</a>",
-      "h.contact":"Contacto","contact.block":"Correo: <a href=\"mailto:bmasuarezs@eafit.edu.co\">bmasuarezs@eafit.edu.co</a><br>Oficina: Universidad EAFIT, Bloque 19, Medellín, Colombia"
-    }
-  };
-
-  function applyLang(lang){
-    const root = document.documentElement;
-    root.setAttribute('data-lang', lang);
+  function setLanguage(lang) {
+    root.dataset.lang = lang;
     root.lang = lang;
-
-    document.querySelectorAll('[data-i18n]').forEach(el => {
-      const key = el.getAttribute('data-i18n');
-      const val = dict[lang][key];
-      if (val !== undefined) el.innerHTML = val;
-    });
-
-    document.getElementById('btnES').setAttribute('aria-pressed', String(lang==='es'));
-    document.getElementById('btnEN').setAttribute('aria-pressed', String(lang==='en'));
-
+    btnES.setAttribute('aria-pressed', String(lang === 'es'));
+    btnEN.setAttribute('aria-pressed', String(lang === 'en'));
     localStorage.setItem('lang', lang);
   }
 
-  const saved = localStorage.getItem('lang');
-  applyLang(saved === 'es' ? 'es' : 'en');
+  setLanguage(localStorage.getItem('lang') === 'es' ? 'es' : 'en');
+  btnES.addEventListener('click', () => setLanguage('es'));
+  btnEN.addEventListener('click', () => setLanguage('en'));
 
-  document.getElementById('btnES').addEventListener('click', () => applyLang('es'));
-  document.getElementById('btnEN').addEventListener('click', () => applyLang('en'));
-})();
+  menuButton.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuButton.setAttribute('aria-expanded', String(open));
+    menuButton.textContent = open ? '×' : '☰';
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.textContent = '☰';
+    });
+  });
+
+  const sections = [...document.querySelectorAll('main section[id]')].filter(s => s.id !== 'top');
+  const navMap = new Map([...navLinks.querySelectorAll('a')].map(a => [a.getAttribute('href').slice(1), a]));
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries.filter(e => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    navMap.forEach(a => a.classList.remove('active'));
+    navMap.get(visible.target.id)?.classList.add('active');
+  }, { rootMargin: '-22% 0px -62% 0px', threshold: [0, .15, .35, .6] });
+  sections.forEach(s => observer.observe(s));
+
+  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
-
 </body>
 </html>
-
