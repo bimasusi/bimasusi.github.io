@@ -1,0 +1,93 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Misión probable: explorando el azar",
+    "section": "",
+    "text": "Hoy vamos a convertirnos en investigadoras del azar. Nuestra tarea será hacer predicciones, experimentar, recoger evidencia y usarla para sacar conclusiones.\n\nPregunta de partida: Si algo ocurre al azar, ¿significa que no podemos decir nada sobre lo que ocurrirá?\n\n\n\nAgradezco especialmente a la profesora Luz Adriana Mejía, del Departamento de Matemáticas de la Universidad del Norte, por la invitación a participar en el marco de Cátedra Europa 2026 y por hacer posible este espacio de La ciencia sí es cosa de chicas.\nEstas actividades retoman y adaptan ideas del libro Azar y probabilidad (Editorial Síntesis), con un enfoque experimental para introducir conceptos fundamentales de probabilidad."
+  },
+  {
+    "objectID": "index.html#bienvenidas-a-la-misión",
+    "href": "index.html#bienvenidas-a-la-misión",
+    "title": "Misión probable: explorando el azar",
+    "section": "",
+    "text": "Hoy vamos a convertirnos en investigadoras del azar. Nuestra tarea será hacer predicciones, experimentar, recoger evidencia y usarla para sacar conclusiones.\n\nPregunta de partida: Si algo ocurre al azar, ¿significa que no podemos decir nada sobre lo que ocurrirá?\n\n\n\nAgradezco especialmente a la profesora Luz Adriana Mejía, del Departamento de Matemáticas de la Universidad del Norte, por la invitación a participar en el marco de Cátedra Europa 2026 y por hacer posible este espacio de La ciencia sí es cosa de chicas.\nEstas actividades retoman y adaptan ideas del libro Azar y probabilidad (Editorial Síntesis), con un enfoque experimental para introducir conceptos fundamentales de probabilidad."
+  },
+  {
+    "objectID": "index.html#nuestra-bitácora-de-misión",
+    "href": "index.html#nuestra-bitácora-de-misión",
+    "title": "Misión probable: explorando el azar",
+    "section": "🔎 Nuestra Bitácora de Misión",
+    "text": "🔎 Nuestra Bitácora de Misión\nDurante el taller construiremos una bitácora colectiva en Mentimeter. En algunos momentos registraremos allí nuestras hipótesis y observaciones para conocer lo que piensa todo el grupo y discutirlo juntas.\n\nRegla de la misión: primero hacemos una predicción; después buscamos evidencia.\n\n\nBitácora 1 · Antes de comenzar\nMentimeter — Nube de palabras\n\nCuando escuchas la palabra azar, ¿qué palabra se te viene a la mente?"
+  },
+  {
+    "objectID": "index.html#bitácora-de-misión",
+    "href": "index.html#bitácora-de-misión",
+    "title": "Misión probable: explorando el azar",
+    "section": "🔎 Bitácora de Misión",
+    "text": "🔎 Bitácora de Misión\n\n¡Únete a nuestra misión!\nEscanea el código QR con tu celular y responde\nla primera pregunta.\n\n\n\nNo cierres la página. Volveremos a nuestra Bitácora\ndurante las distintas misiones."
+  },
+  {
+    "objectID": "index.html#experimentamos",
+    "href": "index.html#experimentamos",
+    "title": "Misión probable: explorando el azar",
+    "section": "Experimentamos",
+    "text": "Experimentamos\nRealicemos varias extracciones con reemplazo. Registremos en el tablero cuántas veces aparece cada número.\nPreguntas para el grupo:\n\n¿Podíamos saber con certeza qué papel iba a salir en cada extracción?\n¿Cuáles eran todos los resultados posibles?\n¿Había alguna razón para que un papel tuviera ventaja sobre el otro?\n\nCuando no podemos conocer de antemano el resultado particular, estamos ante un experimento aleatorio.\n\n🔎 Bitácora 2 · Midiendo la posibilidad\nMentimeter — Opción múltiple\n\n¿Qué probabilidad asignarías a sacar el papel marcado con 1?\n\n\n0\n\\(1/4\\)\n\\(1/2\\)\n\\(3/4\\)\n1\n\nSi los dos papeles tienen las mismas condiciones, los dos resultados son equiprobables:\n\\[\nP(1)=P(2)=\\frac12.\n\\]\nLa probabilidad toma valores entre 0 y 1: 0 corresponde a un suceso imposible y 1 a un suceso seguro."
+  },
+  {
+    "objectID": "index.html#cambiemos-el-experimento",
+    "href": "index.html#cambiemos-el-experimento",
+    "title": "Misión probable: explorando el azar",
+    "section": "Cambiemos el experimento",
+    "text": "Cambiemos el experimento\nAhora imaginemos que agregamos un tercer papel, marcado con 3.\nPara discutir oralmente:\n\n¿Cuál es ahora el conjunto de resultados posibles?\n¿Cuál resultado es más probable?\n¿Qué probabilidad asignarías a obtener 3? ¿Y a obtener 1 o 2?\n\nSi los tres papeles están en las mismas condiciones,\n\\[\nP(1)=P(2)=P(3)=\\frac13.\n\\]"
+  },
+  {
+    "objectID": "index.html#una-sola-historia",
+    "href": "index.html#una-sola-historia",
+    "title": "Misión probable: explorando el azar",
+    "section": "Una sola historia",
+    "text": "Una sola historia\nUna única simulación decidirá el destino de nuestro turista.\n\n\n[1] \"C\"\n\n\nPregunta: ¿el resultado de este único turista demuestra que ese destino era más probable?"
+  },
+  {
+    "objectID": "index.html#y-si-fueran-100-000-turistas",
+    "href": "index.html#y-si-fueran-100-000-turistas",
+    "title": "Misión probable: explorando el azar",
+    "section": "¿Y si fueran 100 000 turistas?",
+    "text": "¿Y si fueran 100 000 turistas?\nHacer físicamente el experimento 100 000 veces sería poco práctico. Una computadora puede repetirlo por nosotras."
+  },
+  {
+    "objectID": "index.html#podemos-repetir-el-experimento-100-000-veces",
+    "href": "index.html#podemos-repetir-el-experimento-100-000-veces",
+    "title": "Misión probable: explorando el azar",
+    "section": "¿Podemos repetir el experimento 100 000 veces?",
+    "text": "¿Podemos repetir el experimento 100 000 veces?\nHacerlo manualmente sería muy lento.\n¿Y si le pedimos a R que lo haga por nosotras?\nR es un lenguaje de programación utilizado en estadística y ciencia de datos.\n\nset.seed(123)\n\nn &lt;- 100000\n\nelecciones &lt;- sample(\n  c(\"C\", \"D\"),\n  size = n,\n  replace = TRUE\n)\n\nprob_C &lt;- mean(elecciones == \"C\")\nprob_D &lt;- mean(elecciones == \"D\")\n\nbarplot(\n  height = c(prob_C, prob_D),\n  names.arg = c(\"Llegar a C\", \"Llegar a D\"),\n  ylim = c(0, 1),\n  main = \"100 000 turistas despistados\",\n  ylab = \"Frecuencia relativa\"\n)\n\nabline(h = 0.5, lty = 2)\n\n\n\n\n\n\n\n\nAntes de explicar el gráfico:\n\n¿Qué observan?\n¿Qué les llama la atención?\n¿Coincide con nuestra predicción?\n¿Por qué las barras no tienen que ser exactamente iguales?\n\nComo los dos destinos están en las mismas condiciones,\n\\[\nP(C)=P(D)=\\frac12,\n\\qquad\nP(C)+P(D)=1.\n\\]\nAl conjunto de todos los resultados posibles lo llamamos espacio muestral. En esta misión,\n\\[\nE=\\{C,D\\}.\n\\]\n\n🔎 Bitácora 4 · De la probabilidad a una predicción\nMentimeter — Respuesta numérica\n\nSi 100 turistas hicieran lo mismo, ¿aproximadamente cuántos esperarías que llegaran a C?\n\nDespués de socializar las respuestas, discutir la diferencia entre esperar aproximadamente 50 y afirmar que exactamente 50 tienen que llegar a C."
+  },
+  {
+    "objectID": "index.html#experimentamos-juntas",
+    "href": "index.html#experimentamos-juntas",
+    "title": "Misión probable: explorando el azar",
+    "section": "Experimentamos juntas",
+    "text": "Experimentamos juntas\nRealicemos varios lanzamientos con el dado virtual. Podemos registrar los resultados en el tablero y comparar lo que ocurre en pequeños grupos con lo que ocurre al juntar todos los lanzamientos.\nEl espacio muestral es\n\\[\nE=\\{1,2,3,4,5,6\\}.\n\\]\nTodos los resultados tienen, para un dado equilibrado,\n\\[\nP(1)=P(2)=\\cdots=P(6)=\\frac16.\n\\]"
+  },
+  {
+    "objectID": "index.html#de-resultados-a-sucesos",
+    "href": "index.html#de-resultados-a-sucesos",
+    "title": "Misión probable: explorando el azar",
+    "section": "De resultados a sucesos",
+    "text": "De resultados a sucesos\nUn suceso puede contener varios resultados. Por ejemplo,\n\\[\nA=\\{\\text{obtener un número par}\\}=\\{2,4,6\\}.\n\\]\nPara resolver oralmente:\n\\[\nB=\\{\\text{número impar}\\},\\qquad\nC=\\{\\text{número primo}\\},\\qquad\nF=\\{\\text{múltiplo de 3}\\}.\n\\]\n\n🔎 Bitácora 6 · Descubramos la regla\nMentimeter — Opción múltiple\n\n¿Cuál es la probabilidad de obtener un número par?\n\n\n\\(1/6\\)\n\\(2/6\\)\n\\(3/6\\)\n\\(4/6\\)\n\\(5/6\\)\n\nTenemos 6 resultados posibles y 3 de ellos hacen que ocurra el suceso \\(A\\):\n\\[\nP(A)=\\frac{3}{6}=\\frac12.\n\\]\nCuando todos los resultados elementales son igualmente probables,\n\\[\n\\boxed{P(A)=\\frac{\\text{número de resultados favorables}}{\\text{número de resultados posibles}}}.\n\\]\n\nAtención: esta regla depende de que los resultados sean equiprobables."
+  },
+  {
+    "objectID": "index.html#cómo-investigaríamos-el-dado-modificado",
+    "href": "index.html#cómo-investigaríamos-el-dado-modificado",
+    "title": "Misión probable: explorando el azar",
+    "section": "¿Cómo investigaríamos el dado modificado?",
+    "text": "¿Cómo investigaríamos el dado modificado?\n\n🔎 Bitácora 8 · Diseñemos un experimento\nMentimeter — Respuesta abierta\n\nSi no conocemos las probabilidades del dado modificado, ¿cómo podríamos estimarlas?\n\nSocialicemos algunas propuestas. Una estrategia científica es repetir muchas veces el experimento, registrar los resultados y estudiar sus frecuencias relativas.\nSi un resultado \\(A\\) aparece \\(n_A\\) veces en \\(n\\) repeticiones, calculamos\n\\[\n\\text{frecuencia relativa de }A=\\frac{n_A}{n}.\n\\]\nAl aumentar el número de repeticiones, estas frecuencias pueden ayudarnos a aproximar las probabilidades desconocidas."
+  },
+  {
+    "objectID": "index.html#la-ciencia-sí-es-cosa-de-chicas",
+    "href": "index.html#la-ciencia-sí-es-cosa-de-chicas",
+    "title": "Misión probable: explorando el azar",
+    "section": "La ciencia sí es cosa de chicas",
+    "text": "La ciencia sí es cosa de chicas\nHoy ustedes hicieron ciencia: formularon hipótesis, experimentaron, utilizaron herramientas digitales, analizaron datos y defendieron conclusiones.\nMisión probable: explorando el azar\nCátedra Europa 2026"
+  }
+]

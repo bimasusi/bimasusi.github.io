@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Biviana Marcela Suárez Sierra">
+
+<title>Misión probable: explorando el azar</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-da70409ca3e98a6a74430e1782272a52.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Misión probable: explorando el azar</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Misiones</h2>
+   
+  <ul>
+  <li><a href="#bienvenidas-a-la-misión" id="toc-bienvenidas-a-la-misión" class="nav-link active" data-scroll-target="#bienvenidas-a-la-misión">Bienvenidas a la misión</a>
+  <ul class="collapse">
+  <li><a href="#agradecimientos" id="toc-agradecimientos" class="nav-link" data-scroll-target="#agradecimientos">Agradecimientos</a></li>
+  </ul></li>
+  <li><a href="#nuestra-bitácora-de-misión" id="toc-nuestra-bitácora-de-misión" class="nav-link" data-scroll-target="#nuestra-bitácora-de-misión">🔎 Nuestra Bitácora de Misión</a>
+  <ul class="collapse">
+  <li><a href="#bitácora-1-antes-de-comenzar" id="toc-bitácora-1-antes-de-comenzar" class="nav-link" data-scroll-target="#bitácora-1-antes-de-comenzar">Bitácora 1 · Antes de comenzar</a></li>
+  </ul></li>
+  <li><a href="#bitácora-de-misión" id="toc-bitácora-de-misión" class="nav-link" data-scroll-target="#bitácora-de-misión">🔎 Bitácora de Misión</a>
+  <ul class="collapse">
+  <li><a href="#únete-a-nuestra-misión" id="toc-únete-a-nuestra-misión" class="nav-link" data-scroll-target="#únete-a-nuestra-misión">¡Únete a nuestra misión!</a></li>
+  </ul></li>
+  <li><a href="#misión-1-los-papeles-misteriosos" id="toc-misión-1-los-papeles-misteriosos" class="nav-link" data-scroll-target="#misión-1-los-papeles-misteriosos">Misión 1 · Los papeles misteriosos</a>
+  <ul class="collapse">
+  <li><a href="#registremos-nuestra-hipótesis" id="toc-registremos-nuestra-hipótesis" class="nav-link" data-scroll-target="#registremos-nuestra-hipótesis">🔎 Registremos nuestra hipótesis</a></li>
+  <li><a href="#experimentamos" id="toc-experimentamos" class="nav-link" data-scroll-target="#experimentamos">Experimentamos</a>
+  <ul class="collapse">
+  <li><a href="#bitácora-2-midiendo-la-posibilidad" id="toc-bitácora-2-midiendo-la-posibilidad" class="nav-link" data-scroll-target="#bitácora-2-midiendo-la-posibilidad">🔎 Bitácora 2 · Midiendo la posibilidad</a></li>
+  </ul></li>
+  <li><a href="#cambiemos-el-experimento" id="toc-cambiemos-el-experimento" class="nav-link" data-scroll-target="#cambiemos-el-experimento">Cambiemos el experimento</a></li>
+  </ul></li>
+  <li><a href="#misión-2-un-turista-despistado" id="toc-misión-2-un-turista-despistado" class="nav-link" data-scroll-target="#misión-2-un-turista-despistado">Misión 2 · Un turista despistado</a>
+  <ul class="collapse">
+  <li><a href="#bitácora-3-dónde-terminará" id="toc-bitácora-3-dónde-terminará" class="nav-link" data-scroll-target="#bitácora-3-dónde-terminará">🔎 Bitácora 3 · ¿Dónde terminará?</a></li>
+  <li><a href="#una-sola-historia" id="toc-una-sola-historia" class="nav-link" data-scroll-target="#una-sola-historia">Una sola historia</a></li>
+  <li><a href="#y-si-fueran-100-000-turistas" id="toc-y-si-fueran-100-000-turistas" class="nav-link" data-scroll-target="#y-si-fueran-100-000-turistas">¿Y si fueran 100 000 turistas?</a></li>
+  <li><a href="#podemos-repetir-el-experimento-100-000-veces" id="toc-podemos-repetir-el-experimento-100-000-veces" class="nav-link" data-scroll-target="#podemos-repetir-el-experimento-100-000-veces">¿Podemos repetir el experimento 100 000 veces?</a>
+  <ul class="collapse">
+  <li><a href="#bitácora-4-de-la-probabilidad-a-una-predicción" id="toc-bitácora-4-de-la-probabilidad-a-una-predicción" class="nav-link" data-scroll-target="#bitácora-4-de-la-probabilidad-a-una-predicción">🔎 Bitácora 4 · De la probabilidad a una predicción</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#misión-3-laboratorio-virtual-de-dados" id="toc-misión-3-laboratorio-virtual-de-dados" class="nav-link" data-scroll-target="#misión-3-laboratorio-virtual-de-dados">Misión 3 · Laboratorio virtual de dados</a>
+  <ul class="collapse">
+  <li><a href="#bitácora-5-antes-de-lanzar" id="toc-bitácora-5-antes-de-lanzar" class="nav-link" data-scroll-target="#bitácora-5-antes-de-lanzar">🔎 Bitácora 5 · Antes de lanzar</a></li>
+  <li><a href="#experimentamos-juntas" id="toc-experimentamos-juntas" class="nav-link" data-scroll-target="#experimentamos-juntas">Experimentamos juntas</a></li>
+  <li><a href="#de-resultados-a-sucesos" id="toc-de-resultados-a-sucesos" class="nav-link" data-scroll-target="#de-resultados-a-sucesos">De resultados a sucesos</a>
+  <ul class="collapse">
+  <li><a href="#bitácora-6-descubramos-la-regla" id="toc-bitácora-6-descubramos-la-regla" class="nav-link" data-scroll-target="#bitácora-6-descubramos-la-regla">🔎 Bitácora 6 · Descubramos la regla</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#misión-4-es-justo-este-dado" id="toc-misión-4-es-justo-este-dado" class="nav-link" data-scroll-target="#misión-4-es-justo-este-dado">Misión 4 · ¿Es justo este dado?</a>
+  <ul class="collapse">
+  <li><a href="#bitácora-7-el-botón-misterioso" id="toc-bitácora-7-el-botón-misterioso" class="nav-link" data-scroll-target="#bitácora-7-el-botón-misterioso">🔎 Bitácora 7 · El botón misterioso</a></li>
+  <li><a href="#cómo-investigaríamos-el-dado-modificado" id="toc-cómo-investigaríamos-el-dado-modificado" class="nav-link" data-scroll-target="#cómo-investigaríamos-el-dado-modificado">¿Cómo investigaríamos el dado modificado?</a>
+  <ul class="collapse">
+  <li><a href="#bitácora-8-diseñemos-un-experimento" id="toc-bitácora-8-diseñemos-un-experimento" class="nav-link" data-scroll-target="#bitácora-8-diseñemos-un-experimento">🔎 Bitácora 8 · Diseñemos un experimento</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#misión-cumplida" id="toc-misión-cumplida" class="nav-link" data-scroll-target="#misión-cumplida">🏁 Misión cumplida</a>
+  <ul class="collapse">
+  <li><a href="#bitácora-9-volvamos-al-comienzo" id="toc-bitácora-9-volvamos-al-comienzo" class="nav-link" data-scroll-target="#bitácora-9-volvamos-al-comienzo">🔎 Bitácora 9 · Volvamos al comienzo</a></li>
+  <li><a href="#la-ciencia-sí-es-cosa-de-chicas" id="toc-la-ciencia-sí-es-cosa-de-chicas" class="nav-link" data-scroll-target="#la-ciencia-sí-es-cosa-de-chicas">La ciencia sí es cosa de chicas</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Misión probable: explorando el azar</h1>
+<p class="subtitle lead">La ciencia sí es cosa de chicas · Cátedra Europa 2026</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Biviana Marcela Suárez Sierra </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="bienvenidas-a-la-misión" class="level2">
+<h2 class="anchored" data-anchor-id="bienvenidas-a-la-misión">Bienvenidas a la misión</h2>
+<p>Hoy vamos a convertirnos en <strong>investigadoras del azar</strong>. Nuestra tarea será hacer predicciones, experimentar, recoger evidencia y usarla para sacar conclusiones.</p>
+<blockquote class="blockquote">
+<p><strong>Pregunta de partida:</strong> Si algo ocurre al azar, ¿significa que no podemos decir nada sobre lo que ocurrirá?</p>
+</blockquote>
+<section id="agradecimientos" class="level3">
+<h3 class="anchored" data-anchor-id="agradecimientos">Agradecimientos</h3>
+<p>Agradezco especialmente a la profesora <strong>Luz Adriana Mejía</strong>, del Departamento de Matemáticas de la <strong>Universidad del Norte</strong>, por la invitación a participar en el marco de <strong>Cátedra Europa 2026</strong> y por hacer posible este espacio de <em>La ciencia sí es cosa de chicas</em>.</p>
+<p>Estas actividades retoman y adaptan ideas del libro <em>Azar y probabilidad</em> (Editorial Síntesis), con un enfoque experimental para introducir conceptos fundamentales de probabilidad.</p>
+</section>
+</section>
+<section id="nuestra-bitácora-de-misión" class="level2">
+<h2 class="anchored" data-anchor-id="nuestra-bitácora-de-misión">🔎 Nuestra Bitácora de Misión</h2>
+<p>Durante el taller construiremos una <strong>bitácora colectiva en Mentimeter</strong>. En algunos momentos registraremos allí nuestras hipótesis y observaciones para conocer lo que piensa todo el grupo y discutirlo juntas.</p>
+<blockquote class="blockquote">
+<p><strong>Regla de la misión:</strong> primero hacemos una predicción; después buscamos evidencia.</p>
+</blockquote>
+<section id="bitácora-1-antes-de-comenzar" class="level3">
+<h3 class="anchored" data-anchor-id="bitácora-1-antes-de-comenzar">Bitácora 1 · Antes de comenzar</h3>
+<p><strong>Mentimeter — Nube de palabras</strong></p>
+<blockquote class="blockquote">
+<p>Cuando escuchas la palabra <strong>azar</strong>, ¿qué palabra se te viene a la mente?</p>
+</blockquote>
+</section>
+</section>
+<section id="bitácora-de-misión" class="level2">
+<h2 class="anchored" data-anchor-id="bitácora-de-misión">🔎 Bitácora de Misión</h2>
+<section id="únete-a-nuestra-misión" class="level3">
+<h3 class="anchored" data-anchor-id="únete-a-nuestra-misión">¡Únete a nuestra misión!</h3>
+<p>Escanea el código QR con tu celular y responde<br>
+la primera pregunta.</p>
+<div class="r-stack">
+<p><img src="images/qr1_mentimeter.png" class="img-fluid" style="width:32.0%"></p>
+</div>
+<p><strong>No cierres la página.</strong> Volveremos a nuestra Bitácora<br>
+durante las distintas misiones.</p>
+</section>
+</section>
+<section id="misión-1-los-papeles-misteriosos" class="level1">
+<h1>Misión 1 · Los papeles misteriosos</h1>
+<p>Tenemos una bolsa y dos papeles del mismo tamaño y material: uno marcado con <strong>1</strong> y otro con <strong>2</strong>. Los introducimos en la bolsa, mezclamos y sacamos uno sin mirar. Después de observarlo, lo devolvemos a la bolsa y repetimos el experimento varias veces.</p>
+<section id="registremos-nuestra-hipótesis" class="level3">
+<h3 class="anchored" data-anchor-id="registremos-nuestra-hipótesis">🔎 Registremos nuestra hipótesis</h3>
+<p><strong>Mentimeter — Opción múltiple</strong></p>
+<blockquote class="blockquote">
+<p>Antes de sacar el papel, ¿cuál crees que saldrá?</p>
+</blockquote>
+<ul>
+<li>1</li>
+<li>2</li>
+</ul>
+<p><strong>Para conversar:</strong> si la mayoría eligió uno de los números, ¿eso hace que ese número sea más probable?</p>
+</section>
+<section id="experimentamos" class="level2">
+<h2 class="anchored" data-anchor-id="experimentamos">Experimentamos</h2>
+<p>Realicemos varias extracciones con reemplazo. Registremos en el tablero cuántas veces aparece cada número.</p>
+<p><strong>Preguntas para el grupo:</strong></p>
+<ul>
+<li>¿Podíamos saber con certeza qué papel iba a salir en cada extracción?</li>
+<li>¿Cuáles eran todos los resultados posibles?</li>
+<li>¿Había alguna razón para que un papel tuviera ventaja sobre el otro?</li>
+</ul>
+<p>Cuando no podemos conocer de antemano el resultado particular, estamos ante un <strong>experimento aleatorio</strong>.</p>
+<section id="bitácora-2-midiendo-la-posibilidad" class="level3">
+<h3 class="anchored" data-anchor-id="bitácora-2-midiendo-la-posibilidad">🔎 Bitácora 2 · Midiendo la posibilidad</h3>
+<p><strong>Mentimeter — Opción múltiple</strong></p>
+<blockquote class="blockquote">
+<p>¿Qué probabilidad asignarías a sacar el papel marcado con 1?</p>
+</blockquote>
+<ul>
+<li>0</li>
+<li><span class="math inline">\(1/4\)</span></li>
+<li><span class="math inline">\(1/2\)</span></li>
+<li><span class="math inline">\(3/4\)</span></li>
+<li>1</li>
+</ul>
+<p>Si los dos papeles tienen las mismas condiciones, los dos resultados son <strong>equiprobables</strong>:</p>
+<p><span class="math display">\[
+P(1)=P(2)=\frac12.
+\]</span></p>
+<p>La probabilidad toma valores entre 0 y 1: 0 corresponde a un suceso imposible y 1 a un suceso seguro.</p>
+</section>
+</section>
+<section id="cambiemos-el-experimento" class="level2">
+<h2 class="anchored" data-anchor-id="cambiemos-el-experimento">Cambiemos el experimento</h2>
+<p>Ahora imaginemos que agregamos un tercer papel, marcado con <strong>3</strong>.</p>
+<p><strong>Para discutir oralmente:</strong></p>
+<ul>
+<li>¿Cuál es ahora el conjunto de resultados posibles?</li>
+<li>¿Cuál resultado es más probable?</li>
+<li>¿Qué probabilidad asignarías a obtener 3? ¿Y a obtener 1 o 2?</li>
+</ul>
+<p>Si los tres papeles están en las mismas condiciones,</p>
+<p><span class="math display">\[
+P(1)=P(2)=P(3)=\frac13.
+\]</span></p>
+</section>
+</section>
+<section id="misión-2-un-turista-despistado" class="level1">
+<h1>Misión 2 · Un turista despistado</h1>
+<p>Barranquilla recibe visitantes de muchos lugares. Imaginemos ahora a un turista que se mueve por una ciudad con una línea de metro que tiene dos ramales:</p>
+<pre class="text"><code>    C         D
+     \       /
+      \     /
+       \   /
+        \ /
+         B
+         |
+         |
+         A</code></pre>
+<p>De los trenes que parten de A y pasan por B, la mitad van a C y la otra mitad a D, alternándose:</p>
+<p><span class="math display">\[
+C, D, C, D, C, D, \ldots
+\]</span></p>
+<p>Cada tren lleva escrito su destino. Sin embargo, un turista despistado que quiere ir a D toma el primer tren que llega <strong>sin mirar la indicación</strong>.</p>
+<section id="bitácora-3-dónde-terminará" class="level3">
+<h3 class="anchored" data-anchor-id="bitácora-3-dónde-terminará">🔎 Bitácora 3 · ¿Dónde terminará?</h3>
+<p><strong>Mentimeter — Opción múltiple</strong></p>
+<blockquote class="blockquote">
+<p>Si repetimos esta situación muchas veces, ¿qué crees que ocurrirá?</p>
+</blockquote>
+<ul>
+<li>Llegará más veces a C.</li>
+<li>Llegará más veces a D.</li>
+<li>Llegará aproximadamente la misma cantidad de veces a C y D.</li>
+</ul>
+</section>
+<section id="una-sola-historia" class="level2">
+<h2 class="anchored" data-anchor-id="una-sola-historia">Una sola historia</h2>
+<p>Una única simulación decidirá el destino de nuestro turista.</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "C"</code></pre>
+</div>
+</div>
+<p><strong>Pregunta:</strong> ¿el resultado de este único turista demuestra que ese destino era más probable?</p>
+</section>
+<section id="y-si-fueran-100-000-turistas" class="level2">
+<h2 class="anchored" data-anchor-id="y-si-fueran-100-000-turistas">¿Y si fueran 100 000 turistas?</h2>
+<p>Hacer físicamente el experimento 100 000 veces sería poco práctico. Una computadora puede repetirlo por nosotras.</p>
+</section>
+<section id="podemos-repetir-el-experimento-100-000-veces" class="level2">
+<h2 class="anchored" data-anchor-id="podemos-repetir-el-experimento-100-000-veces">¿Podemos repetir el experimento 100 000 veces?</h2>
+<p>Hacerlo manualmente sería muy lento.</p>
+<p><strong>¿Y si le pedimos a R que lo haga por nosotras?</strong></p>
+<p>R es un lenguaje de programación utilizado en estadística y ciencia de datos.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>elecciones <span class="ot">&lt;-</span> <span class="fu">sample</span>(</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="st">"C"</span>, <span class="st">"D"</span>),</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">size =</span> n,</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">replace =</span> <span class="cn">TRUE</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>prob_C <span class="ot">&lt;-</span> <span class="fu">mean</span>(elecciones <span class="sc">==</span> <span class="st">"C"</span>)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>prob_D <span class="ot">&lt;-</span> <span class="fu">mean</span>(elecciones <span class="sc">==</span> <span class="st">"D"</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="at">height =</span> <span class="fu">c</span>(prob_C, prob_D),</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">names.arg =</span> <span class="fu">c</span>(<span class="st">"Llegar a C"</span>, <span class="st">"Llegar a D"</span>),</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylim =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"100 000 turistas despistados"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">ylab =</span> <span class="st">"Frecuencia relativa"</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h =</span> <span class="fl">0.5</span>, <span class="at">lty =</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Antes de explicar el gráfico:</strong></p>
+<ul>
+<li>¿Qué observan?</li>
+<li>¿Qué les llama la atención?</li>
+<li>¿Coincide con nuestra predicción?</li>
+<li>¿Por qué las barras no tienen que ser exactamente iguales?</li>
+</ul>
+<p>Como los dos destinos están en las mismas condiciones,</p>
+<p><span class="math display">\[
+P(C)=P(D)=\frac12,
+\qquad
+P(C)+P(D)=1.
+\]</span></p>
+<p>Al conjunto de todos los resultados posibles lo llamamos <strong>espacio muestral</strong>. En esta misión,</p>
+<p><span class="math display">\[
+E=\{C,D\}.
+\]</span></p>
+<section id="bitácora-4-de-la-probabilidad-a-una-predicción" class="level3">
+<h3 class="anchored" data-anchor-id="bitácora-4-de-la-probabilidad-a-una-predicción">🔎 Bitácora 4 · De la probabilidad a una predicción</h3>
+<p><strong>Mentimeter — Respuesta numérica</strong></p>
+<blockquote class="blockquote">
+<p>Si 100 turistas hicieran lo mismo, ¿aproximadamente cuántos esperarías que llegaran a C?</p>
+</blockquote>
+<p>Después de socializar las respuestas, discutir la diferencia entre <strong>esperar aproximadamente 50</strong> y afirmar que <strong>exactamente 50</strong> tienen que llegar a C.</p>
+</section>
+</section>
+</section>
+<section id="misión-3-laboratorio-virtual-de-dados" class="level1">
+<h1>Misión 3 · Laboratorio virtual de dados</h1>
+<p>Necesitamos un dado, pero esta vez nuestro laboratorio será virtual.</p>
+<p>👉 <a href="https://www.dado-virtual.com/">Abrir Dado Virtual</a></p>
+<section id="bitácora-5-antes-de-lanzar" class="level3">
+<h3 class="anchored" data-anchor-id="bitácora-5-antes-de-lanzar">🔎 Bitácora 5 · Antes de lanzar</h3>
+<p><strong>Mentimeter — Opción múltiple</strong></p>
+<blockquote class="blockquote">
+<p>¿Qué número crees que saldrá en el próximo lanzamiento?</p>
+</blockquote>
+<ul>
+<li>1</li>
+<li>2</li>
+<li>3</li>
+<li>4</li>
+<li>5</li>
+<li>6</li>
+</ul>
+<p><strong>Para conversar:</strong> ¿elegir un número es lo mismo que afirmar que ese número es más probable?</p>
+</section>
+<section id="experimentamos-juntas" class="level2">
+<h2 class="anchored" data-anchor-id="experimentamos-juntas">Experimentamos juntas</h2>
+<p>Realicemos varios lanzamientos con el dado virtual. Podemos registrar los resultados en el tablero y comparar lo que ocurre en pequeños grupos con lo que ocurre al juntar todos los lanzamientos.</p>
+<p>El espacio muestral es</p>
+<p><span class="math display">\[
+E=\{1,2,3,4,5,6\}.
+\]</span></p>
+<p>Todos los resultados tienen, para un dado equilibrado,</p>
+<p><span class="math display">\[
+P(1)=P(2)=\cdots=P(6)=\frac16.
+\]</span></p>
+</section>
+<section id="de-resultados-a-sucesos" class="level2">
+<h2 class="anchored" data-anchor-id="de-resultados-a-sucesos">De resultados a sucesos</h2>
+<p>Un <strong>suceso</strong> puede contener varios resultados. Por ejemplo,</p>
+<p><span class="math display">\[
+A=\{\text{obtener un número par}\}=\{2,4,6\}.
+\]</span></p>
+<p><strong>Para resolver oralmente:</strong></p>
+<p><span class="math display">\[
+B=\{\text{número impar}\},\qquad
+C=\{\text{número primo}\},\qquad
+F=\{\text{múltiplo de 3}\}.
+\]</span></p>
+<section id="bitácora-6-descubramos-la-regla" class="level3">
+<h3 class="anchored" data-anchor-id="bitácora-6-descubramos-la-regla">🔎 Bitácora 6 · Descubramos la regla</h3>
+<p><strong>Mentimeter — Opción múltiple</strong></p>
+<blockquote class="blockquote">
+<p>¿Cuál es la probabilidad de obtener un número par?</p>
+</blockquote>
+<ul>
+<li><span class="math inline">\(1/6\)</span></li>
+<li><span class="math inline">\(2/6\)</span></li>
+<li><span class="math inline">\(3/6\)</span></li>
+<li><span class="math inline">\(4/6\)</span></li>
+<li><span class="math inline">\(5/6\)</span></li>
+</ul>
+<p>Tenemos 6 resultados posibles y 3 de ellos hacen que ocurra el suceso <span class="math inline">\(A\)</span>:</p>
+<p><span class="math display">\[
+P(A)=\frac{3}{6}=\frac12.
+\]</span></p>
+<p>Cuando todos los resultados elementales son igualmente probables,</p>
+<p><span class="math display">\[
+\boxed{P(A)=\frac{\text{número de resultados favorables}}{\text{número de resultados posibles}}}.
+\]</span></p>
+<blockquote class="blockquote">
+<p><strong>Atención:</strong> esta regla depende de que los resultados sean <strong>equiprobables</strong>.</p>
+</blockquote>
+</section>
+</section>
+</section>
+<section id="misión-4-es-justo-este-dado" class="level1">
+<h1>Misión 4 · ¿Es justo este dado?</h1>
+<p>Hasta ahora hemos supuesto que nuestro dado está equilibrado. Pero imaginemos algo diferente.</p>
+<blockquote class="blockquote">
+<p>🎲 <strong>Experimento mental:</strong> tomamos un dado real y pegamos un <strong>botón grande y pesado</strong> sobre una de sus caras.</p>
+</blockquote>
+<section id="bitácora-7-el-botón-misterioso" class="level3">
+<h3 class="anchored" data-anchor-id="bitácora-7-el-botón-misterioso">🔎 Bitácora 7 · El botón misterioso</h3>
+<p><strong>Mentimeter — Opción múltiple</strong></p>
+<blockquote class="blockquote">
+<p>¿Siguen siendo igualmente probables los seis resultados?</p>
+</blockquote>
+<ul>
+<li>Sí.</li>
+<li>No.</li>
+<li>No estoy segura.</li>
+</ul>
+<p><strong>Para discutir:</strong> siguen existiendo seis resultados posibles, pero ¿basta con contarlos para afirmar que cada uno tiene probabilidad <span class="math inline">\(1/6\)</span>?</p>
+</section>
+<section id="cómo-investigaríamos-el-dado-modificado" class="level2">
+<h2 class="anchored" data-anchor-id="cómo-investigaríamos-el-dado-modificado">¿Cómo investigaríamos el dado modificado?</h2>
+<section id="bitácora-8-diseñemos-un-experimento" class="level3">
+<h3 class="anchored" data-anchor-id="bitácora-8-diseñemos-un-experimento">🔎 Bitácora 8 · Diseñemos un experimento</h3>
+<p><strong>Mentimeter — Respuesta abierta</strong></p>
+<blockquote class="blockquote">
+<p>Si no conocemos las probabilidades del dado modificado, ¿cómo podríamos estimarlas?</p>
+</blockquote>
+<p>Socialicemos algunas propuestas. Una estrategia científica es <strong>repetir muchas veces el experimento, registrar los resultados y estudiar sus frecuencias relativas</strong>.</p>
+<p>Si un resultado <span class="math inline">\(A\)</span> aparece <span class="math inline">\(n_A\)</span> veces en <span class="math inline">\(n\)</span> repeticiones, calculamos</p>
+<p><span class="math display">\[
+\text{frecuencia relativa de }A=\frac{n_A}{n}.
+\]</span></p>
+<p>Al aumentar el número de repeticiones, estas frecuencias pueden ayudarnos a aproximar las probabilidades desconocidas.</p>
+</section>
+</section>
+</section>
+<section id="misión-cumplida" class="level1">
+<h1>🏁 Misión cumplida</h1>
+<p>Hoy seguimos un proceso que aparece una y otra vez en la ciencia:</p>
+<p><span class="math display">\[
+\boxed{\text{preguntar}\;\longrightarrow\;\text{predecir}\;\longrightarrow\;\text{experimentar}\;\longrightarrow\;\text{analizar}\;\longrightarrow\;\text{concluir}}
+\]</span></p>
+<p>Descubrimos que <strong>azar no significa que no podamos saber nada</strong>. Aunque no podamos anticipar con certeza cada resultado individual, la probabilidad nos permite estudiar patrones y razonar frente a la incertidumbre.</p>
+<section id="bitácora-9-volvamos-al-comienzo" class="level3">
+<h3 class="anchored" data-anchor-id="bitácora-9-volvamos-al-comienzo">🔎 Bitácora 9 · Volvamos al comienzo</h3>
+<p><strong>Mentimeter — Nube de palabras</strong></p>
+<blockquote class="blockquote">
+<p>Después de nuestras misiones, ¿con qué palabra relacionas ahora el <strong>azar</strong>?</p>
+</blockquote>
+<p>Comparemos esta nube con la primera.</p>
+</section>
+<section id="la-ciencia-sí-es-cosa-de-chicas" class="level2">
+<h2 class="anchored" data-anchor-id="la-ciencia-sí-es-cosa-de-chicas">La ciencia sí es cosa de chicas</h2>
+<p>Hoy ustedes hicieron ciencia: formularon hipótesis, experimentaron, utilizaron herramientas digitales, analizaron datos y defendieron conclusiones.</p>
+<p><strong>Misión probable: explorando el azar</strong><br>
+<em>Cátedra Europa 2026</em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
