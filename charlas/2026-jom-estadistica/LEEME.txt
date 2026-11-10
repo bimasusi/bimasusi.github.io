@@ -1,0 +1,27 @@
+CHARLA QUARTO — versión con el artículo publicado
+
+Archivo principal: charla_estadistica.qmd
+Tema: tema_charla.scss
+Fuente publicada incluida: articulo_publicado.pdf
+
+La presentación incorpora:
+- identidad visual de la ficha del LIV JEM;
+- recorte de la primera página del PDF publicado en Teaching Statistics (Wiley);
+- marco teórico ampliado (dimensiones cognitiva, afectiva, pedagógica y contextual);
+- tasas de reprobación y cuellos de botella por contenido;
+- explicación de regresión logística;
+- interpretación explícita de beta/OR positivo y beta/OR negativo;
+- Figuras 1–4 tomadas directamente de la versión publicada;
+- comparación transversal de odds ratios por programa;
+- análisis de robustez;
+- discusión completa en las cuatro dimensiones;
+- implicaciones pedagógicas, limitaciones, agenda futura y bibliografía.
+
+Para renderizar en su computador:
+  quarto preview charla_estadistica.qmd
+
+o:
+  quarto render charla_estadistica.qmd
+
+La presentación usa chunks de R con ggplot2 para dos gráficas generadas en vivo.
+Requiere R y el paquete ggplot2.

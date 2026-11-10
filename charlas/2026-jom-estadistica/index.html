@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="charla_estadistica_files/libs/clipboard/clipboard.min.js"></script>
+<script src="charla_estadistica_files/libs/quarto-html/tabby.min.js"></script>
+<script src="charla_estadistica_files/libs/quarto-html/popper.min.js"></script>
+<script src="charla_estadistica_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="charla_estadistica_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="charla_estadistica_files/libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="charla_estadistica_files/libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.9.38">
+
+  <title>charla_estadistica</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="charla_estadistica_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="charla_estadistica_files/libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="charla_estadistica_files/libs/revealjs/dist/theme/quarto-20b49b92b35f920e03afca10b85b8087.css">
+  <link href="charla_estadistica_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="charla_estadistica_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="charla_estadistica_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="charla_estadistica_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+
+<section id="section" class="slide level2 title-slide-custom">
+<h2></h2>
+<div class="event-tag">
+Conferencia LIV JEM · Licenciatura en Matemáticas UPN
+</div>
+<div class="talk-title">
+Una nota final no cuenta toda la historia
+</div>
+<div class="talk-subtitle">
+¿Dónde fracasa el aprendizaje de la estadística?
+</div>
+<div class="speaker">
+<p><strong>Biviana Marcela Suárez Sierra</strong><br> Profesora asistente · Departamento de Matemáticas<br> Universidad de los Andes<br> Egresada de la Licenciatura en Matemáticas · UPN</p>
+</div>
+<div class="event-info">
+<p><strong>10 de noviembre de 2026 · 4:00 p.&nbsp;m.</strong><br> Universidad Pedagógica Nacional · Calle 72</p>
+</div>
+<aside class="notes">
+<p><strong>Tiempo sugerido: 1 min.</strong> Agradecer la invitación y plantear desde el inicio que la charla no preguntará solo “quién reprueba”, sino “en qué momento y frente a qué contenidos aparece la dificultad”.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="el-artículo-detrás-de-esta-charla" class="slide level2">
+<h2>El artículo detrás de esta charla</h2>
+<div class="columns">
+<div class="column" style="width:46%;">
+<p><img data-src="paper_firstpage_published.png" class="paper-image" style="width:96.0%" alt="Recorte de la primera página de la versión publicada en Teaching Statistics"></p>
+<div class="source-note">
+Recorte de la primera página de la versión publicada en <em>Teaching Statistics</em> (Wiley, 2026).
+</div>
+</div><div class="column" style="width:54%;">
+<div class="paper-card">
+<div class="paper-journal">
+Teaching Statistics · Wiley
+</div>
+<div class="paper-title">
+Factors Associated With Unit-Specific Failure in a University-Level Statistics Course
+</div>
+<div class="paper-meta">
+<p>Biviana Marcela Suárez Sierra<br> Publicado en línea: <strong>25 de octubre de 2026</strong><br> DOI: <a href="https://doi.org/10.1002/test.70055">10.1002/test.70055</a></p>
+</div>
+</div>
+<p><br></p>
+<p><strong>Idea central del artículo:</strong> una nota global puede ocultar diferencias sustantivas entre contenidos y, por tanto, ocultar <strong>cuándo</strong>, <strong>en qué</strong> y <strong>para quién</strong> aparece la vulnerabilidad académica.</p>
+<div class="center qr-row">
+<p><img data-src="qr_paper.png" style="width:24.0%" alt="Código QR al artículo publicado"> <span class="small">Artículo publicado</span></p>
+</div>
+</div></div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Señalar que la charla se basa en la versión publicada en Teaching Statistics. La imagen corresponde directamente al PDF editorial publicado; el QR lleva al artículo.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="la-pregunta-que-motiva-el-trabajo" class="slide level2">
+<h2>La pregunta que motiva el trabajo</h2>
+<div class="big-question">
+<p>¿Dos estudiantes con la misma nota final<br>tuvieron realmente la misma experiencia de aprendizaje?</p>
+</div>
+<p><br></p>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="estudiante-a">Estudiante A</h3>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Unidad</th>
+<th style="text-align: right;">Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Descriptiva</td>
+<td style="text-align: right;">2.3</td>
+</tr>
+<tr class="even">
+<td>Probabilidad</td>
+<td style="text-align: right;">4.1</td>
+</tr>
+<tr class="odd">
+<td>Inferencia</td>
+<td style="text-align: right;">2.5</td>
+</tr>
+<tr class="even">
+<td>Regresión</td>
+<td style="text-align: right;">4.0</td>
+</tr>
+</tbody>
+</table>
+</div><div class="column" style="width:50%;">
+<h3 id="estudiante-b">Estudiante B</h3>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Unidad</th>
+<th style="text-align: right;">Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Descriptiva</td>
+<td style="text-align: right;">3.4</td>
+</tr>
+<tr class="even">
+<td>Probabilidad</td>
+<td style="text-align: right;">3.2</td>
+</tr>
+<tr class="odd">
+<td>Inferencia</td>
+<td style="text-align: right;">3.1</td>
+</tr>
+<tr class="even">
+<td>Regresión</td>
+<td style="text-align: right;">3.2</td>
+</tr>
+</tbody>
+</table>
+</div></div>
+<div class="small muted center">
+Ejemplo conceptual: el promedio puede ser parecido y, sin embargo, los perfiles de aprendizaje ser radicalmente distintos.
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Preguntar al público qué información perderíamos si solo observamos la definitiva.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="marco-teórico-aprender-estadística-es-multidimensional" class="slide level2">
+<h2>Marco teórico: aprender estadística es multidimensional</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<div class="dimension-card">
+<div class="dimension-title">
+Cognitiva
+</div>
+<p>Preparación matemática y computacional, razonamiento estadístico, integración conceptual y etapa académica.</p>
+</div>
+</div><div class="column" style="width:25%;">
+<div class="dimension-card">
+<div class="dimension-title">
+Afectiva
+</div>
+<p>Actitudes, autoeficacia, competencia percibida, interés, esfuerzo y dificultad percibida.</p>
+</div>
+</div><div class="column" style="width:25%;">
+<div class="dimension-card">
+<div class="dimension-title">
+Pedagógica
+</div>
+<p>Sección, prácticas de enseñanza, evaluación, laboratorio, contextualización y secuenciación de contenidos.</p>
+</div>
+</div><div class="column" style="width:25%;">
+<div class="dimension-card">
+<div class="dimension-title">
+Contextual
+</div>
+<p>Programa académico, trayectoria previa, características demográficas y entorno educativo.</p>
+</div>
+</div></div>
+<div class="takeaway">
+El artículo organiza los predictores en estas cuatro dimensiones como un <strong>marco interpretativo</strong>, no como compartimentos mutuamente excluyentes.
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Esta diapositiva sirve como mapa de todo lo que sigue. Burns et al.&nbsp;(2020), Rabin et al.&nbsp;(2021) y Fabbricatore et al.&nbsp;(2023) sostienen la idea de desempeño multidimensional.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="razonamiento-estadístico-y-dificultad-conceptual" class="slide level2">
+<h2>1 · Razonamiento estadístico y dificultad conceptual</h2>
+<div class="columns">
+<div class="column" style="width:56%;">
+<ul>
+<li>Muchos estudiantes desarrollan <strong>destreza procedimental</strong> sin una comprensión conceptual profunda.</li>
+<li>Datos pueden ser vistos como valores aislados, en lugar de un <strong>agregado con propiedades emergentes</strong>.</li>
+<li>La variabilidad se reduce con frecuencia a “calcular una desviación”, sin conectarla con muestreo e inferencia.</li>
+<li>Inferencia exige integrar <strong>distribución, muestreo, incertidumbre y variabilidad</strong>.</li>
+</ul>
+</div><div class="column" style="width:44%;">
+<div class="concept-flow">
+<div>
+Datos + contexto
+</div>
+<div>
+↓
+</div>
+<div>
+Alfabetización estadística
+</div>
+<div>
+↓
+</div>
+<div>
+Razonamiento estadístico
+</div>
+<div>
+↓
+</div>
+<div>
+Pensamiento estadístico
+</div>
+</div>
+</div></div>
+<div class="takeaway">
+Garfield y Ben-Zvi: enseñar estadística no puede reducirse a una colección fragmentada de técnicas; se necesita <strong>integración conceptual</strong>.
+</div>
+<div class="source-note">
+Garfield &amp; Ben-Zvi (2007); Garfield et al.&nbsp;(2008); Olani et al.&nbsp;(2011).
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Conectar con el resultado de que una unidad aparentemente “básica” como descriptiva también puede concentrar dificultades.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="actitudes-autoeficacia-y-competencia-percibida" class="slide level2">
+<h2>2 · Actitudes, autoeficacia y competencia percibida</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.78em;">
+<p><strong>Autoeficacia</strong>: creencia del estudiante sobre su capacidad para realizar con éxito una tarea específica.</p>
+<ul>
+<li>Puede afectar persistencia, dedicación y respuesta frente a la dificultad.</li>
+<li>La <strong>competencia cognitiva percibida</strong> se ha asociado con desempeño en estadística.</li>
+<li>Las actitudes pueden ser resistentes al cambio e incluso deteriorarse durante el curso.</li>
+<li>El SATS-36 organiza actitudes en <strong>Afecto, Competencia cognitiva, Valor, Dificultad, Interés y Esfuerzo</strong>.</li>
+</ul>
+</div><div class="column" style="width:46%;">
+<div class="caution">
+<p><strong>Importante:</strong> en este estudio no se aplicó el SATS-36 completo. Antes de cada examen se preguntó por la <strong>competencia percibida en resultados de aprendizaje específicos</strong> de esa unidad.</p>
+</div>
+<p><br></p>
+<div class="takeaway">
+No es lo mismo preguntar “¿soy bueno para estadística?” que “¿me siento capaz de probar e interpretar un coeficiente de regresión?”.
+</div>
+</div></div>
+<div class="source-note">
+Bandura (1997); Finney &amp; Schraw (2003); Dempster &amp; McCorry (2009); Gal &amp; Ginsburg (1994); Ghulami et al.&nbsp;(2015).
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Explicar por qué las preguntas de autopercepción son específicas de la unidad y no una actitud general.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="diferencias-disciplinares-y-diseño-pedagógico" class="slide level2">
+<h2>3 · Diferencias disciplinares y diseño pedagógico</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.78em;">
+<h3 id="diferencias-disciplinares">Diferencias disciplinares</h3>
+<ul>
+<li>Estudiantes de áreas STEM suelen llegar con mayor exposición matemática y computacional.</li>
+<li>En programas no cuantitativos pueden coexistir menor preparación previa, menor confianza y mayor ansiedad estadística.</li>
+<li>Las habilidades matemáticas básicas han mostrado una asociación importante con desempeño en cursos introductorios.</li>
+</ul>
+</div><div class="column" style="font-size: 0.78em;">
+<h3 id="modernizar-la-enseñanza">Modernizar la enseñanza</h3>
+<ul>
+<li>Menos énfasis exclusivo en cálculo manual.</li>
+<li>Más interpretación, argumentación y toma de decisiones en contextos auténticos.</li>
+<li>Proyectos y actividades aplicadas.</li>
+<li>Integración entre clase y laboratorio.</li>
+<li>En este curso, el pensamiento computacional con <strong>R</strong> tiene un papel central.</li>
+</ul>
+</div></div>
+<div class="takeaway">
+Esto lleva a una hipótesis pedagógica fuerte: <strong>los factores asociados al fracaso pueden depender del contenido que se esté aprendiendo</strong>.
+</div>
+<div class="source-note">
+Rabin et al.&nbsp;(2021); Fabbricatore et al.&nbsp;(2023); Burns &amp; Hammond (2019).
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Conectar esta diapositiva con la decisión metodológica de desagregar por unidad.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="el-diseño-del-estudio" class="slide level2">
+<h2>El diseño del estudio</h2>
+<div class="columns">
+<div class="column" style="width:31%;">
+<div class="stat-box">
+<div class="num">
+186
+</div>
+<div class="lab">
+estudiantes en la muestra analítica común
+</div>
+</div>
+</div><div class="column" style="width:31%;">
+<div class="stat-box">
+<div class="num">
+4
+</div>
+<div class="lab">
+unidades y cuatro evaluaciones digitales
+</div>
+</div>
+</div><div class="column" style="width:31%;">
+<div class="stat-box">
+<div class="num">
+3.0/5.0
+</div>
+<div class="lab">
+umbral institucional de aprobación
+</div>
+</div>
+</div></div>
+<p><br></p>
+<p><strong>Antes de cada examen:</strong> encuesta breve de autopercepción sobre los resultados de aprendizaje de la unidad.<br>
+<strong>Modelación principal:</strong> cuatro regresiones logísticas, una por unidad.<br>
+<strong>Predictores:</strong> variables de preparación académica, autopercepción, contexto, sección y condiciones del examen.</p>
+<div class="caution">
+Diseño observacional: se interpretan <strong>asociaciones</strong>, no efectos causales.
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Mencionar que había 216 estudiantes con notas en los cuatro exámenes y 186 casos completos usados de manera común para facilitar comparaciones.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="la-primera-señal-la-reprobación-cambia-por-unidad" class="slide level2">
+<h2>La primera señal: la reprobación cambia por unidad</h2>
+
+<img data-src="charla_estadistica_files/figure-revealjs/unnamed-chunk-2-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:78.0%"><div class="takeaway">
+<strong>46%, 19%, 40%, 30%:</strong> la vulnerabilidad académica no es homogénea durante el semestre.
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Preguntar por qué Descriptiva aparece tan alta: usarlo para introducir los cuellos de botella conceptuales.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="incluso-dentro-de-una-unidad-no-todo-cuesta-igual" class="slide level2">
+<h2>Incluso dentro de una unidad, no todo cuesta igual</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<div class="stat-box">
+<div class="num">
+23.66%
+</div>
+<div class="lab">
+resolvió correctamente el ítem que combinaba tendencia central, posición y dispersión
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="stat-box">
+<div class="num">
+6.45%
+</div>
+<div class="lab">
+resolvió correctamente un ejercicio integrador de pruebas de hipótesis
+</div>
+</div>
+</div><div class="column" style="width:33%;">
+<div class="stat-box">
+<div class="num">
+47.31%
+</div>
+<div class="lab">
+resolvió ejercicios de regresión lineal e interpretación de correlación
+</div>
+</div>
+</div></div>
+<p><br></p>
+<p>Otros resultados de Inferencia: <strong>39.25%</strong> en distribución muestral de la varianza; <strong>21.51%</strong> en intervalos de confianza generales; <strong>43.55%</strong> en intervalos para la varianza.</p>
+<div class="takeaway">
+Desagregar permite localizar <strong>cuellos de botella conceptuales</strong>, no solo asignar una etiqueta global de “aprobó/reprobó”.
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Esta diapositiva conecta directamente el marco teórico sobre razonamiento con los datos observados.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="cómo-leer-una-regresión-logística" class="slide level2">
+<h2>Cómo leer una regresión logística</h2>
+<div class="formula-box">
+<p><span class="math display">\[
+\log\left(\frac{p}{1-p}\right)=\beta_0+\beta_1x_1+\cdots+\beta_kx_k,
+\qquad OR=e^{\beta}.
+\]</span></p>
+</div>
+<div class="columns">
+<div class="column" style="font-size: 0.78em;">
+<h3 id="si-beta0">Si <span class="math inline">\(\beta&gt;0\)</span></h3>
+<ul>
+<li>aumentan los <strong>log-odds</strong> de reprobar;</li>
+<li><span class="math inline">\(e^{\beta}&gt;1\)</span>;</li>
+<li>el predictor se asocia con <strong>mayores odds</strong> de fracaso.</li>
+</ul>
+</div><div class="column" style="font-size: 0.78em;">
+<h3 id="si-beta0-1">Si <span class="math inline">\(\beta&lt;0\)</span></h3>
+<ul>
+<li>disminuyen los <strong>log-odds</strong> de reprobar;</li>
+<li><span class="math inline">\(e^{\beta}&lt;1\)</span>;</li>
+<li>el predictor se interpreta como un <strong>factor protector</strong>.</li>
+</ul>
+</div></div>
+<div class="caution">
+<strong>Odds no es probabilidad.</strong> Un OR de 3 no significa “tres veces más probabilidad”; significa tres veces las <em>odds</em>, manteniendo constantes las demás variables.
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Dar un ejemplo rápido con odds 1:4 → probabilidad 0.20; si las odds se triplican pasan a 3:4 → probabilidad 0.43, no 0.60.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="ejemplo-con-coeficiente-positivo-mayor-riesgo" class="slide level2">
+<h2>Ejemplo con coeficiente positivo: mayor riesgo</h2>
+<div class="columns">
+<div class="column" style="width:52%;">
+<div class="interpretation risk">
+<div class="interpretation-title">
+Unidad 1 · Programa fuera de ECAeI
+</div>
+<p><span class="math display">\[\beta=1.226\]</span></p>
+<p><span class="math display">\[OR=e^{1.226}\approx 3.41\]</span></p>
+<p><strong>Interpretación de <span class="math inline">\(\beta\)</span>:</strong> pertenecer a un programa fuera de ECAeI aumenta en <strong>1.226</strong> los log-odds de reprobar, controlando los demás predictores.</p>
+<p><strong>Interpretación del OR:</strong> las odds de reprobar son aproximadamente <strong>3.41 veces</strong> las de estudiantes de ECAeI.</p>
+</div>
+</div><div class="column" style="width:48%;">
+<h3 id="qué-no-debemos-decir">¿Qué NO debemos decir?</h3>
+<ul>
+<li>“Tiene 3.41 veces más probabilidad”.</li>
+<li>“El programa causa la reprobación”.</li>
+</ul>
+<h3 id="qué-sí-podemos-decir">¿Qué sí podemos decir?</h3>
+<p>La asociación es <strong>consistente</strong> y reaparece en las cuatro unidades, lo que motiva discutir <strong>alineación curricular y trayectorias disciplinares</strong>.</p>
+</div></div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Este es el ejemplo positivo solicitado. Enfatizar que el OR está ajustado por los demás predictores del modelo.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="ejemplo-con-coeficiente-negativo-efecto-protector" class="slide level2">
+<h2>Ejemplo con coeficiente negativo: efecto protector</h2>
+<div class="columns">
+<div class="column" style="width:52%;">
+<div class="interpretation protective">
+<div class="interpretation-title">
+Unidad 4 · Competencia percibida en pruebas sobre coeficientes
+</div>
+<p>Coeficiente en escala completa: <span class="math inline">\(\beta=-6.524\)</span>.</p>
+<p>Para un aumento más realista de <strong>0.1</strong> en la escala:</p>
+<p><span class="math display">\[\Delta\text{log-odds}= -6.524(0.1)=-0.6524\]</span></p>
+<p><span class="math display">\[OR_{0.1}=e^{-0.6524}\approx 0.521\]</span></p>
+<p>Las odds de reprobar se reducen aproximadamente en</p>
+<p><span class="math display">\[1-0.521=0.479\;\Rightarrow\;47.9\%.\]</span></p>
+</div>
+</div><div class="column" style="width:48%;">
+<h3 id="lectura-pedagógica">Lectura pedagógica</h3>
+<p>Una mayor confianza específica en la capacidad de <strong>plantear e interpretar pruebas sobre coeficientes de regresión</strong> se asoció con menor riesgo de fracaso.</p>
+<div class="caution">
+La variable mide una creencia sobre una competencia concreta; no demuestra que “sentirse seguro” por sí solo cause mejor desempeño.
+</div>
+</div></div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Este es el ejemplo negativo solicitado. Mostrar por qué interpretar 0.1 unidades es más sensato que un salto de 0 a 1 en la escala.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="gráfica-del-estudio-unidad-1" class="slide level2">
+<h2>Gráfica del estudio · Unidad 1</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.78em;">
+<p><img data-src="fig1_published.png" class="paper-figure" style="width:92.0%" alt="Figura publicada del modelo logístico para la Unidad 1, con coeficientes beta y odds ratios"></p>
+</div><div class="column" style="font-size: 0.78em;">
+<h3 id="qué-vemos">¿Qué vemos?</h3>
+<ul>
+<li><strong>No_ECAeI:</strong> coeficiente positivo y OR = <strong>3.41</strong> → factor de mayor riesgo.</li>
+<li><strong>Grupo_B:</strong> coeficiente positivo y OR = <strong>3.39</strong>, aunque con estimación imprecisa por el tamaño de esa sección.</li>
+<li><strong>Perp1_P1:</strong> coeficiente negativo; por +0.1 en autopercepción, OR = <strong>0.764</strong> → efecto protector marginal.</li>
+</ul>
+<div class="source-note">
+Figura 1 de la versión publicada en <em>Teaching Statistics</em>.
+</div>
+</div></div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Usar esta figura publicada para recordar la lectura del signo de beta: barras a la derecha de cero indican mayor riesgo y a la izquierda un efecto protector. Señalar que Perp1_P1 es marginal porque su intervalo de confianza para el OR incluye 1.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="gráfica-del-estudio-unidad-2" class="slide level2">
+<h2>Gráfica del estudio · Unidad 2</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.78em;">
+<p><img data-src="fig2_published.png" class="paper-figure" style="width:92.0%" alt="Figura publicada del modelo logístico para la Unidad 2, con coeficientes beta y odds ratios"></p>
+</div><div class="column" style="font-size: 0.78em;">
+<h3 id="probabilidad-y-variables-aleatorias">Probabilidad y variables aleatorias</h3>
+<ul>
+<li><strong>Sin experiencia previa en programación:</strong> <span class="math inline">\(\beta&gt;0\)</span>, OR = <strong>6.42</strong>.</li>
+<li><strong>Programa fuera de ECAeI:</strong> OR = <strong>3.16</strong>.</li>
+<li><strong>Edad:</strong> OR = <strong>1.26</strong> por año.</li>
+<li><strong>Sexo</strong> (grupo codificado masculino): <span class="math inline">\(\beta&lt;0\)</span>, OR = <strong>0.346</strong>.</li>
+<li><strong>Perp5_P2 (+0.1):</strong> <span class="math inline">\(\beta_{0.1}=-0.375\)</span>, OR = <strong>0.687</strong>; efecto protector marginal.</li>
+</ul>
+<div class="takeaway">
+La ausencia de programación tiene la mayor estimación puntual, pero con IC 95% 1.37–30.09: la magnitud exacta es imprecisa.
+</div>
+<div class="source-note">
+Figura 2 de la versión publicada en <em>Teaching Statistics</em>.
+</div>
+</div></div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Destacar la magnitud del OR, pero también la imprecisión: solo 12 estudiantes no reportaron experiencia previa en programación.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="gráfica-del-estudio-unidad-3" class="slide level2">
+<h2>Gráfica del estudio · Unidad 3</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.78em;">
+<p><img data-src="fig3_published.png" class="paper-figure" style="width:92.0%" alt="Figura publicada del modelo logístico para la Unidad 3, con coeficientes beta y odds ratios"></p>
+</div><div class="column" style="font-size: 0.78em;">
+<h3 id="inferencia-estadística">Inferencia estadística</h3>
+<ul>
+<li>Ambos coeficientes mostrados en la figura son <strong>positivos</strong>.</li>
+<li><strong>Programa fuera de ECAeI:</strong> OR = <strong>2.32</strong>.</li>
+<li><strong>Etapa temprana del programa:</strong> OR = <strong>2.58</strong>, pero IC 95% 0.913–7.30; por tanto, se interpreta como hallazgo marginal.</li>
+<li>La discusión no es solo individual: también es <strong>curricular</strong>. ¿Cuándo conviene ubicar Inferencia en el plan de estudios?</li>
+</ul>
+<div class="source-note">
+Figura 3 de la versión publicada en <em>Teaching Statistics</em>.
+</div>
+</div></div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Mostrar que en esta unidad los dos coeficientes relevantes están a la derecha de cero; después distinguir entre asociación robusta y resultado marginal mediante el intervalo de confianza.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="gráfica-del-estudio-unidad-4" class="slide level2">
+<h2>Gráfica del estudio · Unidad 4</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.78em;">
+<p><img data-src="fig4_published.png" class="paper-figure" style="width:92.0%" alt="Figura publicada del modelo logístico para la Unidad 4, con coeficientes beta y odds ratios"></p>
+</div><div class="column" style="font-size: 0.78em;">
+<h3 id="regresión">Regresión</h3>
+<ul>
+<li><strong>Perp2_P4 (+0.1):</strong> coeficiente negativo, OR = <strong>0.521</strong> → reducción aproximada de <strong>47.9%</strong> en las odds de reprobar.</li>
+<li><strong>Duración (+1 min):</strong> coeficiente ligeramente negativo, OR = <strong>0.971</strong> → reducción aproximada de <strong>2.9%</strong> en las odds.</li>
+<li><strong>Programa fuera de ECAeI:</strong> coeficiente positivo, OR = <strong>2.98</strong>.</li>
+</ul>
+<div class="takeaway">
+Esta figura permite ver en una sola imagen un <span class="math inline">\(\beta&lt;0\)</span> protector y un <span class="math inline">\(\beta&gt;0\)</span> de riesgo.
+</div>
+<div class="source-note">
+Figura 4 de la versión publicada en <em>Teaching Statistics</em>.
+</div>
+</div></div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Conectar con el ejemplo del beta negativo visto antes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="el-patrón-que-sí-atraviesa-las-cuatro-unidades" class="slide level2">
+<h2>El patrón que sí atraviesa las cuatro unidades</h2>
+
+<img data-src="charla_estadistica_files/figure-revealjs/unnamed-chunk-3-1.png" class="quarto-figure quarto-figure-center r-stretch" style="width:86.0%"><div class="takeaway">
+La persistencia del efecto sugiere una fuente de vulnerabilidad <strong>estructural/contextual</strong>, no una dificultad confinada a un único tema.
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Enfatizar que esto no significa “déficit” del estudiante; puede reflejar preparación previa y alineación entre el curso de servicio y programas con trayectorias diferentes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="los-demás-factores-sí-dependen-del-contenido" class="slide level2">
+<h2>Los demás factores sí dependen del contenido</h2>
+<table class="caption-top">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Unidad</th>
+<th>Factores que destacan en la publicación</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>U1 · Descriptiva</strong></td>
+<td>Programa; sección; autopercepción sobre reconocer la naturaleza de los datos</td>
+</tr>
+<tr class="even">
+<td><strong>U2 · Azar</strong></td>
+<td>Programa; edad; experiencia en programación; sexo; autopercepción sobre variables aleatorias</td>
+</tr>
+<tr class="odd">
+<td><strong>U3 · Inferencia</strong></td>
+<td>Programa; etapa temprana del plan de estudios</td>
+</tr>
+<tr class="even">
+<td><strong>U4 · Regresión</strong></td>
+<td>Programa; duración del examen; autopercepción sobre pruebas para coeficientes</td>
+</tr>
+</tbody>
+</table>
+<div class="takeaway">
+La vulnerabilidad académica es <strong>dependiente del contenido</strong>: distintos factores se vuelven relevantes cuando cambia la competencia evaluada.
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Esta diapositiva es el puente entre resultados y discusión.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="robustez-es-solo-un-artefacto-de-la-estructura-de-los-datos" class="slide level2">
+<h2>Robustez: ¿es solo un artefacto de la estructura de los datos?</h2>
+<div class="columns">
+<div class="column" style="width:25%;">
+<div class="stat-box">
+<div class="num">
+744
+</div>
+<div class="lab">
+observaciones en formato largo<br>186 × 4
+</div>
+</div>
+</div><div class="column" style="width:25%;">
+<div class="stat-box">
+<div class="num">
+ICC=.073
+</div>
+<div class="lab">
+dependencia intraestudiante en el modelo nulo
+</div>
+</div>
+</div><div class="column" style="width:25%;">
+<div class="stat-box">
+<div class="num">
+p=.500
+</div>
+<div class="lab">
+el intercepto aleatorio no mejoró el ajuste tras incluir covariables
+</div>
+</div>
+</div><div class="column" style="width:25%;">
+<div class="stat-box">
+<div class="num">
+p=.711
+</div>
+<div class="lab">
+interacciones Unidad × Programa no mejoraron significativamente el modelo
+</div>
+</div>
+</div></div>
+<p><br></p>
+<p>Además, en el modelo conjunto para U2–U4, la autopercepción siguió asociada con menor riesgo (<strong>OR = 0.844 por +0.1; IC 95% 0.768–0.928</strong>) mientras que el desempeño previo no fue significativo (<strong>OR = 1.402; p = 0.122</strong>).</p>
+<div class="takeaway">
+Los hallazgos principales permanecen estables al considerar dependencia intraestudiante, desempeño previo y sección/instructor.
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 2–3 min.</strong> Esta es la respuesta a las preocupaciones por medidas repetidas y clustering. Mencionar que el resultado sigue condicionado a la muestra analítica completa.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="discusión-cuatro-dimensiones-vuelven-a-encontrarse" class="slide level2">
+<h2>Discusión: cuatro dimensiones vuelven a encontrarse</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="discussion-card">
+<p><strong>Contextual</strong><br> El programa académico es el predictor más consistente. La brecha puede reflejar diferencias de preparación matemática/computacional, confianza y alineación curricular.</p>
+</div>
+<div class="discussion-card">
+<p><strong>Cognitiva / preparación</strong><br> La experiencia previa y la etapa del programa importan en contenidos específicos; Inferencia parece exigir una base académica acumulada mayor.</p>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="discussion-card">
+<p><strong>Afectiva</strong><br> La competencia percibida funciona como factor protector en algunas unidades y conserva información propia incluso después de considerar el examen previo.</p>
+</div>
+<div class="discussion-card">
+<p><strong>Pedagógica / curricular</strong><br> Variabilidad, inferencia y pruebas de hipótesis requieren integración conceptual y andamiaje progresivo; el curso no se vive como una secuencia uniforme de habilidades.</p>
+</div>
+</div></div>
+<div class="source-note">
+La discusión de la publicación interpreta explícitamente los resultados desde estas cuatro dimensiones.
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 3 min.</strong> Esta diapositiva rescata el núcleo completo de la discusión publicada.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="qué-cambia-para-la-enseñanza" class="slide level2">
+<h2>¿Qué cambia para la enseñanza?</h2>
+<div class="columns">
+<div class="column" style="font-size: 0.78em;">
+<h3 id="antes-y-durante-el-curso">Antes y durante el curso</h3>
+<ul>
+<li>Diagnósticos tempranos de conocimientos previos.</li>
+<li>Monitoreo por <strong>unidad temática</strong>, no solo por nota acumulada.</li>
+<li>Tutorías y apoyos focalizados según el contenido.</li>
+<li>Materiales contextualizados para poblaciones disciplinares distintas.</li>
+</ul>
+</div><div class="column" style="font-size: 0.78em;">
+<h3 id="diseño-curricular">Diseño curricular</h3>
+<ul>
+<li>Revisar la alineación del curso de servicio con los programas que lo requieren.</li>
+<li>Fortalecer razonamiento y conexiones conceptuales, no solo procedimientos.</li>
+<li>Andamiar progresivamente los conceptos abstractos.</li>
+<li>Incorporar reflexión metacognitiva y experiencias auténticas con datos.</li>
+</ul>
+</div></div>
+<div class="takeaway">
+La desagregación convierte la evaluación en una forma de <strong>learning analytics</strong>: permite intervenir cuando aparece la dificultad, no solamente registrar el resultado final.
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 2–3 min.</strong> Evitar presentar estas recomendaciones como intervenciones causalmente probadas; son implicaciones pedagógicas razonables que deben evaluarse.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="límites-y-agenda-futura" class="slide level2">
+<h2>Límites y agenda futura</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<h3 id="límites">Límites</h3>
+<ul>
+<li>Un curso y una institución.</li>
+<li>Diseño observacional: no permite causalidad.</li>
+<li>Resultados condicionados a la muestra completa de 186 estudiantes.</li>
+<li>Algunos estimadores tienen intervalos amplios.</li>
+<li>La desagregación mejora la resolución analítica, pero no elimina sesgo de selección potencial.</li>
+</ul>
+</div><div class="column" style="width:50%;">
+<h3 id="lo-que-sigue">Lo que sigue</h3>
+<ul>
+<li>Incorporar asistencia, motivación, interés y estrategias de estudio.</li>
+<li>Seguimiento longitudinal de habilidades estadísticas.</li>
+<li>Explorar con más detalle la experiencia afectiva del estudiante.</li>
+<li>Analizar el componente práctico en <strong>laboratorios de R</strong>, que representa el 40% restante de la nota final del curso.</li>
+</ul>
+</div></div>
+<aside class="notes">
+<p><strong>Tiempo: 2 min.</strong> Esta agenda futura aparece explícitamente en la versión publicada.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="una-nota-final-no-cuenta-toda-la-historia" class="slide level2">
+<h2>Una nota final no cuenta toda la historia</h2>
+<div class="big-question">
+<p>Si queremos intervenir mejor,<br>necesitamos mirar la trayectoria del aprendizaje,<br>no solamente su resultado final.</p>
+</div>
+<p><br></p>
+<div class="takeaway">
+<p><strong>Mensaje final:</strong> desagregar el desempeño por unidades permite identificar diferencias de dificultad, factores estructurales persistentes y predictores específicos del contenido que una nota global dejaría invisibles.</p>
+</div>
+<aside class="notes">
+<p><strong>Tiempo: 1 min.</strong> Cerrar conectando con el título, no con una lista de coeficientes.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="bibliografía-i" class="slide level2 smaller">
+<h2>Bibliografía · I</h2>
+<div class="refs-slide">
+<ul>
+<li>Bandura, A. (1997). <em>Self-Efficacy: The Exercise of Control</em>. W. H. Freeman.</li>
+<li>Burns, J., Aref, E., &amp; Majd, M. (2020). <em>Assessing instructional effectiveness and understanding factors that contribute to student performance in an engineering statistics course: An exploratory study</em>. ASEE Virtual Annual Conference.</li>
+<li>Burns, J., &amp; Hammond, M. (2019). <em>Work in Progress: Redesigning a Multidisciplinary Engineering Statistics Course</em>. ASEE Annual Conference &amp; Exposition.</li>
+<li>Dempster, M., &amp; McCorry, N. K. (2009). The role of previous experience and attitudes toward statistics in statistics assessment outcomes among undergraduate psychology students. <em>Journal of Statistics Education, 17</em>(2).</li>
+<li>Finney, S. J., &amp; Schraw, G. (2003). Self-efficacy beliefs in college statistics courses. <em>Contemporary Educational Psychology, 28</em>(2), 161–186.</li>
+<li>Gal, I., &amp; Ginsburg, L. (1994). The role of beliefs and attitudes in learning statistics: Towards an assessment framework. <em>Journal of Statistics Education, 2</em>(2).</li>
+<li>Garfield, J., &amp; Ben-Zvi, D. (2007). How students learn statistics revisited: A current review of research on teaching and learning statistics. <em>International Statistical Review, 75</em>(3), 372–396.</li>
+<li>Garfield, J. B., Ben-Zvi, D., Chance, B., Medina, E., Roseth, C., &amp; Zieffler, A. (2008). <em>Developing Students’ Statistical Reasoning: Connecting Research and Teaching Practice</em>. Springer.</li>
+</ul>
+</div>
+</section>
+<section id="bibliografía-ii" class="slide level2 smaller">
+<h2>Bibliografía · II</h2>
+<div class="refs-slide">
+<ul>
+<li>Arakawa, K., Hao, Q., Deneke, W., Cowan, I., Wolfman, S., &amp; Peterson, A. (2022). Early identification of student struggles at the topic level using context-agnostic features. <em>Proceedings of SIGCSE 2022</em>, 147–153.</li>
+<li>Axelsen, T., King, R., &amp; Curtis, E. (2025). Visualising and evaluating learning/achievement consistency in introductory statistics. <em>Cogent Education, 12</em>(1), 2492727.</li>
+<li>Fabbricatore, R., Parola, A., Pepicelli, G., &amp; Palumbo, F. (2023). Successful factors in statistics learning for non-STEM courses students: A PLS-PM approach. <em>Statistica Applicata, 34</em>(2), 1–30.</li>
+<li>Ghulami, H. R., Ab Hamid, M. R., &amp; Zakaria, R. (2015). Students’ attitudes towards learning statistics. <em>AIP Conference Proceedings, 1660</em>, 050035.</li>
+<li>Olani, A., Hoekstra, R., Harskamp, E., &amp; van der Werf, G. (2011). Statistical reasoning ability, self-efficacy, and value beliefs in a reform based university statistics course. <em>Electronic Journal of Research in Educational Psychology, 9</em>(23).</li>
+<li>Rabin, L. A., Krishnan, A., Bergdoll, R., &amp; Fogel, J. (2021). Correlates of exam performance in an introductory statistics course: Basic math skills along with self-reported psychological/behavioral and demographic variables. <em>Statistics Education Research Journal, 20</em>(1).</li>
+<li>Suárez Sierra, B. M. (2026). Factors Associated With Unit-Specific Failure in a University-Level Statistics Course. <em>Teaching Statistics</em>, 1–13. https://doi.org/10.1002/test.70055</li>
+</ul>
+</div>
+</section>
+<section id="gracias" class="slide level2">
+<h2>Gracias</h2>
+<div class="columns">
+<div class="column" style="width:68%;">
+<div class="big-question left-question">
+¿Preguntas?
+</div>
+<p><strong>Biviana Marcela Suárez Sierra</strong><br>
+Departamento de Matemáticas · Universidad de los Andes</p>
+<p><br></p>
+<p><a href="https://doi.org/10.1002/test.70055">doi.org/10.1002/test.70055</a></p>
+</div><div class="column" style="width:32%;">
+<p><img data-src="qr_paper.png" style="width:72.0%" alt="Código QR al artículo publicado"></p>
+<div class="small center">
+Artículo publicado
+</div>
+</div></div>
+</section>
+<section>
+<section id="material-de-respaldo" class="title-slide slide level1 smaller center">
+<h1>Material de respaldo</h1>
+
+</section>
+<section id="respaldo-principales-odds-ratios" class="slide level2">
+<h2>Respaldo · Principales odds ratios</h2>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Unidad</th>
+<th>Predictor</th>
+<th style="text-align: right;">OR</th>
+<th style="text-align: right;">IC 95%</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>U1</td>
+<td>Programa fuera de ECAeI</td>
+<td style="text-align: right;">3.41</td>
+<td style="text-align: right;">1.52–7.62</td>
+</tr>
+<tr class="even">
+<td>U1</td>
+<td>Sección profesor de planta</td>
+<td style="text-align: right;">3.39</td>
+<td style="text-align: right;">1.01–11.37</td>
+</tr>
+<tr class="odd">
+<td>U1</td>
+<td>Percepción naturaleza de los datos (+0.1)</td>
+<td style="text-align: right;">0.764</td>
+<td style="text-align: right;">0.575–1.014</td>
+</tr>
+<tr class="even">
+<td>U2</td>
+<td>Edad</td>
+<td style="text-align: right;">1.26</td>
+<td style="text-align: right;">1.06–1.49</td>
+</tr>
+<tr class="odd">
+<td>U2</td>
+<td>Sin experiencia en programación</td>
+<td style="text-align: right;">6.42</td>
+<td style="text-align: right;">1.37–30.09</td>
+</tr>
+<tr class="even">
+<td>U2</td>
+<td>Sexo (grupo codificado masculino)</td>
+<td style="text-align: right;">0.346</td>
+<td style="text-align: right;">0.129–0.930</td>
+</tr>
+<tr class="odd">
+<td>U2</td>
+<td>Programa fuera de ECAeI</td>
+<td style="text-align: right;">3.16</td>
+<td style="text-align: right;">1.12–8.96</td>
+</tr>
+<tr class="even">
+<td>U2</td>
+<td>Percepción variables aleatorias (+0.1)</td>
+<td style="text-align: right;">0.687</td>
+<td style="text-align: right;">0.465–1.014</td>
+</tr>
+<tr class="odd">
+<td>U3</td>
+<td>Programa fuera de ECAeI</td>
+<td style="text-align: right;">2.32</td>
+<td style="text-align: right;">1.01–5.32</td>
+</tr>
+<tr class="even">
+<td>U3</td>
+<td>Etapa temprana</td>
+<td style="text-align: right;">2.58</td>
+<td style="text-align: right;">0.913–7.30</td>
+</tr>
+<tr class="odd">
+<td>U4</td>
+<td>Programa fuera de ECAeI</td>
+<td style="text-align: right;">2.98</td>
+<td style="text-align: right;">1.14–7.82</td>
+</tr>
+<tr class="even">
+<td>U4</td>
+<td>Duración del examen</td>
+<td style="text-align: right;">0.971</td>
+<td style="text-align: right;">0.943–1.000</td>
+</tr>
+<tr class="odd">
+<td>U4</td>
+<td>Percepción prueba coeficientes (+0.1)</td>
+<td style="text-align: right;">0.521</td>
+<td style="text-align: right;">0.322–0.844</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="respaldo-selección-de-la-muestra" class="slide level2">
+<h2>Respaldo · Selección de la muestra</h2>
+<ul>
+<li>216 estudiantes tenían notas registradas en los cuatro exámenes.</li>
+<li>La muestra analítica de casos completos fue de 186 estudiantes.</li>
+<li>Entre quienes reprobaron el Examen 1, 25.2% quedaron fuera de la muestra completa.</li>
+<li>Entre quienes aprobaron, 28.1% quedaron fuera.</li>
+<li>No se observó evidencia de asociación entre aprobar/reprobar el Examen 1 e inclusión en la muestra analítica: <span class="math inline">\(\chi^2(1)=0.13\)</span>, <span class="math inline">\(p=0.714\)</span>.</li>
+</ul>
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<div class="footer footer-default">
+<p>LIV JEM · Universidad Pedagógica Nacional · 10 nov 2026</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="charla_estadistica_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="charla_estadistica_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="charla_estadistica_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="charla_estadistica_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="charla_estadistica_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="charla_estadistica_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="charla_estadistica_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="charla_estadistica_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="charla_estadistica_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="charla_estadistica_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\"><kbd>r</kbd> Scroll View Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: true,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.5e-2,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp('/' + window.location.host + '/');
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+         var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+            }
+          }
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>
